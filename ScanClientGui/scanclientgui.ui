@@ -6,15 +6,9 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1600</width>
-    <height>900</height>
+    <width>1402</width>
+    <height>692</height>
    </rect>
-  </property>
-  <property name="maximumSize">
-   <size>
-    <width>1920</width>
-    <height>1080</height>
-   </size>
   </property>
   <property name="windowTitle">
    <string>ScanClientGui</string>
@@ -184,20 +178,7 @@ QTabBar::tab:left:only-one, QTabBar::tab:right:only-one {
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QGridLayout" name="gridLayout">
-    <item row="3" column="2">
-     <spacer name="horizontalSpacer_2">
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-      <property name="sizeHint" stdset="0">
-       <size>
-        <width>40</width>
-        <height>20</height>
-       </size>
-      </property>
-     </spacer>
-    </item>
-    <item row="3" column="0">
+    <item row="0" column="1">
      <spacer name="horizontalSpacer">
       <property name="orientation">
        <enum>Qt::Horizontal</enum>
@@ -210,7 +191,7 @@ QTabBar::tab:left:only-one, QTabBar::tab:right:only-one {
       </property>
      </spacer>
     </item>
-    <item row="0" column="0">
+    <item row="0" column="2">
      <widget class="QLabel" name="titleLabel">
       <property name="text">
        <string>IR CT ScanMaster Tools</string>
@@ -220,20 +201,134 @@ QTabBar::tab:left:only-one, QTabBar::tab:right:only-one {
       </property>
      </widget>
     </item>
-    <item row="1" column="0" colspan="4">
+    <item row="0" column="5">
+     <widget class="QPushButton" name="pushButton_4">
+      <property name="minimumSize">
+       <size>
+        <width>30</width>
+        <height>20</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>&gt;&lt;</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="8">
+     <widget class="QPushButton" name="pushButton">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>30</width>
+        <height>20</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>X</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="7">
+     <widget class="QPushButton" name="pushButton_2">
+      <property name="minimumSize">
+       <size>
+        <width>30</width>
+        <height>20</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>-</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="6">
+     <widget class="QPushButton" name="pushButton_3">
+      <property name="minimumSize">
+       <size>
+        <width>30</width>
+        <height>20</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>&lt;&gt;</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="0">
+     <spacer name="horizontalSpacer_3">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="sizeType">
+       <enum>QSizePolicy::Minimum</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>100</width>
+        <height>20</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="0" column="3">
+     <spacer name="horizontalSpacer_2">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>40</width>
+        <height>20</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="3" column="0" colspan="10">
      <widget class="QTabWidget" name="tabWidget">
+      <property name="tabPosition">
+       <enum>QTabWidget::North</enum>
+      </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="general">
        <attribute name="title">
         <string>General</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_2">
-        <item row="2" column="0">
+        <item row="1" column="1">
+         <widget class="QGroupBox" name="actuatorBox">
+          <property name="title">
+           <string>Actuator control</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_5">
+           <item row="0" column="0">
+            <widget class="ActuatorWidget" name="widget_3" native="true"/>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QGroupBox" name="tcpBox">
+          <property name="title">
+           <string>Connection</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_6">
+           <item row="0" column="0">
+            <widget class="TcpClientWidget" name="widget_4" native="true"/>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item row="2" column="1">
          <widget class="QGroupBox" name="scanBox">
           <property name="title">
-           <string/>
+           <string>Scan control</string>
           </property>
           <layout class="QGridLayout" name="gridLayout_4">
            <item row="0" column="0">
@@ -242,22 +337,10 @@ QTabBar::tab:left:only-one, QTabBar::tab:right:only-one {
           </layout>
          </widget>
         </item>
-        <item row="1" column="0">
-         <widget class="QGroupBox" name="actuatorBox">
-          <property name="title">
-           <string/>
-          </property>
-          <layout class="QGridLayout" name="gridLayout_5">
-           <item row="0" column="0">
-            <widget class="ScanWidget" name="widget_3" native="true"/>
-           </item>
-          </layout>
-         </widget>
-        </item>
-        <item row="3" column="0">
+        <item row="3" column="1">
          <widget class="QGroupBox" name="fileHandlerBox">
           <property name="title">
-           <string/>
+           <string>File handler</string>
           </property>
           <layout class="QGridLayout" name="gridLayout_3">
            <item row="0" column="0">
@@ -266,17 +349,89 @@ QTabBar::tab:left:only-one, QTabBar::tab:right:only-one {
           </layout>
          </widget>
         </item>
-        <item row="0" column="0">
-         <widget class="QGroupBox" name="tcpBox">
-          <property name="title">
-           <string/>
+        <item row="5" column="1">
+         <spacer name="verticalSpacer">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
           </property>
-          <layout class="QGridLayout" name="gridLayout_6">
-           <item row="0" column="0">
-            <widget class="TcpClientWidget" name="widget_4" native="true"/>
-           </item>
-          </layout>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="4" column="1">
+         <spacer name="horizontalSpacer_5">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="0" column="2">
+         <spacer name="horizontalSpacer_4">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="0" column="4">
+         <spacer name="horizontalSpacer_6">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="0" column="3" rowspan="6">
+         <widget class="QGroupBox" name="groupBox">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>300</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="title">
+           <string>Log</string>
+          </property>
          </widget>
+        </item>
+        <item row="1" column="0">
+         <spacer name="horizontalSpacer_7">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
         </item>
        </layout>
       </widget>
@@ -286,7 +441,16 @@ QTabBar::tab:left:only-one, QTabBar::tab:right:only-one {
        </attribute>
        <layout class="QGridLayout" name="gridLayout_7">
         <item row="0" column="0">
-         <widget class="ScatterWidget" name="widget_5" native="true"/>
+         <widget class="QGroupBox" name="scanPlot">
+          <property name="title">
+           <string>3D Scan plot</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_8">
+           <item row="0" column="0">
+            <widget class="ScatterWidget" name="widget_5" native="true"/>
+           </item>
+          </layout>
+         </widget>
         </item>
        </layout>
       </widget>
@@ -295,25 +459,6 @@ QTabBar::tab:left:only-one, QTabBar::tab:right:only-one {
         <string>Array control</string>
        </attribute>
       </widget>
-     </widget>
-    </item>
-    <item row="3" column="1">
-     <widget class="QPushButton" name="pushButton">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="maximumSize">
-       <size>
-        <width>200</width>
-        <height>16777215</height>
-       </size>
-      </property>
-      <property name="text">
-       <string>Exit</string>
-      </property>
      </widget>
     </item>
    </layout>
@@ -345,7 +490,78 @@ QTabBar::tab:left:only-one, QTabBar::tab:right:only-one {
    <header>3DScatterWidget\scatterwidget.h</header>
    <container>1</container>
   </customwidget>
+  <customwidget>
+   <class>ActuatorWidget</class>
+   <extends>QWidget</extends>
+   <header>ActuatorWidget\actuatorwidget.h</header>
+   <container>1</container>
+  </customwidget>
  </customwidgets>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>pushButton</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>ScanClientGui</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1386</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1401</x>
+     <y>691</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_2</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>ScanClientGui</receiver>
+   <slot>showMinimized()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1335</x>
+     <y>19</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1218</x>
+     <y>-8</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_3</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>ScanClientGui</receiver>
+   <slot>showFullScreen()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1314</x>
+     <y>15</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1087</x>
+     <y>-3</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_4</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>ScanClientGui</receiver>
+   <slot>showNormal()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1261</x>
+     <y>22</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1167</x>
+     <y>5</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

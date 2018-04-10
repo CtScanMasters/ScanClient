@@ -30,10 +30,12 @@ public:
 
 private:
     Ui::ScanClientGui *ui;
-    //QTabWidget *m_tabWidget;
 
-
-
+    QList<ArrayWidget *> m_arrayWidgetList;
+    QGroupBox *m_arrayBox1;
+    QGridLayout *m_arrayBoxGridLayout1;
+    QGridLayout *m_arrayTabGridLayout;
+    quint8 m_arrayCount;
 
 };
 
