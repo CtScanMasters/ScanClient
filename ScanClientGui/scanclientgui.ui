@@ -6,9 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>1600</width>
+    <height>900</height>
    </rect>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>1920</width>
+    <height>1080</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>ScanClientGui</string>
@@ -176,9 +182,170 @@ QTabBar::tab:left:only-one, QTabBar::tab:right:only-one {
     margin-bottom: 0;
 }</string>
   </property>
-  <widget class="QWidget" name="centralWidget"/>
+  <widget class="QWidget" name="centralWidget">
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="3" column="2">
+     <spacer name="horizontalSpacer_2">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>40</width>
+        <height>20</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="3" column="0">
+     <spacer name="horizontalSpacer">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>40</width>
+        <height>20</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="0" column="0">
+     <widget class="QLabel" name="titleLabel">
+      <property name="text">
+       <string>IR CT ScanMaster Tools</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="0" colspan="4">
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="currentIndex">
+       <number>2</number>
+      </property>
+      <widget class="QWidget" name="general">
+       <attribute name="title">
+        <string>General</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_2">
+        <item row="2" column="0">
+         <widget class="QGroupBox" name="scanBox">
+          <property name="title">
+           <string/>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_4">
+           <item row="0" column="0">
+            <widget class="ScanWidget" name="widget_2" native="true"/>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QGroupBox" name="actuatorBox">
+          <property name="title">
+           <string/>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_5">
+           <item row="0" column="0">
+            <widget class="ScanWidget" name="widget_3" native="true"/>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item row="3" column="0">
+         <widget class="QGroupBox" name="fileHandlerBox">
+          <property name="title">
+           <string/>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_3">
+           <item row="0" column="0">
+            <widget class="FileHandlerWidget" name="widget" native="true"/>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item row="0" column="0">
+         <widget class="QGroupBox" name="tcpBox">
+          <property name="title">
+           <string/>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_6">
+           <item row="0" column="0">
+            <widget class="TcpClientWidget" name="widget_4" native="true"/>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="scanData">
+       <attribute name="title">
+        <string>Scan data</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_7">
+        <item row="0" column="0">
+         <widget class="ScatterWidget" name="widget_5" native="true"/>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="arrayControl">
+       <attribute name="title">
+        <string>Array control</string>
+       </attribute>
+      </widget>
+     </widget>
+    </item>
+    <item row="3" column="1">
+     <widget class="QPushButton" name="pushButton">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>200</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>Exit</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>FileHandlerWidget</class>
+   <extends>QWidget</extends>
+   <header>FileHandlerWidget\filehandlerwidget.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>ScanWidget</class>
+   <extends>QWidget</extends>
+   <header>ScanWidget\scanwidget.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>TcpClientWidget</class>
+   <extends>QWidget</extends>
+   <header>TcpClientWidget\tcpclientwidget.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>ScatterWidget</class>
+   <extends>QWidget</extends>
+   <header>3DScatterWidget\scatterwidget.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

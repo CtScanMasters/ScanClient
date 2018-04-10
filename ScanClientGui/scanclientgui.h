@@ -6,6 +6,7 @@
 #include <QGroupBox>
 #include <QPushButton>
 #include <QList>
+#include <QLayout>
 
 #include "3DScatterWidget/scatterwidget.h"
 #include "ActuatorWidget/actuatorwidget.h"
@@ -29,20 +30,8 @@ public:
 
 private:
     Ui::ScanClientGui *ui;
-    QTabWidget *m_tabWidget;
-    QGroupBox *m_fileHandlerBox;
-    QGroupBox *m_scanBox;
-    QGroupBox *m_connectionBox;
-    QGroupBox *m_actuatorBox;
-    QPushButton *m_exitButton;
+    //QTabWidget *m_tabWidget;
 
-    ScatterWidget *m_scatterWidget;
-    ActuatorWidget *m_actuatorWidget;
-    FileHandlerWidget *m_fileHandlerWidget;
-    ScanWidget *m_scanWidget;
-    QList<ArrayWidget *> *m_arrayWidgetList;
-
-    void buildGui();
 
 
 

@@ -6,7 +6,6 @@
 #include <QGridLayout>
 
 
-
 class FileHandlerWidget : public QWidget
 {
     Q_OBJECT

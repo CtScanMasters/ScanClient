@@ -16,6 +16,7 @@ TcpClientWidget::TcpClientWidget(QWidget *parent) :
     m_disconnectButton = new QPushButton(this);
     m_mainGridLayout = new QGridLayout(this);
 
+
     m_clientIpLabel->setText("Client IP: ");
     m_hostIpLabel->setText("Host IP: ");
     m_hostPortLabel->setText("Host PORT:");
