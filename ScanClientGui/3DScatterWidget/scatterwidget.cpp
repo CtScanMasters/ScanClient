@@ -1,0 +1,176 @@
+#include "scatterwidget.h"
+
+ScatterWidget::ScatterWidget(QWidget *parent) :
+    QWidget(parent)
+{
+
+    //Create graph
+    m_graph = new Q3DScatter();
+    m_graph->setShadowQuality(QAbstract3DGraph::ShadowQualityNone);
+    m_graph->scene()->activeCamera()->setCameraPreset(Q3DCamera::CameraPresetIsometricLeft);
+
+    //Create graph axis
+    m_xAxis = new QValue3DAxis(this);
+    m_yAxis = new QValue3DAxis(this);
+    m_zAxis = new QValue3DAxis(this);
+
+    m_xAxis->setTitle("X-axis");    
+    m_xAxis->setTitleVisible(true);
+    m_yAxis->setTitle("Y-axis");
+    m_yAxis->setTitleVisible(true);
+    m_zAxis->setTitle("Z-axis");
+    m_zAxis->setTitleVisible(true);
+
+    m_graph->setAxisX(m_xAxis);
+    m_graph->setAxisY(m_yAxis);
+    m_graph->setAxisZ(m_zAxis);
+
+    //Create graph axis attributes
+    m_graphSerie = new QScatter3DSeries(this);
+    m_graphSerie->setItemLabelFormat(QStringLiteral("@xLabel, @yLabel, @zLabel"));
+    m_graphSerie->setMesh(QAbstract3DSeries::MeshCube);
+    m_graph->addSeries(m_graphSerie);
+
+
+    //Set the dataProxy
+    m_dataProxy = new QScatterDataProxy(this);
+    m_graphSerie->setDataProxy(m_dataProxy);
+
+    //Create theme
+    m_graphTheme = new Q3DTheme(this);
+    m_graphTheme->setAmbientLightStrength(0.3f);
+    m_graphTheme->setBackgroundColor(QColor::fromRgb(50,50,50));
+    m_graphTheme->setBackgroundEnabled(true);
+    m_graphTheme->setColorStyle(Q3DTheme::ColorStyleUniform);
+    m_graphTheme->setFont(QFont(QStringLiteral("Impact"), 15));
+    m_graphTheme->setGridEnabled(true);
+    m_graphTheme->setGridLineColor(QColor::fromRgb(255,255,255));
+    m_graphTheme->setHighlightLightStrength(7.0f);
+    m_graphTheme->setLabelBackgroundColor(QColor::fromRgb(255,255,255));
+    m_graphTheme->setLabelBackgroundEnabled(false);
+    m_graphTheme->setLabelBorderEnabled(false);
+    m_graphTheme->setLabelTextColor(QColor::fromRgb(150,150,150));
+    m_graphTheme->setLightColor(Qt::white);
+    m_graphTheme->setLightStrength(6.0f);
+    m_graphTheme->setMultiHighlightColor(QColor(QRgb(0x6d5fd5)));
+    m_graphTheme->setSingleHighlightColor(QColor(QRgb(0xf6a625)));
+    m_graphTheme->setWindowColor(QColor::fromRgb(0,0,0));
+
+    m_colorList.append(QColor::fromRgb(255,0,255));
+    m_graphTheme->setBaseColors(m_colorList);
+
+    //Do the default cosmetics
+    for(int i = 0; i < 3; i++)
+    {
+        setAxisRange(i, -10, 10);
+        setAxisGrid(i, 10, 5);
+    }
+    m_graph->setActiveTheme(m_graphTheme);
+    setPointSize(0.1f);
+
+    //Add graph to widget container
+    m_graphWidgetContainer = QWidget::createWindowContainer(m_graph);
+
+    //Create layout
+    m_verticalLayout = new QVBoxLayout(this);
+    m_verticalLayout->addWidget(m_graphWidgetContainer);
+
+    QVector3D data1;
+    data1.setX(0.0);
+    data1.setY(0.0);
+    data1.setZ(0.0);
+
+    QVector3D data2;
+    data2.setX(0.0);
+    data2.setY(0.0);
+    data2.setZ(10.0);
+
+    QVector3D data3;
+    data3.setX(0.0);
+    data3.setY(0.0);
+    data3.setZ(-10.0);
+
+    QScatterDataArray dataArray;
+    dataArray.append(data1);
+    dataArray.append(data2);
+    dataArray.append(data3);
+
+    setData(dataArray);
+
+}
+
+ScatterWidget::~ScatterWidget()
+{
+    delete m_graph;
+}
+
+void ScatterWidget::setAxisRange(int axis, float min, float max)
+{
+
+    switch(axis)
+    {
+        case 0: {
+                    m_xAxis->setRange(min, max);
+                    break;
+                }
+
+        case 1: {
+                     m_yAxis->setRange(min, max);
+                    break;
+                }
+
+        case 2: {
+                    m_zAxis->setRange(min, max);
+                    break;
+                }
+        default: //Make error here
+                 break;
+    }
+
+}
+
+void ScatterWidget::setAxisGrid(int axis, int mainGrid, int subGrid)
+{
+
+    switch(axis)
+    {
+        case 0: {
+                    m_xAxis->setSegmentCount(mainGrid);
+                    m_xAxis->setSubSegmentCount(subGrid);
+                    break;
+                }
+
+        case 1: {
+                    m_yAxis->setSegmentCount(mainGrid);
+                    m_yAxis->setSubSegmentCount(subGrid);
+                    break;
+                }
+
+        case 2: {
+                    m_zAxis->setSegmentCount(mainGrid);
+                    m_zAxis->setSubSegmentCount(subGrid);
+                    break;
+                }
+        default: //Make error here
+                 break;
+    }
+
+
+}
+
+void ScatterWidget::setTheme(int themeSelection)
+{
+    Q3DTheme::Theme theme = Q3DTheme::Theme(themeSelection);
+
+    m_graph->activeTheme()->setType(theme);
+}
+
+void ScatterWidget::setPointSize(float size)
+{
+    m_graphSerie->setItemSize(size);
+}
+
+void ScatterWidget::setData(QScatterDataArray &scatterArray)
+{
+    m_dataProxy->addItems(scatterArray);
+}
