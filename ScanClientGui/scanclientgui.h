@@ -37,6 +37,8 @@ private:
     QGridLayout *m_arrayTabGridLayout;
     quint8 m_arrayCount;
 
+    void buildArrayTab();
+
 };
 
 #endif // SCANCLIENTGUI_H

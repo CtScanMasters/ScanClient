@@ -294,7 +294,7 @@ QTabBar::tab:left:only-one, QTabBar::tab:right:only-one {
        <enum>QTabWidget::North</enum>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="general">
        <attribute name="title">
@@ -313,18 +313,6 @@ QTabBar::tab:left:only-one, QTabBar::tab:right:only-one {
           </layout>
          </widget>
         </item>
-        <item row="0" column="1">
-         <widget class="QGroupBox" name="tcpBox">
-          <property name="title">
-           <string>Connection</string>
-          </property>
-          <layout class="QGridLayout" name="gridLayout_6">
-           <item row="0" column="0">
-            <widget class="TcpClientWidget" name="widget_4" native="true"/>
-           </item>
-          </layout>
-         </widget>
-        </item>
         <item row="2" column="1">
          <widget class="QGroupBox" name="scanBox">
           <property name="title">
@@ -335,6 +323,25 @@ QTabBar::tab:left:only-one, QTabBar::tab:right:only-one {
             <widget class="ScanWidget" name="widget_2" native="true"/>
            </item>
           </layout>
+         </widget>
+        </item>
+        <item row="0" column="3" rowspan="7">
+         <widget class="QGroupBox" name="groupBox">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>300</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="title">
+           <string>Log</string>
+          </property>
          </widget>
         </item>
         <item row="3" column="1">
@@ -349,21 +356,20 @@ QTabBar::tab:left:only-one, QTabBar::tab:right:only-one {
           </layout>
          </widget>
         </item>
-        <item row="5" column="1">
-         <spacer name="verticalSpacer">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
+        <item row="0" column="1">
+         <widget class="QGroupBox" name="tcpBox">
+          <property name="title">
+           <string>Connection</string>
           </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>40</height>
-           </size>
-          </property>
-         </spacer>
+          <layout class="QGridLayout" name="gridLayout_6">
+           <item row="0" column="0">
+            <widget class="TcpClientWidget" name="widget_4" native="true"/>
+           </item>
+          </layout>
+         </widget>
         </item>
-        <item row="4" column="1">
-         <spacer name="horizontalSpacer_5">
+        <item row="0" column="4">
+         <spacer name="horizontalSpacer_6">
           <property name="orientation">
            <enum>Qt::Horizontal</enum>
           </property>
@@ -388,8 +394,44 @@ QTabBar::tab:left:only-one, QTabBar::tab:right:only-one {
           </property>
          </spacer>
         </item>
-        <item row="0" column="4">
-         <spacer name="horizontalSpacer_6">
+        <item row="5" column="4">
+         <spacer name="verticalSpacer_2">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="6" column="4">
+         <widget class="QLabel" name="label">
+          <property name="text">
+           <string>by CT ScanMasters 2018</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="1">
+         <spacer name="verticalSpacer">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="5" column="1">
+         <spacer name="horizontalSpacer_5">
           <property name="orientation">
            <enum>Qt::Horizontal</enum>
           </property>
@@ -401,26 +443,7 @@ QTabBar::tab:left:only-one, QTabBar::tab:right:only-one {
           </property>
          </spacer>
         </item>
-        <item row="0" column="3" rowspan="6">
-         <widget class="QGroupBox" name="groupBox">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="minimumSize">
-           <size>
-            <width>300</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="title">
-           <string>Log</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="0">
+        <item row="0" column="0">
          <spacer name="horizontalSpacer_7">
           <property name="orientation">
            <enum>Qt::Horizontal</enum>

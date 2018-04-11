@@ -49,20 +49,22 @@ public:
     QGroupBox *actuatorBox;
     QGridLayout *gridLayout_5;
     ActuatorWidget *widget_3;
-    QGroupBox *tcpBox;
-    QGridLayout *gridLayout_6;
-    TcpClientWidget *widget_4;
     QGroupBox *scanBox;
     QGridLayout *gridLayout_4;
     ScanWidget *widget_2;
+    QGroupBox *groupBox;
     QGroupBox *fileHandlerBox;
     QGridLayout *gridLayout_3;
     FileHandlerWidget *widget;
+    QGroupBox *tcpBox;
+    QGridLayout *gridLayout_6;
+    TcpClientWidget *widget_4;
+    QSpacerItem *horizontalSpacer_6;
+    QSpacerItem *horizontalSpacer_4;
+    QSpacerItem *verticalSpacer_2;
+    QLabel *label;
     QSpacerItem *verticalSpacer;
     QSpacerItem *horizontalSpacer_5;
-    QSpacerItem *horizontalSpacer_4;
-    QSpacerItem *horizontalSpacer_6;
-    QGroupBox *groupBox;
     QSpacerItem *horizontalSpacer_7;
     QWidget *scanData;
     QGridLayout *gridLayout_7;
@@ -316,20 +318,6 @@ public:
 
         gridLayout_2->addWidget(actuatorBox, 1, 1, 1, 1);
 
-        tcpBox = new QGroupBox(general);
-        tcpBox->setObjectName(QStringLiteral("tcpBox"));
-        gridLayout_6 = new QGridLayout(tcpBox);
-        gridLayout_6->setSpacing(6);
-        gridLayout_6->setContentsMargins(11, 11, 11, 11);
-        gridLayout_6->setObjectName(QStringLiteral("gridLayout_6"));
-        widget_4 = new TcpClientWidget(tcpBox);
-        widget_4->setObjectName(QStringLiteral("widget_4"));
-
-        gridLayout_6->addWidget(widget_4, 0, 0, 1, 1);
-
-
-        gridLayout_2->addWidget(tcpBox, 0, 1, 1, 1);
-
         scanBox = new QGroupBox(general);
         scanBox->setObjectName(QStringLiteral("scanBox"));
         gridLayout_4 = new QGridLayout(scanBox);
@@ -343,6 +331,17 @@ public:
 
 
         gridLayout_2->addWidget(scanBox, 2, 1, 1, 1);
+
+        groupBox = new QGroupBox(general);
+        groupBox->setObjectName(QStringLiteral("groupBox"));
+        QSizePolicy sizePolicy1(QSizePolicy::Expanding, QSizePolicy::Expanding);
+        sizePolicy1.setHorizontalStretch(0);
+        sizePolicy1.setVerticalStretch(0);
+        sizePolicy1.setHeightForWidth(groupBox->sizePolicy().hasHeightForWidth());
+        groupBox->setSizePolicy(sizePolicy1);
+        groupBox->setMinimumSize(QSize(300, 0));
+
+        gridLayout_2->addWidget(groupBox, 0, 3, 7, 1);
 
         fileHandlerBox = new QGroupBox(general);
         fileHandlerBox->setObjectName(QStringLiteral("fileHandlerBox"));
@@ -358,36 +357,49 @@ public:
 
         gridLayout_2->addWidget(fileHandlerBox, 3, 1, 1, 1);
 
-        verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+        tcpBox = new QGroupBox(general);
+        tcpBox->setObjectName(QStringLiteral("tcpBox"));
+        gridLayout_6 = new QGridLayout(tcpBox);
+        gridLayout_6->setSpacing(6);
+        gridLayout_6->setContentsMargins(11, 11, 11, 11);
+        gridLayout_6->setObjectName(QStringLiteral("gridLayout_6"));
+        widget_4 = new TcpClientWidget(tcpBox);
+        widget_4->setObjectName(QStringLiteral("widget_4"));
 
-        gridLayout_2->addItem(verticalSpacer, 5, 1, 1, 1);
+        gridLayout_6->addWidget(widget_4, 0, 0, 1, 1);
 
-        horizontalSpacer_5 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
-        gridLayout_2->addItem(horizontalSpacer_5, 4, 1, 1, 1);
-
-        horizontalSpacer_4 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-        gridLayout_2->addItem(horizontalSpacer_4, 0, 2, 1, 1);
+        gridLayout_2->addWidget(tcpBox, 0, 1, 1, 1);
 
         horizontalSpacer_6 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
         gridLayout_2->addItem(horizontalSpacer_6, 0, 4, 1, 1);
 
-        groupBox = new QGroupBox(general);
-        groupBox->setObjectName(QStringLiteral("groupBox"));
-        QSizePolicy sizePolicy1(QSizePolicy::Expanding, QSizePolicy::Expanding);
-        sizePolicy1.setHorizontalStretch(0);
-        sizePolicy1.setVerticalStretch(0);
-        sizePolicy1.setHeightForWidth(groupBox->sizePolicy().hasHeightForWidth());
-        groupBox->setSizePolicy(sizePolicy1);
-        groupBox->setMinimumSize(QSize(300, 0));
+        horizontalSpacer_4 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
-        gridLayout_2->addWidget(groupBox, 0, 3, 6, 1);
+        gridLayout_2->addItem(horizontalSpacer_4, 0, 2, 1, 1);
+
+        verticalSpacer_2 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        gridLayout_2->addItem(verticalSpacer_2, 5, 4, 1, 1);
+
+        label = new QLabel(general);
+        label->setObjectName(QStringLiteral("label"));
+        label->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+
+        gridLayout_2->addWidget(label, 6, 4, 1, 1);
+
+        verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        gridLayout_2->addItem(verticalSpacer, 4, 1, 1, 1);
+
+        horizontalSpacer_5 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        gridLayout_2->addItem(horizontalSpacer_5, 5, 1, 1, 1);
 
         horizontalSpacer_7 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
-        gridLayout_2->addItem(horizontalSpacer_7, 1, 0, 1, 1);
+        gridLayout_2->addItem(horizontalSpacer_7, 0, 0, 1, 1);
 
         tabWidget->addTab(general, QString());
         scanData = new QWidget();
@@ -425,7 +437,7 @@ public:
         QObject::connect(pushButton_3, SIGNAL(clicked(bool)), ScanClientGui, SLOT(showFullScreen()));
         QObject::connect(pushButton_4, SIGNAL(clicked(bool)), ScanClientGui, SLOT(showNormal()));
 
-        tabWidget->setCurrentIndex(1);
+        tabWidget->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(ScanClientGui);
@@ -440,10 +452,11 @@ public:
         pushButton_2->setText(QApplication::translate("ScanClientGui", "-", Q_NULLPTR));
         pushButton_3->setText(QApplication::translate("ScanClientGui", "<>", Q_NULLPTR));
         actuatorBox->setTitle(QApplication::translate("ScanClientGui", "Actuator control", Q_NULLPTR));
-        tcpBox->setTitle(QApplication::translate("ScanClientGui", "Connection", Q_NULLPTR));
         scanBox->setTitle(QApplication::translate("ScanClientGui", "Scan control", Q_NULLPTR));
-        fileHandlerBox->setTitle(QApplication::translate("ScanClientGui", "File handler", Q_NULLPTR));
         groupBox->setTitle(QApplication::translate("ScanClientGui", "Log", Q_NULLPTR));
+        fileHandlerBox->setTitle(QApplication::translate("ScanClientGui", "File handler", Q_NULLPTR));
+        tcpBox->setTitle(QApplication::translate("ScanClientGui", "Connection", Q_NULLPTR));
+        label->setText(QApplication::translate("ScanClientGui", "by CT ScanMasters 2018", Q_NULLPTR));
         tabWidget->setTabText(tabWidget->indexOf(general), QApplication::translate("ScanClientGui", "General", Q_NULLPTR));
         scanPlot->setTitle(QApplication::translate("ScanClientGui", "3D Scan plot", Q_NULLPTR));
         tabWidget->setTabText(tabWidget->indexOf(scanData), QApplication::translate("ScanClientGui", "Scan data", Q_NULLPTR));
