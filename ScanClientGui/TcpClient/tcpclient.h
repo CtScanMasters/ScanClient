@@ -12,29 +12,31 @@ class TcpClient : public QObject, public SocketHandler
     Q_OBJECT
 
 public:
-    TcpClient(QString ipAddress, quint64 port);
+    TcpClient();
     void sendData(QByteArray byteArray);
     void disconnectFromHost();
     void newDataAvailable();
+    void setHostIpAddress(QString ipAddress);
+    void setHostPort(quint64 port);
+    void connectToHost();
 
 private:
 
     QTcpSocket *m_tcpSocket;
     QTimer *m_reconnectTimer;
-    quint64 autoReconnectTime;
+    quint64 m_autoReconnectTime;
     QHostAddress m_hostIpAddress;
     quint64 m_hostPort;
     QHostAddress m_myIp;
     QString m_myName;
-    QTimer sendTimer;
 
 private slots:
-    void readData();
-    void connectToHost();
+    void readData();    
     void displaySocketState(QAbstractSocket::SocketState socketState);
 
 signals:
     void newDataAvailableSignal();
+    void socketStateChangedSignal();
 
 
 };

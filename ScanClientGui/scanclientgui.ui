@@ -308,7 +308,7 @@ QTabBar::tab:left:only-one, QTabBar::tab:right:only-one {
           </property>
           <layout class="QGridLayout" name="gridLayout_5">
            <item row="0" column="0">
-            <widget class="ActuatorWidget" name="widget_3" native="true"/>
+            <widget class="ActuatorWidget" name="actuatorControlWidget" native="true"/>
            </item>
           </layout>
          </widget>
@@ -320,7 +320,7 @@ QTabBar::tab:left:only-one, QTabBar::tab:right:only-one {
           </property>
           <layout class="QGridLayout" name="gridLayout_4">
            <item row="0" column="0">
-            <widget class="ScanWidget" name="widget_2" native="true"/>
+            <widget class="ScanWidget" name="scanControlWidget" native="true"/>
            </item>
           </layout>
          </widget>
@@ -351,7 +351,7 @@ QTabBar::tab:left:only-one, QTabBar::tab:right:only-one {
           </property>
           <layout class="QGridLayout" name="gridLayout_3">
            <item row="0" column="0">
-            <widget class="FileHandlerWidget" name="widget" native="true"/>
+            <widget class="FileHandlerWidget" name="fileHandlerWidget" native="true"/>
            </item>
           </layout>
          </widget>
@@ -363,7 +363,7 @@ QTabBar::tab:left:only-one, QTabBar::tab:right:only-one {
           </property>
           <layout class="QGridLayout" name="gridLayout_6">
            <item row="0" column="0">
-            <widget class="TcpClientWidget" name="widget_4" native="true"/>
+            <widget class="TcpClientWidget" name="tcpControlWidget" native="true"/>
            </item>
           </layout>
          </widget>

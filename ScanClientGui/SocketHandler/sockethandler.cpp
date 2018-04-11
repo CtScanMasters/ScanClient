@@ -94,7 +94,6 @@ void SocketHandler::getReceivedData(QByteArray &byteArray)
 bool SocketHandler::hanldeSocketState(QAbstractSocket::SocketState socketState)
 {
     QString socketStateString;
-    socketStateString.append("state: ");
 
     bool isReady = false;
 
@@ -128,10 +127,17 @@ bool SocketHandler::hanldeSocketState(QAbstractSocket::SocketState socketState)
         socketStateString.append("unknown");
     }
 
+    m_socketState = socketStateString;
     debugMessage(socketStateString);
     return isReady;
 }
+
+QString SocketHandler::getSocketState()
+{
+    return m_socketState;
+}
+
 void SocketHandler::debugMessage(QString message)
 {
-    qDebug() << message;
+    qDebug() << "SocketHandler" << message;
 }

@@ -14,6 +14,7 @@
 #include "FileHandlerWidget/filehandlerwidget.h"
 #include "ScanWidget/scanwidget.h"
 #include "TcpClientWidget/tcpclientwidget.h"
+#include "TcpClient/tcpclient.h"
 
 
 namespace Ui {
@@ -37,7 +38,27 @@ private:
     QGridLayout *m_arrayTabGridLayout;
     quint8 m_arrayCount;
 
+    TcpClient *m_tcpClient;
+    bool m_tcpIsConnected;
+    QByteArray m_dataBufferOut;
+
     void buildArrayTab();
+    void buildTcpClient();
+    void buildActuatorControl();
+
+    void actuatorStatusChange();
+
+private slots:
+    void tcpConnect();
+    void tcpDisconnect();
+    void tcpStateChange();
+    void tcpSendData();
+
+    void actuatorJogForward();
+    void actuatorJogBack();
+    void actuatorHome();
+
+
 
 };
 

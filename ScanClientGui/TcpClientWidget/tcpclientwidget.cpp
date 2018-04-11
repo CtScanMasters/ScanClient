@@ -1,6 +1,5 @@
 #include "tcpclientwidget.h"
 
-
 TcpClientWidget::TcpClientWidget(QWidget *parent) :
     QWidget(parent)
 {
@@ -10,8 +9,8 @@ TcpClientWidget::TcpClientWidget(QWidget *parent) :
     m_statusLabel = new QLabel(this);
     m_statusLineEdit = new QLineEdit(this);
     m_hostIpLineEdit = new QLineEdit(this);
-    m_clienIpLineEdit = new QLineEdit(this);
     m_hostPortLineEdit = new QLineEdit(this);
+    m_clienIpLineEdit = new QLineEdit(this);    
     m_connectButton = new QPushButton(this);
     m_disconnectButton = new QPushButton(this);
     m_mainGridLayout = new QGridLayout(this);
@@ -79,9 +78,7 @@ void TcpClientWidget::disconnectFromHost()
 
 void TcpClientWidget::setClientIpAddress(QString ipAddress)
 {
-    QString string = "Client IP: ";
-    string.append(ipAddress);
-    m_clientIpLabel->setText(string);
+    m_clienIpLineEdit->setText(ipAddress);
 }
 
 void TcpClientWidget::setStatus(QString status)

@@ -12,8 +12,9 @@ private:
     QList<QByteArray> m_dataInBufferList;
     QMutex m_mutex;
 
-protected:
-    QString handleRetreiveIpAddress();
+    QString m_socketState;
+
+protected:    
     quint64 handleSendData(QTcpSocket *tcpSocket, QByteArray &byteArray);
     bool handleReceiveData(QTcpSocket *tcpSocket);
     bool hanldeSocketState(QAbstractSocket::SocketState socketState);
@@ -23,6 +24,8 @@ protected:
 public:
     SocketHandler();
     void getReceivedData(QByteArray &byteArray);
+    QString getSocketState();
+    QString handleRetreiveIpAddress();
 
 
 };

@@ -36,6 +36,7 @@ ActuatorWidget::ActuatorWidget(QWidget *parent) :
 
     connect(m_jogForwardButton, SIGNAL(clicked(bool)), this, SLOT(jogForward()));
     connect(m_jogBackButton, SIGNAL(clicked(bool)), this, SLOT(jogBack()));
+    connect(m_homeButton, SIGNAL(clicked(bool)), this, SLOT(homeActuator()));
 
     setLayout(m_mainGridlayout);
 
@@ -54,6 +55,11 @@ void ActuatorWidget::jogForward()
 void ActuatorWidget::jogBack()
 {
     emit jogBackSignal();
+}
+
+void ActuatorWidget::homeActuator()
+{
+    emit homeActuatorSignal();
 }
 
 void ActuatorWidget::setPosition(quint64 position)

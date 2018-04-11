@@ -31,10 +31,12 @@ private:
 private slots:
     void jogForward();
     void jogBack();
+    void homeActuator();
 
 signals:
     void jogForwardSignal();
     void jogBackSignal();
+    void homeActuatorSignal();
 
 };
 

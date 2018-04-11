@@ -48,17 +48,17 @@ public:
     QGridLayout *gridLayout_2;
     QGroupBox *actuatorBox;
     QGridLayout *gridLayout_5;
-    ActuatorWidget *widget_3;
+    ActuatorWidget *actuatorControlWidget;
     QGroupBox *scanBox;
     QGridLayout *gridLayout_4;
-    ScanWidget *widget_2;
+    ScanWidget *scanControlWidget;
     QGroupBox *groupBox;
     QGroupBox *fileHandlerBox;
     QGridLayout *gridLayout_3;
-    FileHandlerWidget *widget;
+    FileHandlerWidget *fileHandlerWidget;
     QGroupBox *tcpBox;
     QGridLayout *gridLayout_6;
-    TcpClientWidget *widget_4;
+    TcpClientWidget *tcpControlWidget;
     QSpacerItem *horizontalSpacer_6;
     QSpacerItem *horizontalSpacer_4;
     QSpacerItem *verticalSpacer_2;
@@ -310,10 +310,10 @@ public:
         gridLayout_5->setSpacing(6);
         gridLayout_5->setContentsMargins(11, 11, 11, 11);
         gridLayout_5->setObjectName(QStringLiteral("gridLayout_5"));
-        widget_3 = new ActuatorWidget(actuatorBox);
-        widget_3->setObjectName(QStringLiteral("widget_3"));
+        actuatorControlWidget = new ActuatorWidget(actuatorBox);
+        actuatorControlWidget->setObjectName(QStringLiteral("actuatorControlWidget"));
 
-        gridLayout_5->addWidget(widget_3, 0, 0, 1, 1);
+        gridLayout_5->addWidget(actuatorControlWidget, 0, 0, 1, 1);
 
 
         gridLayout_2->addWidget(actuatorBox, 1, 1, 1, 1);
@@ -324,10 +324,10 @@ public:
         gridLayout_4->setSpacing(6);
         gridLayout_4->setContentsMargins(11, 11, 11, 11);
         gridLayout_4->setObjectName(QStringLiteral("gridLayout_4"));
-        widget_2 = new ScanWidget(scanBox);
-        widget_2->setObjectName(QStringLiteral("widget_2"));
+        scanControlWidget = new ScanWidget(scanBox);
+        scanControlWidget->setObjectName(QStringLiteral("scanControlWidget"));
 
-        gridLayout_4->addWidget(widget_2, 0, 0, 1, 1);
+        gridLayout_4->addWidget(scanControlWidget, 0, 0, 1, 1);
 
 
         gridLayout_2->addWidget(scanBox, 2, 1, 1, 1);
@@ -349,10 +349,10 @@ public:
         gridLayout_3->setSpacing(6);
         gridLayout_3->setContentsMargins(11, 11, 11, 11);
         gridLayout_3->setObjectName(QStringLiteral("gridLayout_3"));
-        widget = new FileHandlerWidget(fileHandlerBox);
-        widget->setObjectName(QStringLiteral("widget"));
+        fileHandlerWidget = new FileHandlerWidget(fileHandlerBox);
+        fileHandlerWidget->setObjectName(QStringLiteral("fileHandlerWidget"));
 
-        gridLayout_3->addWidget(widget, 0, 0, 1, 1);
+        gridLayout_3->addWidget(fileHandlerWidget, 0, 0, 1, 1);
 
 
         gridLayout_2->addWidget(fileHandlerBox, 3, 1, 1, 1);
@@ -363,10 +363,10 @@ public:
         gridLayout_6->setSpacing(6);
         gridLayout_6->setContentsMargins(11, 11, 11, 11);
         gridLayout_6->setObjectName(QStringLiteral("gridLayout_6"));
-        widget_4 = new TcpClientWidget(tcpBox);
-        widget_4->setObjectName(QStringLiteral("widget_4"));
+        tcpControlWidget = new TcpClientWidget(tcpBox);
+        tcpControlWidget->setObjectName(QStringLiteral("tcpControlWidget"));
 
-        gridLayout_6->addWidget(widget_4, 0, 0, 1, 1);
+        gridLayout_6->addWidget(tcpControlWidget, 0, 0, 1, 1);
 
 
         gridLayout_2->addWidget(tcpBox, 0, 1, 1, 1);
