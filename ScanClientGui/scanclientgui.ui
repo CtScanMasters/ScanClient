@@ -194,7 +194,7 @@ QTabBar::tab:left:only-one, QTabBar::tab:right:only-one {
     <item row="0" column="2">
      <widget class="QLabel" name="titleLabel">
       <property name="text">
-       <string>IR CT ScanMaster Tools</string>
+       <string>IR ScanMasterPi</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
