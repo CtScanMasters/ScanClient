@@ -49,7 +49,7 @@ QLabel{
 QPushButton{
 	border: 1px solid rgb(0, 0, 0);
 	border-radius: 5px;
-	background-color:qlineargradient(spread:pad, x1:0.307, y1:0.715545, x2:0, y2:1, stop:0 rgba(145, 51, 143, 255), stop:1 rgba(255, 255, 255, 255));
+	background-color:qlineargradient(spread:pad, x1:1, y1:0.346591, x2:0, y2:1, stop:0.455056 rgba(141, 22, 158, 255), stop:0.983146 rgba(169, 169, 169, 255));
 	color: white;
 	min-height: 18px;
 
@@ -63,13 +63,13 @@ QPushButton:pressed {
 QProgressBar:horizontal {
 	border: 1px white;
 	border-radius: 5px;
-	background: rgb(81, 81, 81);
+	background: rgb(100, 100, 100);
 	padding: 1px;
 
 }
 
 QProgressBar::chunk:horizontal {
-	background: qlineargradient(spread:pad, x1:0.3405, y1:0.761, x2:0, y2:1, stop:0 rgba(167, 120, 166, 255), stop:1 rgba(255, 255, 255, 255));
+	background: qlineargradient(spread:pad, x1:1, y1:0.346591, x2:0, y2:1, stop:0.0730337 rgba(103, 16, 115, 255), stop:0.983146 rgba(169, 169, 169, 255));
 	border-radius: 5px;
 }
 
@@ -104,7 +104,7 @@ QTabBar::tab {
 }
 
 QTabBar::tab:selected {
-    background: qlineargradient(spread:pad, x1:0.3405, y1:0.761, x2:0, y2:1, stop:0 rgba(167, 88, 165, 255), stop:1 rgba(255, 255, 255, 255));
+    background: qlineargradient(spread:pad, x1:1, y1:0.346591, x2:0, y2:1, stop:0.455056 rgba(141, 22, 158, 255), stop:0.983146 rgba(169, 169, 169, 255));
 	color: rgb(255,255,255);
 	font-weight: bold;
 	border-radius: 5px;
@@ -342,6 +342,11 @@ QTabBar::tab:left:only-one, QTabBar::tab:right:only-one {
           <property name="title">
            <string>Log</string>
           </property>
+          <layout class="QGridLayout" name="gridLayout_9">
+           <item row="0" column="0">
+            <widget class="QPlainTextEdit" name="plainTextEdit"/>
+           </item>
+          </layout>
          </widget>
         </item>
         <item row="3" column="1">

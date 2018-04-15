@@ -54,6 +54,9 @@ private slots:
     void tcpStateChange();
     void tcpSendData();
 
+    void arraySetSource(quint8 sourceMask);
+    void arrayGetSensor();
+
     void actuatorJogForward();
     void actuatorJogBack();
     void actuatorHome();

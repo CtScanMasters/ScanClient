@@ -37,7 +37,7 @@ ArrayWidget::ArrayWidget(QWidget *parent) :
 
     for(int i = 0; i < m_ArraySize;  i++)
     {
-        setBarValue(i, (i * (3300 / m_ArraySize)));
+        setBarValue(i, 0);
     }
 
     m_controlAllButton->setMaximumWidth(30);

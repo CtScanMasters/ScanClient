@@ -44,7 +44,6 @@ void TcpClient::disconnectFromHost()
 {
     m_tcpSocket->disconnectFromHost();
     m_reconnectTimer->stop();
-    qDebug() << "SIGNAL YEAH";
 }
 
 void TcpClient::sendData(QByteArray byteArray)

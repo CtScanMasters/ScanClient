@@ -14,7 +14,7 @@ ScanClientGui::ScanClientGui(QWidget *parent) :
 
     buildArrayTab();
     buildTcpClient();
-    buildActuatorControl();
+    buildActuatorControl();     
 
 
 }
@@ -47,6 +47,8 @@ void ScanClientGui::buildArrayTab()
         }
     }
     m_arrayTabGridLayout->addWidget(m_arrayBox1, 0, 0, (m_arrayCount / 2), 4);
+
+    connect(m_arrayWidgetList.at(0), SIGNAL(sourceSetSignal(quint8)), this, SLOT(arraySetSource(quint8)));
 }
 
 void ScanClientGui::buildTcpClient()
@@ -55,6 +57,7 @@ void ScanClientGui::buildTcpClient()
     connect(ui->tcpControlWidget, SIGNAL(connectToHostSignal()), this, SLOT(tcpConnect()));
     connect(ui->tcpControlWidget, SIGNAL(disconnectFromHostSignal()), this, SLOT(tcpDisconnect()));
     connect(m_tcpClient, SIGNAL(socketStateChangedSignal()), this, SLOT(tcpStateChange()));
+    connect(m_tcpClient, SIGNAL(newDataAvailableSignal()), this, SLOT(arrayGetSensor()));
     ui->tcpControlWidget->setClientIpAddress(m_tcpClient->handleRetreiveIpAddress());
 }
 
@@ -104,6 +107,39 @@ void ScanClientGui::buildActuatorControl()
     connect(ui->actuatorControlWidget, SIGNAL(jogBackSignal()), this, SLOT(actuatorJogBack()));
     connect(ui->actuatorControlWidget, SIGNAL(jogForwardSignal()), this, SLOT(actuatorJogForward()));
     connect(ui->actuatorControlWidget, SIGNAL(homeActuatorSignal()), this, SLOT(actuatorHome()));
+}
+
+void ScanClientGui::arraySetSource(quint8 sourceMask)
+{
+    QByteArray dataOutArray;
+    QDataStream dataOutStream(&dataOutArray, QIODevice::ReadWrite);
+    dataOutStream << sourceMask;
+    m_tcpClient->sendData(dataOutArray);
+
+    qDebug() << "Data Source: " << sourceMask;
+}
+
+void ScanClientGui::arrayGetSensor()
+{
+    QByteArray dataInArray;
+    m_tcpClient->getReceivedData(dataInArray);
+
+    QList<uint16_t> dataInList;
+    QDataStream dataInStream(&dataInArray, QIODevice::ReadWrite);
+    dataInStream >> dataInList;
+
+    qDebug() << "Data ADC: " << dataInList;
+
+    for(int i = 0; i < 8; i++)
+    {
+
+        if(i < dataInList.size())
+        {
+            m_arrayWidgetList.at(0)->setBarValue(i, quint64(dataInList.at(i) * 3.22));
+        }
+
+    }
+
 }
 
 void ScanClientGui::actuatorJogBack()

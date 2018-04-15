@@ -18,6 +18,7 @@
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
+#include <QtWidgets/QPlainTextEdit>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QTabWidget>
@@ -53,6 +54,8 @@ public:
     QGridLayout *gridLayout_4;
     ScanWidget *scanControlWidget;
     QGroupBox *groupBox;
+    QGridLayout *gridLayout_9;
+    QPlainTextEdit *plainTextEdit;
     QGroupBox *fileHandlerBox;
     QGridLayout *gridLayout_3;
     FileHandlerWidget *fileHandlerWidget;
@@ -113,10 +116,10 @@ public:
 "QPushButton{\n"
 "	border: 1px solid rgb(0, 0, 0);\n"
 "	border-radius: 5px;\n"
-"	background-color:qlineargradient(spread:pad, x1:0.307, y1:0.715545, x2:0, y2:1, stop:0 rgba(145, 51, 143, 255), stop:1 rgba(255, 255, 255, 255));\n"
-"	color: white;\n"
-""
-                        "	min-height: 18px;\n"
+"	background-color:qlineargradient(spread:pad, x1:1, y1:0.346591, x2:0, y2:1, stop:0.455056 rgba(141, 22, 158, 255), stop:0.983146 rgba(169, 169, 169, 255));\n"
+"	color"
+                        ": white;\n"
+"	min-height: 18px;\n"
 "\n"
 "}\n"
 "\n"
@@ -128,13 +131,13 @@ public:
 "QProgressBar:horizontal {\n"
 "	border: 1px white;\n"
 "	border-radius: 5px;\n"
-"	background: rgb(81, 81, 81);\n"
+"	background: rgb(100, 100, 100);\n"
 "	padding: 1px;\n"
 "\n"
 "}\n"
 "\n"
 "QProgressBar::chunk:horizontal {\n"
-"	background: qlineargradient(spread:pad, x1:0.3405, y1:0.761, x2:0, y2:1, stop:0 rgba(167, 120, 166, 255), stop:1 rgba(255, 255, 255, 255));\n"
+"	background: qlineargradient(spread:pad, x1:1, y1:0.346591, x2:0, y2:1, stop:0.0730337 rgba(103, 16, 115, 255), stop:0.983146 rgba(169, 169, 169, 255));\n"
 "	border-radius: 5px;\n"
 "}\n"
 "\n"
@@ -162,15 +165,15 @@ public:
 "}\n"
 "\n"
 "QTabBar::tab {\n"
-"    border: 1px solid black;\n"
+"    border: 1px solid bla"
+                        "ck;\n"
 "	width: 100px;\n"
-"	"
-                        "border-radius: 5px;\n"
+"	border-radius: 5px;\n"
 "	border: 1px solid rgb(255, 255, 255);\n"
 "}\n"
 "\n"
 "QTabBar::tab:selected {\n"
-"    background: qlineargradient(spread:pad, x1:0.3405, y1:0.761, x2:0, y2:1, stop:0 rgba(167, 88, 165, 255), stop:1 rgba(255, 255, 255, 255));\n"
+"    background: qlineargradient(spread:pad, x1:1, y1:0.346591, x2:0, y2:1, stop:0.455056 rgba(141, 22, 158, 255), stop:0.983146 rgba(169, 169, 169, 255));\n"
 "	color: rgb(255,255,255);\n"
 "	font-weight: bold;\n"
 "	border-radius: 5px;\n"
@@ -205,10 +208,10 @@ public:
 "QTabBar::tab:top:selected {\n"
 "    border-bottom-color: none;\n"
 "}\n"
-"\n"
-"QTabBar::tab:bottom:selected {\n"
 ""
-                        "    border-top-color: none;\n"
+                        "\n"
+"QTabBar::tab:bottom:selected {\n"
+"    border-top-color: none;\n"
 "}\n"
 "\n"
 "QTabBar::tab:top:last, QTabBar::tab:bottom:last,\n"
@@ -340,6 +343,15 @@ public:
         sizePolicy1.setHeightForWidth(groupBox->sizePolicy().hasHeightForWidth());
         groupBox->setSizePolicy(sizePolicy1);
         groupBox->setMinimumSize(QSize(300, 0));
+        gridLayout_9 = new QGridLayout(groupBox);
+        gridLayout_9->setSpacing(6);
+        gridLayout_9->setContentsMargins(11, 11, 11, 11);
+        gridLayout_9->setObjectName(QStringLiteral("gridLayout_9"));
+        plainTextEdit = new QPlainTextEdit(groupBox);
+        plainTextEdit->setObjectName(QStringLiteral("plainTextEdit"));
+
+        gridLayout_9->addWidget(plainTextEdit, 0, 0, 1, 1);
+
 
         gridLayout_2->addWidget(groupBox, 0, 3, 7, 1);
 
@@ -446,7 +458,7 @@ public:
     void retranslateUi(QMainWindow *ScanClientGui)
     {
         ScanClientGui->setWindowTitle(QApplication::translate("ScanClientGui", "ScanClientGui", Q_NULLPTR));
-        titleLabel->setText(QApplication::translate("ScanClientGui", "IR CT ScanMaster Tools", Q_NULLPTR));
+        titleLabel->setText(QApplication::translate("ScanClientGui", "IR ScanMasterPi", Q_NULLPTR));
         pushButton_4->setText(QApplication::translate("ScanClientGui", "><", Q_NULLPTR));
         pushButton->setText(QApplication::translate("ScanClientGui", "X", Q_NULLPTR));
         pushButton_2->setText(QApplication::translate("ScanClientGui", "-", Q_NULLPTR));

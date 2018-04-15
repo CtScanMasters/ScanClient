@@ -59,6 +59,9 @@ TcpClientWidget::TcpClientWidget(QWidget *parent) :
     connect(m_connectButton, SIGNAL(clicked(bool)), this, SLOT(connectToHost()));
     connect(m_disconnectButton, SIGNAL(clicked(bool)), this, SLOT(disconnectFromHost()));
 
+    m_hostIpLineEdit->setText("192.168.1.100");
+    m_hostPortLineEdit->setText("5010");
+
 }
 
 TcpClientWidget::~TcpClientWidget()

@@ -21,8 +21,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_ScanClientGui_t {
-    QByteArrayData data[9];
-    char stringdata0[115];
+    QByteArrayData data[12];
+    char stringdata0[156];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -37,15 +37,18 @@ QT_MOC_LITERAL(2, 25, 0), // ""
 QT_MOC_LITERAL(3, 26, 13), // "tcpDisconnect"
 QT_MOC_LITERAL(4, 40, 14), // "tcpStateChange"
 QT_MOC_LITERAL(5, 55, 11), // "tcpSendData"
-QT_MOC_LITERAL(6, 67, 18), // "actuatorJogForward"
-QT_MOC_LITERAL(7, 86, 15), // "actuatorJogBack"
-QT_MOC_LITERAL(8, 102, 12) // "actuatorHome"
+QT_MOC_LITERAL(6, 67, 14), // "arraySetSource"
+QT_MOC_LITERAL(7, 82, 10), // "sourceMask"
+QT_MOC_LITERAL(8, 93, 14), // "arrayGetSensor"
+QT_MOC_LITERAL(9, 108, 18), // "actuatorJogForward"
+QT_MOC_LITERAL(10, 127, 15), // "actuatorJogBack"
+QT_MOC_LITERAL(11, 143, 12) // "actuatorHome"
 
     },
     "ScanClientGui\0tcpConnect\0\0tcpDisconnect\0"
-    "tcpStateChange\0tcpSendData\0"
-    "actuatorJogForward\0actuatorJogBack\0"
-    "actuatorHome"
+    "tcpStateChange\0tcpSendData\0arraySetSource\0"
+    "sourceMask\0arrayGetSensor\0actuatorJogForward\0"
+    "actuatorJogBack\0actuatorHome"
 };
 #undef QT_MOC_LITERAL
 
@@ -55,7 +58,7 @@ static const uint qt_meta_data_ScanClientGui[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-       7,   14, // methods
+       9,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -63,18 +66,22 @@ static const uint qt_meta_data_ScanClientGui[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,   49,    2, 0x08 /* Private */,
-       3,    0,   50,    2, 0x08 /* Private */,
-       4,    0,   51,    2, 0x08 /* Private */,
-       5,    0,   52,    2, 0x08 /* Private */,
-       6,    0,   53,    2, 0x08 /* Private */,
-       7,    0,   54,    2, 0x08 /* Private */,
-       8,    0,   55,    2, 0x08 /* Private */,
+       1,    0,   59,    2, 0x08 /* Private */,
+       3,    0,   60,    2, 0x08 /* Private */,
+       4,    0,   61,    2, 0x08 /* Private */,
+       5,    0,   62,    2, 0x08 /* Private */,
+       6,    1,   63,    2, 0x08 /* Private */,
+       8,    0,   66,    2, 0x08 /* Private */,
+       9,    0,   67,    2, 0x08 /* Private */,
+      10,    0,   68,    2, 0x08 /* Private */,
+      11,    0,   69,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void, QMetaType::UChar,    7,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -93,13 +100,14 @@ void ScanClientGui::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
         case 1: _t->tcpDisconnect(); break;
         case 2: _t->tcpStateChange(); break;
         case 3: _t->tcpSendData(); break;
-        case 4: _t->actuatorJogForward(); break;
-        case 5: _t->actuatorJogBack(); break;
-        case 6: _t->actuatorHome(); break;
+        case 4: _t->arraySetSource((*reinterpret_cast< quint8(*)>(_a[1]))); break;
+        case 5: _t->arrayGetSensor(); break;
+        case 6: _t->actuatorJogForward(); break;
+        case 7: _t->actuatorJogBack(); break;
+        case 8: _t->actuatorHome(); break;
         default: ;
         }
     }
-    Q_UNUSED(_a);
 }
 
 const QMetaObject ScanClientGui::staticMetaObject = {
@@ -127,13 +135,13 @@ int ScanClientGui::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 7)
+        if (_id < 9)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 7;
+        _id -= 9;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 7)
+        if (_id < 9)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 7;
+        _id -= 9;
     }
     return _id;
 }
