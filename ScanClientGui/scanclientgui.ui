@@ -294,7 +294,7 @@ QTabBar::tab:left:only-one, QTabBar::tab:right:only-one {
        <enum>QTabWidget::North</enum>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="general">
        <attribute name="title">
@@ -475,7 +475,7 @@ QTabBar::tab:left:only-one, QTabBar::tab:right:only-one {
           </property>
           <layout class="QGridLayout" name="gridLayout_8">
            <item row="0" column="0">
-            <widget class="ScatterWidget" name="widget_5" native="true"/>
+            <widget class="ScatterWidget" name="scatterPlot" native="true"/>
            </item>
           </layout>
          </widget>

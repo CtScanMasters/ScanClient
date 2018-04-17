@@ -139,5 +139,5 @@ QString SocketHandler::getSocketState()
 
 void SocketHandler::debugMessage(QString message)
 {
-    qDebug() << "SocketHandler" << message;
+    //qDebug() << "SocketHandler" << message;
 }

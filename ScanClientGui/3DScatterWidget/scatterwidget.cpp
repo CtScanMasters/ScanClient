@@ -39,19 +39,19 @@ ScatterWidget::ScatterWidget(QWidget *parent) :
     //Create theme
     m_graphTheme = new Q3DTheme(this);
     m_graphTheme->setAmbientLightStrength(0.3f);
-    m_graphTheme->setBackgroundColor(QColor::fromRgb(50,50,50));
+    m_graphTheme->setBackgroundColor(QColor::fromRgb(150,150,150));
     m_graphTheme->setBackgroundEnabled(true);
     m_graphTheme->setColorStyle(Q3DTheme::ColorStyleUniform);
     m_graphTheme->setFont(QFont(QStringLiteral("Impact"), 15));
     m_graphTheme->setGridEnabled(true);
     m_graphTheme->setGridLineColor(QColor::fromRgb(255,255,255));
-    m_graphTheme->setHighlightLightStrength(7.0f);
+    m_graphTheme->setHighlightLightStrength(1.0f);
     m_graphTheme->setLabelBackgroundColor(QColor::fromRgb(255,255,255));
     m_graphTheme->setLabelBackgroundEnabled(false);
     m_graphTheme->setLabelBorderEnabled(false);
     m_graphTheme->setLabelTextColor(QColor::fromRgb(150,150,150));
     m_graphTheme->setLightColor(Qt::white);
-    m_graphTheme->setLightStrength(6.0f);
+    m_graphTheme->setLightStrength(2.0f);
     m_graphTheme->setMultiHighlightColor(QColor(QRgb(0x6d5fd5)));
     m_graphTheme->setSingleHighlightColor(QColor(QRgb(0xf6a625)));
     m_graphTheme->setWindowColor(QColor::fromRgb(0,0,0));
@@ -74,28 +74,6 @@ ScatterWidget::ScatterWidget(QWidget *parent) :
     //Create layout
     m_verticalLayout = new QVBoxLayout(this);
     m_verticalLayout->addWidget(m_graphWidgetContainer);
-
-    QVector3D data1;
-    data1.setX(0.0);
-    data1.setY(0.0);
-    data1.setZ(0.0);
-
-    QVector3D data2;
-    data2.setX(0.0);
-    data2.setY(0.0);
-    data2.setZ(10.0);
-
-    QVector3D data3;
-    data3.setX(0.0);
-    data3.setY(0.0);
-    data3.setZ(-10.0);
-
-    QScatterDataArray dataArray;
-    dataArray.append(data1);
-    dataArray.append(data2);
-    dataArray.append(data3);
-
-    setData(dataArray);
 
 }
 
@@ -172,5 +150,6 @@ void ScatterWidget::setPointSize(float size)
 
 void ScatterWidget::setData(QScatterDataArray &scatterArray)
 {
+    m_dataProxy->removeItems(0, m_dataProxy->itemCount());
     m_dataProxy->addItems(scatterArray);
 }

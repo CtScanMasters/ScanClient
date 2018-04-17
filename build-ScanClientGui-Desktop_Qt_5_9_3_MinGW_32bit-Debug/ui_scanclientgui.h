@@ -73,7 +73,7 @@ public:
     QGridLayout *gridLayout_7;
     QGroupBox *scanPlot;
     QGridLayout *gridLayout_8;
-    ScatterWidget *widget_5;
+    ScatterWidget *scatterPlot;
     QWidget *arrayControl;
 
     void setupUi(QMainWindow *ScanClientGui)
@@ -426,10 +426,10 @@ public:
         gridLayout_8->setSpacing(6);
         gridLayout_8->setContentsMargins(11, 11, 11, 11);
         gridLayout_8->setObjectName(QStringLiteral("gridLayout_8"));
-        widget_5 = new ScatterWidget(scanPlot);
-        widget_5->setObjectName(QStringLiteral("widget_5"));
+        scatterPlot = new ScatterWidget(scanPlot);
+        scatterPlot->setObjectName(QStringLiteral("scatterPlot"));
 
-        gridLayout_8->addWidget(widget_5, 0, 0, 1, 1);
+        gridLayout_8->addWidget(scatterPlot, 0, 0, 1, 1);
 
 
         gridLayout_7->addWidget(scanPlot, 0, 0, 1, 1);
@@ -449,7 +449,7 @@ public:
         QObject::connect(pushButton_3, SIGNAL(clicked(bool)), ScanClientGui, SLOT(showFullScreen()));
         QObject::connect(pushButton_4, SIGNAL(clicked(bool)), ScanClientGui, SLOT(showNormal()));
 
-        tabWidget->setCurrentIndex(0);
+        tabWidget->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(ScanClientGui);

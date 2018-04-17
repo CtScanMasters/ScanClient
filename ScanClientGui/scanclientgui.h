@@ -37,6 +37,7 @@ private:
     QGridLayout *m_arrayBoxGridLayout1;
     QGridLayout *m_arrayTabGridLayout;
     quint8 m_arrayCount;
+    quint8 m_sourceMask;
 
     TcpClient *m_tcpClient;
     bool m_tcpIsConnected;
@@ -45,8 +46,9 @@ private:
     void buildArrayTab();
     void buildTcpClient();
     void buildActuatorControl();
-
     void actuatorStatusChange();
+
+    void drawGraph(QList<uint16_t> sensorValueList, quint8 source);
 
 private slots:
     void tcpConnect();

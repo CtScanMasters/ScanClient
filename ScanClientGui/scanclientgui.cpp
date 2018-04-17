@@ -17,6 +17,10 @@ ScanClientGui::ScanClientGui(QWidget *parent) :
     buildActuatorControl();     
 
 
+    ui->scatterPlot->setAxisRange(0,0,15);
+    ui->scatterPlot->setAxisRange(1,0,6);
+    ui->scatterPlot->setAxisRange(2,0,5);
+
 }
 
 ScanClientGui::~ScanClientGui()
@@ -111,12 +115,12 @@ void ScanClientGui::buildActuatorControl()
 
 void ScanClientGui::arraySetSource(quint8 sourceMask)
 {
+    m_sourceMask = sourceMask;
+
     QByteArray dataOutArray;
     QDataStream dataOutStream(&dataOutArray, QIODevice::ReadWrite);
-    dataOutStream << sourceMask;
+    dataOutStream << m_sourceMask;
     m_tcpClient->sendData(dataOutArray);
-
-    qDebug() << "Data Source: " << sourceMask;
 }
 
 void ScanClientGui::arrayGetSensor()
@@ -128,17 +132,46 @@ void ScanClientGui::arrayGetSensor()
     QDataStream dataInStream(&dataInArray, QIODevice::ReadWrite);
     dataInStream >> dataInList;
 
-    qDebug() << "Data ADC: " << dataInList;
-
     for(int i = 0; i < 8; i++)
     {
-
         if(i < dataInList.size())
         {
             m_arrayWidgetList.at(0)->setBarValue(i, quint64(dataInList.at(i) * 3.22));
         }
-
     }
+
+    drawGraph(dataInList, m_sourceMask);
+}
+
+void ScanClientGui::drawGraph(QList<uint16_t> sensorValueList, quint8 source)
+{
+
+
+
+
+    QScatterDataArray scatterArray;
+    quint8 sensorPosition;
+
+    for(int i = 0; i < 8; i++)
+    {
+        sensorPosition = (source >> i) & 1;
+        if(sensorPosition)
+        {
+            scatterArray.append(QVector3D(15,i,3));
+            qDebug() << "SENSOR: " << sensorPosition;
+        }
+    }
+
+    for(int i = 0; i < sensorValueList.size(); i++)
+    {
+        if((sensorValueList.at(i) * 3.22) < 1000)
+        {
+            scatterArray.append(QVector3D(0,i,3));
+            qDebug() << "SENSOR: " << i << sensorValueList.at(i);
+        }
+    }
+
+    ui->scatterPlot->setData(scatterArray);
 
 }
 
