@@ -15,6 +15,7 @@
 #include "ScanWidget/scanwidget.h"
 #include "TcpClientWidget/tcpclientwidget.h"
 #include "TcpClient/tcpclient.h"
+#include "MessageLogger/messagelogger.h"
 
 
 namespace Ui {
@@ -32,6 +33,8 @@ public:
 private:
     Ui::ScanClientGui *ui;
 
+    QString m_logName;
+
     QList<ArrayWidget *> m_arrayWidgetList;
     QGroupBox *m_arrayBox1;
     QGridLayout *m_arrayBoxGridLayout1;
@@ -43,6 +46,9 @@ private:
     bool m_tcpIsConnected;
     QByteArray m_dataBufferOut;
 
+    MessageLogger *m_dataLogger;
+
+    void buildMainGui();
     void buildArrayTab();
     void buildTcpClient();
     void buildActuatorControl();

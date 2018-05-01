@@ -19,6 +19,7 @@ public:
     void setStatus(QString status);
 
 private:
+    QString m_logName;
     QPushButton *m_jogForwardButton;
     QPushButton *m_jogBackButton;
     QPushButton *m_homeButton;

@@ -25,6 +25,7 @@ public:
 
 
 private:
+    QString m_logName;
     QList<QPushButton* > m_pushButtonList;
     QList<QProgressBar* > m_progressBarList;
     QList<QLineEdit* > m_lineEditList;

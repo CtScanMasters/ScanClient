@@ -13,15 +13,15 @@ class TcpClient : public QObject, public SocketHandler
 
 public:
     TcpClient();
-    void sendData(QByteArray byteArray);
+    bool sendData(QByteArray byteArray);
     void disconnectFromHost();
     void newDataAvailable();
     void setHostIpAddress(QString ipAddress);
     void setHostPort(quint64 port);
-    void connectToHost();
+
 
 private:
-
+    QString m_logName;
     QTcpSocket *m_tcpSocket;
     QTimer *m_reconnectTimer;
     quint64 m_autoReconnectTime;
@@ -33,6 +33,9 @@ private:
 private slots:
     void readData();    
     void displaySocketState(QAbstractSocket::SocketState socketState);
+
+public slots:
+    void connectToHost();
 
 signals:
     void newDataAvailableSignal();

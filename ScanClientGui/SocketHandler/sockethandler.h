@@ -11,15 +11,15 @@ class SocketHandler
 private:
     QList<QByteArray> m_dataInBufferList;
     QMutex m_mutex;
+    QString m_logName;
 
-    QString m_socketState;
 
 protected:    
     quint64 handleSendData(QTcpSocket *tcpSocket, QByteArray &byteArray);
     bool handleReceiveData(QTcpSocket *tcpSocket);
     bool hanldeSocketState(QAbstractSocket::SocketState socketState);
-    void debugMessage(QString message);
-
+    QString m_socketState;
+    bool m_isSocketReady;
 
 public:
     SocketHandler();

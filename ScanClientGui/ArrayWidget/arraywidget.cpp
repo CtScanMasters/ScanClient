@@ -4,6 +4,8 @@
 ArrayWidget::ArrayWidget(QWidget *parent) :
     QWidget(parent)
 {
+    m_logName = "ArrayWidget : ";
+    qInfo() << m_logName + "creating widget";
 
     m_mainGridLayout = new QGridLayout(this);
     m_arrayTitleLabel = new QLabel(this);
@@ -63,10 +65,14 @@ void ArrayWidget::setNumber(quint16 number)
 {
     m_arrayNumber = number;
     m_arrayTitleLabel->setText(QString("Array %1").arg(m_arrayNumber));
+
+    //qInfo() << m_logName + "setNumber: " <<number;
 }
 
 void ArrayWidget::getPushButtonSignal()
 {
+    //qInfo() << m_logName + "getPushButtonSignal";
+
     QPushButton *pushButton = (QPushButton *)sender();
 
     if(pushButton == m_controlAllButton)
@@ -102,6 +108,8 @@ void ArrayWidget::getPushButtonSignal()
 
 void ArrayWidget::setButtonStyle()
 {
+    //qInfo() << m_logName + "setButtonStyle";
+
     quint8 mask = 1;
 
     for(int i = 0; i < m_ArraySize; i++)
@@ -109,18 +117,18 @@ void ArrayWidget::setButtonStyle()
         if((mask << i) & m_sourceBitmask)
         {
             buttonColorSheet = QString("background-color: qlineargradient(spread:pad, "
-                                       "x1:0.307, y1:0.715545, "
+                                       "x1:0.3, y1:0.7, "
                                        "x2:0, y2:1, "
-                                       "stop:0 rgba(57, 144, 145, 255), "
+                                       "stop:0 rgba(60, 145, 145, 255), "
                                        "stop:1 rgba(255, 255, 255, 255))");
         }
         else
         {
             buttonColorSheet = QString("background-color: qlineargradient(spread:pad, "
-                                        "x1:1, y1:0.397727, "
-                                        "x2:0, y2:0.630682, "
-                                        "stop:0.784091 rgba(152, 0, 152, 255), "
-                                        "stop:1 rgba(255, 255, 255, 255)");
+                                        "x1:0.3, y1:0.7, "
+                                        "x2:0, y2:1, "
+                                        "stop:0 rgba(150, 0, 150, 255), "
+                                        "stop:1 rgba(255, 255, 255, 255))");
         }
 
         m_pushButtonList.at(i)->setStyleSheet(buttonColorSheet);
@@ -131,17 +139,21 @@ void ArrayWidget::setBarMaxValue(quint8 barNumber, quint64 maxValue)
 {
     m_progressBarList.at(barNumber)->setMaximum(maxValue);
 
+    qInfo() << m_logName + "setBarMaxValue: " << barNumber << " : " << maxValue;
 }
 
 void ArrayWidget::setBarValue(quint8 barNumber, quint64 value)
 {
-
    m_progressBarList.at(barNumber)->setValue(value);
    m_lineEditList.at(barNumber)->setText(QString("%1 mV").arg(value));
+
+   qInfo() << m_logName + "setBarValue: " << barNumber << " : " << value;
 }
 
 void ArrayWidget::emitSourceSetSignal()
 {
     setButtonStyle();
+    qInfo() << m_logName + "emitSourceSetSignal: 0x" + QString::number(m_sourceBitmask, 16);
+
     emit sourceSetSignal(m_sourceBitmask);
 }

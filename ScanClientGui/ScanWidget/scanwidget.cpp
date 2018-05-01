@@ -1,9 +1,13 @@
 #include "scanwidget.h"
+#include <QDebug>
 
 
 ScanWidget::ScanWidget(QWidget *parent) :
     QWidget(parent)
 {
+    m_logName = "ScanWidget : ";
+    qInfo() << m_logName + "creating widget";
+
     m_startScanButton = new QPushButton(this);
     m_stopScanButton = new QPushButton(this);
     m_statusLabel = new QLabel(this);
@@ -42,14 +46,19 @@ void ScanWidget::setStatus(QString status, quint8 progress)
 {
     m_statusLineEdit->setText(status);
     m_progressBar->setValue(progress);
+
+    qInfo() << m_logName + "setStatus: " + status + QString(" %1 %").arg(progress);
+
 }
 
 void ScanWidget::startScan()
 {
+    qInfo() << m_logName + "emitStartScanSignal";
     emit startScanSignal();
 }
 
 void ScanWidget::stopScan()
 {
+    qInfo() << m_logName + "emitStopScanSignal";
     emit stopScanSignal();
 }

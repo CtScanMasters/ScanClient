@@ -18,6 +18,7 @@ public:
     void setStatus(QString status, quint8 progress);
 
 private:
+    QString m_logName;
     QPushButton *m_startScanButton;
     QPushButton *m_stopScanButton;
     QLabel *m_statusLabel;

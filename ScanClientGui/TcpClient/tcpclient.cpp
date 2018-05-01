@@ -6,6 +6,9 @@ TcpClient::TcpClient()
 :   QObject(), SocketHandler()
 
 {
+    m_logName = "TcpClient : ";
+    qInfo() << m_logName + "starting";
+
     m_tcpSocket = new QTcpSocket(this);
     m_reconnectTimer = new QTimer(this);
 
@@ -14,16 +17,15 @@ TcpClient::TcpClient()
 
     m_myIp = QHostAddress(handleRetreiveIpAddress());
 
-    debugMessage("Starting");
-
     m_autoReconnectTime = 5000;
+    qInfo() << m_logName + "m_autoReconnectTime: " << m_autoReconnectTime;
 
     connect(m_tcpSocket, SIGNAL(readyRead()), this, SLOT(readData()));
     connect(m_tcpSocket, SIGNAL(stateChanged(QAbstractSocket::SocketState)),
-            this, SLOT(displaySocketState(QAbstractSocket::SocketState)));
+            this, SLOT(displaySocketState(QAbstractSocket::SocketState)));    
 
-    debugMessage(QString("CLIENT IP: %1 READY").arg(m_myIp.toString()));
-    connectToHost();
+    qInfo() << m_logName + QString("CLIENT IP: %1 READY").arg(m_myIp.toString());
+
 
 }
 
@@ -31,24 +33,40 @@ void TcpClient::connectToHost()
 {
     if(!m_hostIpAddress.toIPv4Address() || !m_hostPort)
     {
-        debugMessage("No IP or Port set!");
+        qWarning() << m_logName + "connectToHost: NO IP OR PORT SET";
     }
     else
     {
         m_tcpSocket->connectToHost(m_hostIpAddress, m_hostPort);
         //m_reconnectTimer->start(m_autoReconnectTime);
+        qInfo() << m_logName + QString("connectToHost IP: %1 PORT: %2")
+                                                   .arg(m_hostIpAddress.toString())
+                                                   .arg(m_hostPort);
     }
+
+    connect(m_reconnectTimer, SIGNAL(timeout()), this, SLOT(connectToHost()));
 }
 
 void TcpClient::disconnectFromHost()
 {
     m_tcpSocket->disconnectFromHost();
     m_reconnectTimer->stop();
+    disconnect(m_reconnectTimer, SIGNAL(timeout()), this, SLOT(connectToHost()));
+    qInfo() << m_logName + "disconnectFromHost";
 }
 
-void TcpClient::sendData(QByteArray byteArray)
+bool TcpClient::sendData(QByteArray byteArray)
 {
-    handleSendData(m_tcpSocket, byteArray);
+    if(!m_isSocketReady)
+    {
+        qWarning() << m_logName + "sendData: FAILED NOT CONNECTED";
+        return false;
+    }
+    else
+    {
+        handleSendData(m_tcpSocket, byteArray);
+        return true;
+    }
 }
 
 void TcpClient::readData()
@@ -61,11 +79,12 @@ void TcpClient::readData()
 
 void TcpClient::displaySocketState(QAbstractSocket::SocketState socketState)
 {
-    if(!hanldeSocketState(socketState))
+    if(!m_isSocketReady)
     {
         if(!m_reconnectTimer->isActive())
         {
-            //m_reconnectTimer->start(m_autoReconnectTime);
+            m_reconnectTimer->start(m_autoReconnectTime);
+            qInfo() << m_logName + "displaySocketState: autoreconnect";
         }
     }
     else

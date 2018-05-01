@@ -3,7 +3,10 @@
 
 SocketHandler::SocketHandler()
 {
+    m_logName = "SocketHandler : ";
+    qInfo() << m_logName + "starting";
 
+    m_isSocketReady = false;
 }
 
 QString SocketHandler::handleRetreiveIpAddress()
@@ -22,6 +25,7 @@ QString SocketHandler::handleRetreiveIpAddress()
     if (ipAddress.isEmpty())
         ipAddress = QHostAddress(QHostAddress::LocalHost).toString();
 
+    qInfo() << m_logName + "handleRetreiveIpAddress: "  << ipAddress;
     return(ipAddress);
 }
 
@@ -35,8 +39,8 @@ quint64 SocketHandler::handleSendData(QTcpSocket *tcpSocket, QByteArray &byteArr
 
     quint64 sendDataSize = tcpSocket->write(block);
 
-    debugMessage(QString("Send: %1 bytes to %2")
-                 .arg(sendDataSize).arg(tcpSocket->peerAddress().toString()));
+    qInfo() << m_logName + "handleSendData: " <<QString("Set: %1 bytes to %2")
+                 .arg(sendDataSize).arg(tcpSocket->peerAddress().toString());
 
     return sendDataSize;
 }
@@ -54,7 +58,7 @@ bool SocketHandler::handleReceiveData(QTcpSocket *tcpSocket)
 
         if(!m_dataStreamIn.commitTransaction())
         {
-               debugMessage("Read FAILED");
+               qWarning() << m_logName + "handleReceiveData: commitTransaction FAILED";
                return(false);
         }
         else
@@ -62,14 +66,14 @@ bool SocketHandler::handleReceiveData(QTcpSocket *tcpSocket)
             m_mutex.lock();
             if(m_dataInBufferList.size() > 10)
             {
-                debugMessage("Receive buffer overflow");
+                qWarning() << m_logName + "handleReceiveData: BUFFER OVERFLOW";
                 m_dataInBufferList.removeLast();
             }
             m_dataInBufferList.prepend(byteArray);
             m_mutex.unlock();
 
-            debugMessage(QString("Received bytes: %1 from %2")
-                         .arg(byteArray.size()).arg(tcpSocket->peerAddress().toString()));
+            qInfo() << QString("Received bytes: %1 from %2")
+                         .arg(byteArray.size()).arg(tcpSocket->peerAddress().toString());
             return(true);
         }
 }
@@ -82,11 +86,11 @@ void SocketHandler::getReceivedData(QByteArray &byteArray)
 
         m_mutex.lock();
         m_dataInBufferList.removeLast();
-        m_mutex.unlock();
+        m_mutex.unlock();        
     }
     else
     {
-        debugMessage("Receive buffer is empty");
+        qWarning() << m_logName + "getReceivedData: BUFFER EMPTY";
     }
 
 }
@@ -95,7 +99,7 @@ bool SocketHandler::hanldeSocketState(QAbstractSocket::SocketState socketState)
 {
     QString socketStateString;
 
-    bool isReady = false;
+    m_isSocketReady = false;
 
     switch (socketState)
     {
@@ -112,7 +116,7 @@ bool SocketHandler::hanldeSocketState(QAbstractSocket::SocketState socketState)
     }
     case QAbstractSocket::ConnectedState:
         socketStateString.append("connected");
-        isReady = true;
+        m_isSocketReady = true;
         break;
     case QAbstractSocket::BoundState:
         socketStateString.append("bounding");
@@ -128,8 +132,9 @@ bool SocketHandler::hanldeSocketState(QAbstractSocket::SocketState socketState)
     }
 
     m_socketState = socketStateString;
-    debugMessage(socketStateString);
-    return isReady;
+    qInfo() << m_logName + m_socketState;
+
+    return m_isSocketReady;
 }
 
 QString SocketHandler::getSocketState()
@@ -137,7 +142,3 @@ QString SocketHandler::getSocketState()
     return m_socketState;
 }
 
-void SocketHandler::debugMessage(QString message)
-{
-    //qDebug() << "SocketHandler" << message;
-}

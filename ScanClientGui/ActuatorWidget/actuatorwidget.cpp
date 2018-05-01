@@ -1,8 +1,13 @@
 #include "actuatorwidget.h"
+#include <QDebug>
 
 ActuatorWidget::ActuatorWidget(QWidget *parent) :
     QWidget(parent)
 {
+    m_logName = "ActuatorWidget : ";
+
+    qInfo() << m_logName + "creating widget";
+
     m_jogForwardButton = new QPushButton(this);
     m_jogBackButton = new QPushButton(this);
     m_homeButton = new QPushButton(this);
@@ -49,25 +54,30 @@ ActuatorWidget::~ActuatorWidget()
 
 void ActuatorWidget::jogForward()
 {
+    qInfo() << m_logName + "jogForward";
     emit jogForwardSignal();
 }
 
 void ActuatorWidget::jogBack()
 {
+    qInfo() << m_logName + "jogBack";
     emit jogBackSignal();
 }
 
 void ActuatorWidget::homeActuator()
 {
+    qInfo() << m_logName + "homeActuator";
     emit homeActuatorSignal();
 }
 
 void ActuatorWidget::setPosition(quint64 position)
 {
+    qInfo() << m_logName + "setPosition :" << position;
     m_positionLineEdit->setText(QString::number(position));
 }
 
 void ActuatorWidget::setStatus(QString status)
 {
+    qInfo() << m_logName + "status changed: " + status;
     m_statusLineEdit->setText(status);
 }

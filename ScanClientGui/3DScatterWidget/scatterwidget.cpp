@@ -1,8 +1,12 @@
 #include "scatterwidget.h"
+#include <QDebug>
 
 ScatterWidget::ScatterWidget(QWidget *parent) :
     QWidget(parent)
 {
+    m_logName = "ScatterWidget : ";
+
+    qInfo() << m_logName + "creating graph";
 
     //Create graph
     m_graph = new Q3DScatter();
@@ -56,7 +60,7 @@ ScatterWidget::ScatterWidget(QWidget *parent) :
     m_graphTheme->setSingleHighlightColor(QColor(QRgb(0xf6a625)));
     m_graphTheme->setWindowColor(QColor::fromRgb(0,0,0));
 
-    m_colorList.append(QColor::fromRgb(255,0,255));
+    m_colorList.append(QColor::fromRgb(255,50,255));
     m_graphTheme->setBaseColors(m_colorList);
 
     //Do the default cosmetics
@@ -105,6 +109,8 @@ void ScatterWidget::setAxisRange(int axis, float min, float max)
                  break;
     }
 
+    qInfo() << m_logName + QString("axis %1 range set: %2 - %3").arg(axis).arg(min).arg(max);
+
 }
 
 void ScatterWidget::setAxisGrid(int axis, int mainGrid, int subGrid)
@@ -133,6 +139,7 @@ void ScatterWidget::setAxisGrid(int axis, int mainGrid, int subGrid)
                  break;
     }
 
+    qInfo() << m_logName + QString("grid %1 main: %2 sub: %3").arg(axis).arg(mainGrid).arg(subGrid);
 
 }
 
@@ -141,15 +148,21 @@ void ScatterWidget::setTheme(int themeSelection)
     Q3DTheme::Theme theme = Q3DTheme::Theme(themeSelection);
 
     m_graph->activeTheme()->setType(theme);
+
+    qInfo() << m_logName << Q_FUNC_INFO;
 }
 
 void ScatterWidget::setPointSize(float size)
 {
     m_graphSerie->setItemSize(size);
+
+    qInfo() << m_logName << Q_FUNC_INFO;
 }
 
 void ScatterWidget::setData(QScatterDataArray &scatterArray)
 {
     m_dataProxy->removeItems(0, m_dataProxy->itemCount());
     m_dataProxy->addItems(scatterArray);
+
+    qInfo() << m_logName << Q_FUNC_INFO;
 }

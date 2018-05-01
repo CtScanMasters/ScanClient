@@ -45,6 +45,7 @@ public:
 private:
 
     Q3DScatter *m_graph;
+    QString m_logName;
     QValue3DAxis *m_xAxis;
     QValue3DAxis *m_yAxis;
     QValue3DAxis *m_zAxis;
@@ -54,9 +55,7 @@ private:
     QList<QColor> m_colorList;
 
     QWidget *m_graphWidgetContainer;
-    QVBoxLayout *m_verticalLayout;
-
-
+    QVBoxLayout *m_verticalLayout;    
 
 };
 
