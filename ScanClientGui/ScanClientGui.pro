@@ -36,7 +36,8 @@ SOURCES += \
     SocketHandler/sockethandler.cpp \
     TcpClient/tcpclient.cpp \
     TcpClientWidget/tcpclientwidget.cpp \
-    MessageLogger/messagelogger.cpp
+    MessageLogger/messagelogger.cpp \
+    ImageCalculator/imagecalculator.cpp
 
 HEADERS += \
         scanclientgui.h \
@@ -48,7 +49,8 @@ HEADERS += \
     SocketHandler/sockethandler.h \
     TcpClient/tcpclient.h \
     TcpClientWidget/tcpclientwidget.h \
-    MessageLogger/messagelogger.h
+    MessageLogger/messagelogger.h \
+    ImageCalculator/imagecalculator.h
 
 FORMS += \
         scanclientgui.ui

@@ -22,7 +22,8 @@ TcpClient::TcpClient()
 
     connect(m_tcpSocket, SIGNAL(readyRead()), this, SLOT(readData()));
     connect(m_tcpSocket, SIGNAL(stateChanged(QAbstractSocket::SocketState)),
-            this, SLOT(displaySocketState(QAbstractSocket::SocketState)));    
+            this, SLOT(displaySocketState(QAbstractSocket::SocketState)));
+    connect(m_reconnectTimer, SIGNAL(timeout()), this, SLOT(connectToHost()));
 
     qInfo() << m_logName + QString("CLIENT IP: %1 READY").arg(m_myIp.toString());
 
@@ -38,13 +39,13 @@ void TcpClient::connectToHost()
     else
     {
         m_tcpSocket->connectToHost(m_hostIpAddress, m_hostPort);
-        //m_reconnectTimer->start(m_autoReconnectTime);
+        m_reconnectTimer->start(m_autoReconnectTime);
         qInfo() << m_logName + QString("connectToHost IP: %1 PORT: %2")
                                                    .arg(m_hostIpAddress.toString())
                                                    .arg(m_hostPort);
     }
 
-    connect(m_reconnectTimer, SIGNAL(timeout()), this, SLOT(connectToHost()));
+
 }
 
 void TcpClient::disconnectFromHost()
@@ -79,6 +80,8 @@ void TcpClient::readData()
 
 void TcpClient::displaySocketState(QAbstractSocket::SocketState socketState)
 {
+    hanldeSocketState(socketState);
+
     if(!m_isSocketReady)
     {
         if(!m_reconnectTimer->isActive())

@@ -10,6 +10,7 @@ INPUT(
 ./debug\tcpclient.o
 ./debug\tcpclientwidget.o
 ./debug\messagelogger.o
+./debug\imagecalculator.o
 ./debug\moc_scanclientgui.o
 ./debug\moc_scatterwidget.o
 ./debug\moc_actuatorwidget.o

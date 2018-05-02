@@ -373,6 +373,20 @@ QTabBar::tab:left:only-one, QTabBar::tab:right:only-one {
         </item>
        </layout>
       </widget>
+      <widget class="QWidget" name="scanImaging">
+       <attribute name="title">
+        <string>Scan Imaging</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_10">
+        <item row="0" column="0">
+         <widget class="QLabel" name="imagingWidget">
+          <property name="text">
+           <string>TextLabel</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
       <widget class="QWidget" name="arrayControl">
        <attribute name="title">
         <string>Array control</string>

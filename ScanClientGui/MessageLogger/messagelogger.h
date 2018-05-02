@@ -2,6 +2,7 @@
 #define MESSAGELOGGER_H
 
 #include <QPlainTextEdit>
+#include <QFile>
 
 class MessageLogger
 {

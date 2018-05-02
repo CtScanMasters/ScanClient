@@ -48,6 +48,8 @@ private:
 
     MessageLogger *m_dataLogger;
 
+    QList<QImage* > m_imageList;
+
     void buildMainGui();
     void buildArrayTab();
     void buildTcpClient();
@@ -64,6 +66,7 @@ private slots:
 
     void arraySetSource(quint8 sourceMask);
     void arrayGetSensor();
+    void getMeasurement();
 
     void actuatorJogForward();
     void actuatorJogBack();

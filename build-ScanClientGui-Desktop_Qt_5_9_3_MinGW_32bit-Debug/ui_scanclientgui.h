@@ -63,6 +63,9 @@ public:
     QGroupBox *scanPlot;
     QGridLayout *gridLayout_8;
     ScatterWidget *scatterPlot;
+    QWidget *scanImaging;
+    QGridLayout *gridLayout_10;
+    QLabel *imagingWidget;
     QWidget *arrayControl;
     QPushButton *pushButton;
     QSpacerItem *horizontalSpacer;
@@ -384,6 +387,18 @@ public:
         gridLayout_7->addWidget(scanPlot, 0, 0, 1, 1);
 
         tabWidget->addTab(scanData, QString());
+        scanImaging = new QWidget();
+        scanImaging->setObjectName(QStringLiteral("scanImaging"));
+        gridLayout_10 = new QGridLayout(scanImaging);
+        gridLayout_10->setSpacing(6);
+        gridLayout_10->setContentsMargins(11, 11, 11, 11);
+        gridLayout_10->setObjectName(QStringLiteral("gridLayout_10"));
+        imagingWidget = new QLabel(scanImaging);
+        imagingWidget->setObjectName(QStringLiteral("imagingWidget"));
+
+        gridLayout_10->addWidget(imagingWidget, 0, 0, 1, 1);
+
+        tabWidget->addTab(scanImaging, QString());
         arrayControl = new QWidget();
         arrayControl->setObjectName(QStringLiteral("arrayControl"));
         tabWidget->addTab(arrayControl, QString());
@@ -491,6 +506,8 @@ public:
         tabWidget->setTabText(tabWidget->indexOf(general), QApplication::translate("ScanClientGui", "General", Q_NULLPTR));
         scanPlot->setTitle(QApplication::translate("ScanClientGui", "3D Scan plot", Q_NULLPTR));
         tabWidget->setTabText(tabWidget->indexOf(scanData), QApplication::translate("ScanClientGui", "Scan data", Q_NULLPTR));
+        imagingWidget->setText(QApplication::translate("ScanClientGui", "TextLabel", Q_NULLPTR));
+        tabWidget->setTabText(tabWidget->indexOf(scanImaging), QApplication::translate("ScanClientGui", "Scan Imaging", Q_NULLPTR));
         tabWidget->setTabText(tabWidget->indexOf(arrayControl), QApplication::translate("ScanClientGui", "Array control", Q_NULLPTR));
         pushButton->setText(QApplication::translate("ScanClientGui", "X", Q_NULLPTR));
         groupBox->setTitle(QApplication::translate("ScanClientGui", "Log", Q_NULLPTR));

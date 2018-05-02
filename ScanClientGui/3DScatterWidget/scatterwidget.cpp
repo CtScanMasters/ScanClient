@@ -149,14 +149,14 @@ void ScatterWidget::setTheme(int themeSelection)
 
     m_graph->activeTheme()->setType(theme);
 
-    qInfo() << m_logName << Q_FUNC_INFO;
+    qInfo() << m_logName << "setTheme";
 }
 
 void ScatterWidget::setPointSize(float size)
 {
     m_graphSerie->setItemSize(size);
 
-    qInfo() << m_logName << Q_FUNC_INFO;
+    qInfo() << m_logName << "setPointSize";
 }
 
 void ScatterWidget::setData(QScatterDataArray &scatterArray)
@@ -164,5 +164,5 @@ void ScatterWidget::setData(QScatterDataArray &scatterArray)
     m_dataProxy->removeItems(0, m_dataProxy->itemCount());
     m_dataProxy->addItems(scatterArray);
 
-    qInfo() << m_logName << Q_FUNC_INFO;
+    qInfo() << m_logName << "setData";
 }

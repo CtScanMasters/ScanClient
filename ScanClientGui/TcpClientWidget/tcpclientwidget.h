@@ -39,6 +39,8 @@ private:
     QRegExpValidator *ipValidator;
     QValidator *portValidator;
 
+
+
 public slots:
     void connectToHost();
     void disconnectFromHost();

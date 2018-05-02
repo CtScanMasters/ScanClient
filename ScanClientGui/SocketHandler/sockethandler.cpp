@@ -72,7 +72,7 @@ bool SocketHandler::handleReceiveData(QTcpSocket *tcpSocket)
             m_dataInBufferList.prepend(byteArray);
             m_mutex.unlock();
 
-            qInfo() << QString("Received bytes: %1 from %2")
+            qInfo() << m_logName + "handleReceiveData: " + QString("received %1 bytes from %2")
                          .arg(byteArray.size()).arg(tcpSocket->peerAddress().toString());
             return(true);
         }
@@ -132,7 +132,7 @@ bool SocketHandler::hanldeSocketState(QAbstractSocket::SocketState socketState)
     }
 
     m_socketState = socketStateString;
-    qInfo() << m_logName + m_socketState;
+    qInfo() << m_logName + "hanldeSocketState: " + m_socketState;
 
     return m_isSocketReady;
 }

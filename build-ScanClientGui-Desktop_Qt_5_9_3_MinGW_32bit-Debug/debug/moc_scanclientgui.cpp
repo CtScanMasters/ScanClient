@@ -21,8 +21,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_ScanClientGui_t {
-    QByteArrayData data[12];
-    char stringdata0[156];
+    QByteArrayData data[13];
+    char stringdata0[171];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -40,15 +40,17 @@ QT_MOC_LITERAL(5, 55, 11), // "tcpSendData"
 QT_MOC_LITERAL(6, 67, 14), // "arraySetSource"
 QT_MOC_LITERAL(7, 82, 10), // "sourceMask"
 QT_MOC_LITERAL(8, 93, 14), // "arrayGetSensor"
-QT_MOC_LITERAL(9, 108, 18), // "actuatorJogForward"
-QT_MOC_LITERAL(10, 127, 15), // "actuatorJogBack"
-QT_MOC_LITERAL(11, 143, 12) // "actuatorHome"
+QT_MOC_LITERAL(9, 108, 14), // "getMeasurement"
+QT_MOC_LITERAL(10, 123, 18), // "actuatorJogForward"
+QT_MOC_LITERAL(11, 142, 15), // "actuatorJogBack"
+QT_MOC_LITERAL(12, 158, 12) // "actuatorHome"
 
     },
     "ScanClientGui\0tcpConnect\0\0tcpDisconnect\0"
     "tcpStateChange\0tcpSendData\0arraySetSource\0"
-    "sourceMask\0arrayGetSensor\0actuatorJogForward\0"
-    "actuatorJogBack\0actuatorHome"
+    "sourceMask\0arrayGetSensor\0getMeasurement\0"
+    "actuatorJogForward\0actuatorJogBack\0"
+    "actuatorHome"
 };
 #undef QT_MOC_LITERAL
 
@@ -58,7 +60,7 @@ static const uint qt_meta_data_ScanClientGui[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-       9,   14, // methods
+      10,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -66,15 +68,16 @@ static const uint qt_meta_data_ScanClientGui[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,   59,    2, 0x08 /* Private */,
-       3,    0,   60,    2, 0x08 /* Private */,
-       4,    0,   61,    2, 0x08 /* Private */,
-       5,    0,   62,    2, 0x08 /* Private */,
-       6,    1,   63,    2, 0x08 /* Private */,
-       8,    0,   66,    2, 0x08 /* Private */,
-       9,    0,   67,    2, 0x08 /* Private */,
-      10,    0,   68,    2, 0x08 /* Private */,
-      11,    0,   69,    2, 0x08 /* Private */,
+       1,    0,   64,    2, 0x08 /* Private */,
+       3,    0,   65,    2, 0x08 /* Private */,
+       4,    0,   66,    2, 0x08 /* Private */,
+       5,    0,   67,    2, 0x08 /* Private */,
+       6,    1,   68,    2, 0x08 /* Private */,
+       8,    0,   71,    2, 0x08 /* Private */,
+       9,    0,   72,    2, 0x08 /* Private */,
+      10,    0,   73,    2, 0x08 /* Private */,
+      11,    0,   74,    2, 0x08 /* Private */,
+      12,    0,   75,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -82,6 +85,7 @@ static const uint qt_meta_data_ScanClientGui[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void, QMetaType::UChar,    7,
+    QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -102,9 +106,10 @@ void ScanClientGui::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
         case 3: _t->tcpSendData(); break;
         case 4: _t->arraySetSource((*reinterpret_cast< quint8(*)>(_a[1]))); break;
         case 5: _t->arrayGetSensor(); break;
-        case 6: _t->actuatorJogForward(); break;
-        case 7: _t->actuatorJogBack(); break;
-        case 8: _t->actuatorHome(); break;
+        case 6: _t->getMeasurement(); break;
+        case 7: _t->actuatorJogForward(); break;
+        case 8: _t->actuatorJogBack(); break;
+        case 9: _t->actuatorHome(); break;
         default: ;
         }
     }
@@ -135,13 +140,13 @@ int ScanClientGui::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 9)
+        if (_id < 10)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 9;
+        _id -= 10;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 9)
+        if (_id < 10)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 9;
+        _id -= 10;
     }
     return _id;
 }

@@ -10,6 +10,7 @@ INPUT(
 ./release\tcpclient.o
 ./release\tcpclientwidget.o
 ./release\messagelogger.o
+./release\imagecalculator.o
 ./release\moc_scanclientgui.o
 ./release\moc_scatterwidget.o
 ./release\moc_actuatorwidget.o

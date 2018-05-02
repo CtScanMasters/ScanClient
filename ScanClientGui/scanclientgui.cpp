@@ -1,6 +1,8 @@
 #include "scanclientgui.h"
 #include "ui_scanclientgui.h"
 #include <QDebug>
+#include <QDir>
+#include "ImageCalculator/imagecalculator.h"
 
 ScanClientGui::ScanClientGui(QWidget *parent) :
     QMainWindow(parent),
@@ -12,6 +14,10 @@ ScanClientGui::ScanClientGui(QWidget *parent) :
     m_dataLogger->setTextEdit(ui->plainTextEdit);
 
     m_logName = "ScanClientGui : ";
+
+    m_arrayCount = 8;
+    m_tcpIsConnected = false;
+    m_sourceMask = 0;
 
     buildMainGui();
 }
@@ -25,12 +31,10 @@ ScanClientGui::~ScanClientGui()
 
 void ScanClientGui::buildMainGui()
 {
-    qInfo() << m_logName + "starting";
-    qInfo() << "by CTScanMasters 2018 V1.0";
+//    qInfo() << m_logName + "starting";
+//    qInfo() << "by CTScanMasters 2018 V1.0";
 
-    m_arrayCount = 8;
-    m_tcpIsConnected = false;
-    m_sourceMask = 0;
+    ui->plainTextEdit->appendPlainText("by CTScanMasters 2018 V1.0");
 
     buildArrayTab();
     buildTcpClient();
@@ -77,7 +81,7 @@ void ScanClientGui::buildTcpClient()
     connect(ui->tcpControlWidget, SIGNAL(connectToHostSignal()), this, SLOT(tcpConnect()));
     connect(ui->tcpControlWidget, SIGNAL(disconnectFromHostSignal()), this, SLOT(tcpDisconnect()));
     connect(m_tcpClient, SIGNAL(socketStateChangedSignal()), this, SLOT(tcpStateChange()));
-    connect(m_tcpClient, SIGNAL(newDataAvailableSignal()), this, SLOT(arrayGetSensor()));
+    connect(m_tcpClient, SIGNAL(newDataAvailableSignal()), this, SLOT(getMeasurement()));
     ui->tcpControlWidget->setClientIpAddress(m_tcpClient->handleRetreiveIpAddress());
 }
 
@@ -169,7 +173,128 @@ void ScanClientGui::arrayGetSensor()
         }
     }
 
-    drawGraph(dataInList, m_sourceMask);
+    qInfo() << m_logName + "arrayGetSensor Sensor: " << dataInList << "Source: 0x" << QString::number(m_sourceMask, 16);
+//    drawGraph(dataInList, m_sourceMask);
+}
+
+void ScanClientGui::getMeasurement()
+{   
+
+    QByteArray dataInArray;
+    m_tcpClient->getReceivedData(dataInArray);
+
+    QList<quint16> sensorIntensity;
+    QDataStream dataInStream(&dataInArray, QIODevice::ReadWrite);
+    dataInStream >> sensorIntensity;
+
+//    for(int i = 0; i < 8; i++)
+//    {
+////        if(i < dataInList.size())
+////        {
+////            m_arrayWidgetList.at(0)->setBarValue(i, quint64(dataInList.at(i) * 3.22));
+//////            ui->plainTextEdit->appendPlainText(QString("Sensor %1 value: %2").arg(i).arg(dataInList.at(i) * 3.22));
+////        }
+//    }
+
+    const quint16 imageWidth = 255;
+    quint8 numberOfSensors = 8;
+
+    ImageCalculator imageCalculator;
+    imageCalculator.setDimensions(numberOfSensors, imageWidth, 60, 120);
+
+    for(int i = 0; i < 8; i++)
+    {
+        m_imageList.append(new QImage(imageWidth, imageWidth, QImage::Format_Grayscale8));
+        m_imageList.at(i)->fill(qRgb(0,0,0));
+    }
+
+
+//    for(int i = 0; i < 8; i++)
+//    {
+//        sensorIntensity.append(32);
+//    }
+
+    QImage imageSum(imageWidth * 2, imageWidth * 2, QImage::Format_Grayscale8);
+    imageSum.fill(qRgb(0,0,0));
+
+
+    quint8 sourceMask = 0x01;
+    for(int i = 0; i < 8; i++)
+    {
+        QList<quint16> list;
+        for(int j = 0; j < 8; j++)
+        {
+            list.append((quint16)((double)((sensorIntensity.at((i * 8)+ j)) / 32.0) + 0.5 ));
+        }
+        //qInfo() << m_logName + "getMeasurement: " << list;
+        imageCalculator.calculateBeam(list, sourceMask << i, *m_imageList.at(i));
+    }
+
+//    imageCalculator.calculateBeam(sensorIntensity, 0x01, *m_imageList.at(0));
+//    imageCalculator.calculateBeam(sensorIntensity, 0x02, *m_imageList.at(1));
+//    imageCalculator.calculateBeam(sensorIntensity, 0x04, *m_imageList.at(2));
+//    imageCalculator.calculateBeam(sensorIntensity, 0x08, *m_imageList.at(3));
+//    imageCalculator.calculateBeam(sensorIntensity, 0x10, *m_imageList.at(4));
+//    imageCalculator.calculateBeam(sensorIntensity, 0x20, *m_imageList.at(5));
+//    imageCalculator.calculateBeam(sensorIntensity, 0x40, *m_imageList.at(6));
+//    imageCalculator.calculateBeam(sensorIntensity, 0x80, *m_imageList.at(7));
+
+//    for(int i = 0; i < 4; i++)
+//    {
+//        imageCalculator.mergeImages(*m_imageList.at(i), i * 45, imageSum);
+//    }
+
+//    for(int i = 4; i < 8; i++)
+//    {
+//        imageCalculator.mergeImages(*m_imageList.at(i), ((i-4.0) * 45.0) + 22.5, imageSum);
+//    }
+
+        for(int i = 0; i < 8; i++)
+        {
+            imageCalculator.mergeImages(*m_imageList.at(i), 0.0, imageSum);
+        }
+
+//    imageSum.invertPixels();
+
+    QPixmap pixMapSum = QPixmap::fromImage(imageSum);
+
+    ui->imagingWidget->setPixmap(pixMapSum);
+
+    QString filepath;
+
+    for(int i = 0; i < 1000; i++)
+    {
+        filepath = QCoreApplication::applicationDirPath()
+                            + QString("/IMG%1/")
+                                .arg(i,3,10, QChar('0'));
+
+
+        if(!QDir(filepath).exists() && (i < 999))
+        {
+            QDir().mkdir(filepath);
+            break;
+        }
+        if(i > 999)
+        {
+            qWarning() << "all foldernames occupied";
+            break;
+        }
+    }
+
+
+    qInfo() << m_logName + "getMeasurement: " + filepath;
+
+    for(int i = 0; i < 8; i++)
+    {
+        m_imageList.at(i)->save(filepath
+                                  + QString("IMG%1_%2.png")
+                                  .arg(i,3,10, QChar('0')));
+    }
+
+    imageSum.save(filepath + "sum.png");
+
+////    qInfo() << m_logName + "arrayGetSensor Sensor: " << dataInList << "Source: 0x" << QString::number(m_sourceMask, 16);
+////    drawGraph(dataInList, m_sourceMask);
 }
 
 void ScanClientGui::drawGraph(QList<uint16_t> sensorValueList, quint8 source)
@@ -219,5 +344,4 @@ void ScanClientGui::actuatorHome()
     m_dataBufferOut.append(0x01);
     m_dataBufferOut.append(0x03);
     tcpSendData();
-
 }

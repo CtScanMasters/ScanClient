@@ -147,7 +147,7 @@ void ArrayWidget::setBarValue(quint8 barNumber, quint64 value)
    m_progressBarList.at(barNumber)->setValue(value);
    m_lineEditList.at(barNumber)->setText(QString("%1 mV").arg(value));
 
-   qInfo() << m_logName + "setBarValue: " << barNumber << " : " << value;
+   //qInfo() << m_logName + "setBarValue: " << barNumber << " : " << value;
 }
 
 void ArrayWidget::emitSourceSetSignal()
