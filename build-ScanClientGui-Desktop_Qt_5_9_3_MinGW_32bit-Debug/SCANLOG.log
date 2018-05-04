@@ -1,64 +1,173 @@
-2018-05-02 01:48:20:471  INFO : "ScanClientGui : tcpConnect"
-2018-05-02 01:48:20:476  INFO : "SocketHandler : hanldeSocketState: lookup state"
-2018-05-02 01:48:20:476  INFO : "TcpClient : displaySocketState: autoreconnect"
-2018-05-02 01:48:20:477  INFO : "SocketHandler : hanldeSocketState: connecting"
-2018-05-02 01:48:20:481  INFO : "TcpClient : connectToHost IP: 192.168.1.100 PORT: 5010"
-2018-05-02 01:48:20:481  INFO : "SocketHandler : hanldeSocketState: connected"
-2018-05-02 01:48:20:856  INFO : "SocketHandler : handleReceiveData: received 132 bytes from 192.168.1.100"
-2018-05-02 01:48:20:947  INFO : "ScanClientGui : getMeasurement: D:/HBO electrotechniek/Project CT scanner/Software/Repositories/ClientProject/ScanClient/build-ScanClientGui-Desktop_Qt_5_9_3_MinGW_32bit-Debug/debug/IMG036/"
-2018-05-02 01:48:21:857  INFO : "SocketHandler : handleReceiveData: received 132 bytes from 192.168.1.100"
-2018-05-02 01:48:21:949  INFO : "ScanClientGui : getMeasurement: D:/HBO electrotechniek/Project CT scanner/Software/Repositories/ClientProject/ScanClient/build-ScanClientGui-Desktop_Qt_5_9_3_MinGW_32bit-Debug/debug/IMG037/"
-2018-05-02 01:48:22:856  INFO : "SocketHandler : handleReceiveData: received 132 bytes from 192.168.1.100"
-2018-05-02 01:48:22:948  INFO : "ScanClientGui : getMeasurement: D:/HBO electrotechniek/Project CT scanner/Software/Repositories/ClientProject/ScanClient/build-ScanClientGui-Desktop_Qt_5_9_3_MinGW_32bit-Debug/debug/IMG038/"
-2018-05-02 01:48:23:856  INFO : "SocketHandler : handleReceiveData: received 132 bytes from 192.168.1.100"
-2018-05-02 01:48:23:947  INFO : "ScanClientGui : getMeasurement: D:/HBO electrotechniek/Project CT scanner/Software/Repositories/ClientProject/ScanClient/build-ScanClientGui-Desktop_Qt_5_9_3_MinGW_32bit-Debug/debug/IMG039/"
-2018-05-02 01:48:24:857  INFO : "SocketHandler : handleReceiveData: received 132 bytes from 192.168.1.100"
-2018-05-02 01:48:24:947  INFO : "ScanClientGui : getMeasurement: D:/HBO electrotechniek/Project CT scanner/Software/Repositories/ClientProject/ScanClient/build-ScanClientGui-Desktop_Qt_5_9_3_MinGW_32bit-Debug/debug/IMG040/"
-2018-05-02 01:48:25:856  INFO : "SocketHandler : handleReceiveData: received 132 bytes from 192.168.1.100"
-2018-05-02 01:48:25:947  INFO : "ScanClientGui : getMeasurement: D:/HBO electrotechniek/Project CT scanner/Software/Repositories/ClientProject/ScanClient/build-ScanClientGui-Desktop_Qt_5_9_3_MinGW_32bit-Debug/debug/IMG041/"
-2018-05-02 01:48:26:856  INFO : "SocketHandler : handleReceiveData: received 132 bytes from 192.168.1.100"
-2018-05-02 01:48:26:947  INFO : "ScanClientGui : getMeasurement: D:/HBO electrotechniek/Project CT scanner/Software/Repositories/ClientProject/ScanClient/build-ScanClientGui-Desktop_Qt_5_9_3_MinGW_32bit-Debug/debug/IMG042/"
-2018-05-02 01:48:27:856  INFO : "SocketHandler : handleReceiveData: received 132 bytes from 192.168.1.100"
-2018-05-02 01:48:27:947  INFO : "ScanClientGui : getMeasurement: D:/HBO electrotechniek/Project CT scanner/Software/Repositories/ClientProject/ScanClient/build-ScanClientGui-Desktop_Qt_5_9_3_MinGW_32bit-Debug/debug/IMG043/"
-2018-05-02 01:48:28:856  INFO : "SocketHandler : handleReceiveData: received 132 bytes from 192.168.1.100"
-2018-05-02 01:48:28:947  INFO : "ScanClientGui : getMeasurement: D:/HBO electrotechniek/Project CT scanner/Software/Repositories/ClientProject/ScanClient/build-ScanClientGui-Desktop_Qt_5_9_3_MinGW_32bit-Debug/debug/IMG044/"
-2018-05-02 01:48:29:856  INFO : "SocketHandler : handleReceiveData: received 132 bytes from 192.168.1.100"
-2018-05-02 01:48:29:947  INFO : "ScanClientGui : getMeasurement: D:/HBO electrotechniek/Project CT scanner/Software/Repositories/ClientProject/ScanClient/build-ScanClientGui-Desktop_Qt_5_9_3_MinGW_32bit-Debug/debug/IMG045/"
-2018-05-02 01:48:30:856  INFO : "SocketHandler : handleReceiveData: received 132 bytes from 192.168.1.100"
-2018-05-02 01:48:30:947  INFO : "ScanClientGui : getMeasurement: D:/HBO electrotechniek/Project CT scanner/Software/Repositories/ClientProject/ScanClient/build-ScanClientGui-Desktop_Qt_5_9_3_MinGW_32bit-Debug/debug/IMG046/"
-2018-05-02 01:48:31:856  INFO : "SocketHandler : handleReceiveData: received 132 bytes from 192.168.1.100"
-2018-05-02 01:48:31:947  INFO : "ScanClientGui : getMeasurement: D:/HBO electrotechniek/Project CT scanner/Software/Repositories/ClientProject/ScanClient/build-ScanClientGui-Desktop_Qt_5_9_3_MinGW_32bit-Debug/debug/IMG047/"
-2018-05-02 01:48:32:855  INFO : "SocketHandler : handleReceiveData: received 132 bytes from 192.168.1.100"
-2018-05-02 01:48:32:946  INFO : "ScanClientGui : getMeasurement: D:/HBO electrotechniek/Project CT scanner/Software/Repositories/ClientProject/ScanClient/build-ScanClientGui-Desktop_Qt_5_9_3_MinGW_32bit-Debug/debug/IMG048/"
-2018-05-02 01:48:33:855  INFO : "SocketHandler : handleReceiveData: received 132 bytes from 192.168.1.100"
-2018-05-02 01:48:33:946  INFO : "ScanClientGui : getMeasurement: D:/HBO electrotechniek/Project CT scanner/Software/Repositories/ClientProject/ScanClient/build-ScanClientGui-Desktop_Qt_5_9_3_MinGW_32bit-Debug/debug/IMG049/"
-2018-05-02 01:48:34:857  INFO : "SocketHandler : handleReceiveData: received 132 bytes from 192.168.1.100"
-2018-05-02 01:48:34:948  INFO : "ScanClientGui : getMeasurement: D:/HBO electrotechniek/Project CT scanner/Software/Repositories/ClientProject/ScanClient/build-ScanClientGui-Desktop_Qt_5_9_3_MinGW_32bit-Debug/debug/IMG050/"
-2018-05-02 01:48:35:856  INFO : "SocketHandler : handleReceiveData: received 132 bytes from 192.168.1.100"
-2018-05-02 01:48:35:947  INFO : "ScanClientGui : getMeasurement: D:/HBO electrotechniek/Project CT scanner/Software/Repositories/ClientProject/ScanClient/build-ScanClientGui-Desktop_Qt_5_9_3_MinGW_32bit-Debug/debug/IMG051/"
-2018-05-02 01:48:36:856  INFO : "SocketHandler : handleReceiveData: received 132 bytes from 192.168.1.100"
-2018-05-02 01:48:36:947  INFO : "ScanClientGui : getMeasurement: D:/HBO electrotechniek/Project CT scanner/Software/Repositories/ClientProject/ScanClient/build-ScanClientGui-Desktop_Qt_5_9_3_MinGW_32bit-Debug/debug/IMG052/"
-2018-05-02 01:48:37:856  INFO : "SocketHandler : handleReceiveData: received 132 bytes from 192.168.1.100"
-2018-05-02 01:48:37:947  INFO : "ScanClientGui : getMeasurement: D:/HBO electrotechniek/Project CT scanner/Software/Repositories/ClientProject/ScanClient/build-ScanClientGui-Desktop_Qt_5_9_3_MinGW_32bit-Debug/debug/IMG053/"
-2018-05-02 01:48:38:856  INFO : "SocketHandler : handleReceiveData: received 132 bytes from 192.168.1.100"
-2018-05-02 01:48:38:948  INFO : "ScanClientGui : getMeasurement: D:/HBO electrotechniek/Project CT scanner/Software/Repositories/ClientProject/ScanClient/build-ScanClientGui-Desktop_Qt_5_9_3_MinGW_32bit-Debug/debug/IMG054/"
-2018-05-02 01:48:39:855  INFO : "SocketHandler : handleReceiveData: received 132 bytes from 192.168.1.100"
-2018-05-02 01:48:39:946  INFO : "ScanClientGui : getMeasurement: D:/HBO electrotechniek/Project CT scanner/Software/Repositories/ClientProject/ScanClient/build-ScanClientGui-Desktop_Qt_5_9_3_MinGW_32bit-Debug/debug/IMG055/"
-2018-05-02 01:48:40:855  INFO : "SocketHandler : handleReceiveData: received 132 bytes from 192.168.1.100"
-2018-05-02 01:48:40:946  INFO : "ScanClientGui : getMeasurement: D:/HBO electrotechniek/Project CT scanner/Software/Repositories/ClientProject/ScanClient/build-ScanClientGui-Desktop_Qt_5_9_3_MinGW_32bit-Debug/debug/IMG056/"
-2018-05-02 01:48:41:856  INFO : "SocketHandler : handleReceiveData: received 132 bytes from 192.168.1.100"
-2018-05-02 01:48:41:948  INFO : "ScanClientGui : getMeasurement: D:/HBO electrotechniek/Project CT scanner/Software/Repositories/ClientProject/ScanClient/build-ScanClientGui-Desktop_Qt_5_9_3_MinGW_32bit-Debug/debug/IMG057/"
-2018-05-02 01:48:42:856  INFO : "SocketHandler : handleReceiveData: received 132 bytes from 192.168.1.100"
-2018-05-02 01:48:42:947  INFO : "ScanClientGui : getMeasurement: D:/HBO electrotechniek/Project CT scanner/Software/Repositories/ClientProject/ScanClient/build-ScanClientGui-Desktop_Qt_5_9_3_MinGW_32bit-Debug/debug/IMG058/"
-2018-05-02 01:48:43:856  INFO : "SocketHandler : handleReceiveData: received 132 bytes from 192.168.1.100"
-2018-05-02 01:48:43:949  INFO : "ScanClientGui : getMeasurement: D:/HBO electrotechniek/Project CT scanner/Software/Repositories/ClientProject/ScanClient/build-ScanClientGui-Desktop_Qt_5_9_3_MinGW_32bit-Debug/debug/IMG059/"
-2018-05-02 01:48:44:856  INFO : "SocketHandler : handleReceiveData: received 132 bytes from 192.168.1.100"
-2018-05-02 01:48:44:948  INFO : "ScanClientGui : getMeasurement: D:/HBO electrotechniek/Project CT scanner/Software/Repositories/ClientProject/ScanClient/build-ScanClientGui-Desktop_Qt_5_9_3_MinGW_32bit-Debug/debug/IMG060/"
-2018-05-02 01:48:45:856  INFO : "SocketHandler : handleReceiveData: received 132 bytes from 192.168.1.100"
-2018-05-02 01:48:45:948  INFO : "ScanClientGui : getMeasurement: D:/HBO electrotechniek/Project CT scanner/Software/Repositories/ClientProject/ScanClient/build-ScanClientGui-Desktop_Qt_5_9_3_MinGW_32bit-Debug/debug/IMG061/"
-2018-05-02 01:48:46:045  INFO : "ScanClientGui : tcpDisconnect"
-2018-05-02 01:48:46:045  INFO : "SocketHandler : hanldeSocketState: closing"
-2018-05-02 01:48:46:045  INFO : "TcpClient : displaySocketState: autoreconnect"
-2018-05-02 01:48:46:046  INFO : "SocketHandler : hanldeSocketState: disconnected"
-2018-05-02 01:48:46:046  INFO : "TcpClient : disconnectFromHost"
-2018-05-02 01:48:46:046  INFO : "ScanClientGui : EXIT"
+2018-05-05 00:25:24:187  INFO : ------------BUILD APPLICATION CT SCANMASTER-------------
+2018-05-05 00:25:24:188  INFO : "ActuatorWidget : creating widget"
+2018-05-05 00:25:24:485  INFO : "ScanWidget : creating widget"
+2018-05-05 00:25:24:496  INFO : "ScatterWidget : creating graph"
+2018-05-05 00:25:24:862  DEBUG : OpenGL version: 4.6.0 NVIDIA 388.13
+2018-05-05 00:25:24:862  DEBUG : GLSL version: 4.60 NVIDIA
+2018-05-05 00:25:24:925  INFO : "ScatterWidget : axis 0 range set: -10 - 10"
+2018-05-05 00:25:24:925  INFO : "ScatterWidget : grid 0 main: 10 sub: 5"
+2018-05-05 00:25:24:925  INFO : "ScatterWidget : axis 1 range set: -10 - 10"
+2018-05-05 00:25:24:925  INFO : "ScatterWidget : grid 1 main: 10 sub: 5"
+2018-05-05 00:25:24:925  INFO : "ScatterWidget : axis 2 range set: -10 - 10"
+2018-05-05 00:25:24:925  INFO : "ScatterWidget : grid 2 main: 10 sub: 5"
+2018-05-05 00:25:24:925  INFO : "ScatterWidget : " setPointSize
+2018-05-05 00:25:24:939  INFO : ------------STARTING CT SCANMASTER 2018 V1.0------------
+2018-05-05 00:25:24:940  INFO : "ScanClientGui : buildArrayTab"
+2018-05-05 00:25:24:940  INFO : "ArrayWidget : creating widget"
+2018-05-05 00:25:24:942  INFO : "ArrayWidget : creating widget"
+2018-05-05 00:25:24:944  INFO : "ArrayWidget : creating widget"
+2018-05-05 00:25:24:946  INFO : "ArrayWidget : creating widget"
+2018-05-05 00:25:24:948  INFO : "ArrayWidget : creating widget"
+2018-05-05 00:25:24:950  INFO : "ArrayWidget : creating widget"
+2018-05-05 00:25:24:951  INFO : "ArrayWidget : creating widget"
+2018-05-05 00:25:24:953  INFO : "ArrayWidget : creating widget"
+2018-05-05 00:25:24:955  WARNING : QObject::connect: No such signal ArrayWidget::sourceSetSignalMask(quint8) in ..\ScanClientGui\scanclientgui.cpp:208
+2018-05-05 00:25:24:956  WARNING : QObject::connect:  (receiver name: 'ScanClientGui')
+2018-05-05 00:25:24:956  INFO : "ScanClientGui : buildTcpClient"
+2018-05-05 00:25:24:956  INFO : "SocketHandler : starting"
+2018-05-05 00:25:24:956  INFO : "TcpClient : starting"
+2018-05-05 00:25:24:959  INFO : "SocketHandler : handleRetreiveIpAddress: " "169.254.78.233"
+2018-05-05 00:25:24:960  INFO : "TcpClient : m_autoReconnectTime: " 5000
+2018-05-05 00:25:24:960  INFO : "TcpClient : CLIENT IP: 169.254.78.233 READY"
+2018-05-05 00:25:24:962  INFO : "SocketHandler : handleRetreiveIpAddress: " "169.254.78.233"
+2018-05-05 00:25:24:963  INFO : "ScanClientGui : buildActuatorControl"
+2018-05-05 00:25:24:963  INFO : "ScatterWidget : axis 0 range set: 0 - 15"
+2018-05-05 00:25:24:963  INFO : "ScatterWidget : axis 1 range set: 0 - 6"
+2018-05-05 00:25:24:963  INFO : "ScatterWidget : axis 2 range set: 0 - 5"
+2018-05-05 00:25:25:961  INFO : "ScanClientGui : tcpConnect"
+2018-05-05 00:25:25:966  INFO : "SocketHandler : hanldeSocketState: lookup state"
+2018-05-05 00:25:25:966  INFO : "TcpClient : displaySocketState: autoreconnect"
+2018-05-05 00:25:25:967  INFO : "SocketHandler : hanldeSocketState: connecting"
+2018-05-05 00:25:25:971  INFO : "TcpClient : connectToHost IP: 192.168.1.100 PORT: 5010"
+2018-05-05 00:25:25:971  INFO : "SocketHandler : hanldeSocketState: connected"
+2018-05-05 00:25:26:210  INFO : "SocketHandler : handleReceiveData: received 132 bytes from 192.168.1.100"
+2018-05-05 00:25:26:211  WARNING : *************************START*****************************************
+2018-05-05 00:25:26:272  WARNING : *************************STOP*****************************************
+2018-05-05 00:25:26:272  WARNING : 61
+2018-05-05 00:25:26:272  WARNING : *************************STOP*****************************************
+2018-05-05 00:25:26:460  INFO : "SocketHandler : handleReceiveData: received 132 bytes from 192.168.1.100"
+2018-05-05 00:25:26:461  WARNING : *************************START*****************************************
+2018-05-05 00:25:26:522  WARNING : *************************STOP*****************************************
+2018-05-05 00:25:26:522  WARNING : 61
+2018-05-05 00:25:26:523  WARNING : *************************STOP*****************************************
+2018-05-05 00:25:26:710  INFO : "SocketHandler : handleReceiveData: received 132 bytes from 192.168.1.100"
+2018-05-05 00:25:26:711  WARNING : *************************START*****************************************
+2018-05-05 00:25:26:771  WARNING : *************************STOP*****************************************
+2018-05-05 00:25:26:772  WARNING : 61
+2018-05-05 00:25:26:772  WARNING : *************************STOP*****************************************
+2018-05-05 00:25:26:960  INFO : "SocketHandler : handleReceiveData: received 132 bytes from 192.168.1.100"
+2018-05-05 00:25:26:961  WARNING : *************************START*****************************************
+2018-05-05 00:25:27:021  WARNING : *************************STOP*****************************************
+2018-05-05 00:25:27:022  WARNING : 61
+2018-05-05 00:25:27:022  WARNING : *************************STOP*****************************************
+2018-05-05 00:25:27:210  INFO : "SocketHandler : handleReceiveData: received 132 bytes from 192.168.1.100"
+2018-05-05 00:25:27:210  WARNING : *************************START*****************************************
+2018-05-05 00:25:27:271  WARNING : *************************STOP*****************************************
+2018-05-05 00:25:27:272  WARNING : 62
+2018-05-05 00:25:27:272  WARNING : *************************STOP*****************************************
+2018-05-05 00:25:27:460  INFO : "SocketHandler : handleReceiveData: received 132 bytes from 192.168.1.100"
+2018-05-05 00:25:27:460  WARNING : *************************START*****************************************
+2018-05-05 00:25:27:521  WARNING : *************************STOP*****************************************
+2018-05-05 00:25:27:521  WARNING : 61
+2018-05-05 00:25:27:522  WARNING : *************************STOP*****************************************
+2018-05-05 00:25:27:711  INFO : "SocketHandler : handleReceiveData: received 132 bytes from 192.168.1.100"
+2018-05-05 00:25:27:711  WARNING : *************************START*****************************************
+2018-05-05 00:25:27:771  WARNING : *************************STOP*****************************************
+2018-05-05 00:25:27:772  WARNING : 61
+2018-05-05 00:25:27:772  WARNING : *************************STOP*****************************************
+2018-05-05 00:25:27:960  INFO : "SocketHandler : handleReceiveData: received 132 bytes from 192.168.1.100"
+2018-05-05 00:25:27:961  WARNING : *************************START*****************************************
+2018-05-05 00:25:28:022  WARNING : *************************STOP*****************************************
+2018-05-05 00:25:28:023  WARNING : 62
+2018-05-05 00:25:28:024  WARNING : *************************STOP*****************************************
+2018-05-05 00:25:28:210  INFO : "SocketHandler : handleReceiveData: received 132 bytes from 192.168.1.100"
+2018-05-05 00:25:28:211  WARNING : *************************START*****************************************
+2018-05-05 00:25:28:273  WARNING : *************************STOP*****************************************
+2018-05-05 00:25:28:274  WARNING : 63
+2018-05-05 00:25:28:275  WARNING : *************************STOP*****************************************
+2018-05-05 00:25:28:460  INFO : "SocketHandler : handleReceiveData: received 132 bytes from 192.168.1.100"
+2018-05-05 00:25:28:461  WARNING : *************************START*****************************************
+2018-05-05 00:25:28:522  WARNING : *************************STOP*****************************************
+2018-05-05 00:25:28:523  WARNING : 62
+2018-05-05 00:25:28:524  WARNING : *************************STOP*****************************************
+2018-05-05 00:25:28:710  INFO : "SocketHandler : handleReceiveData: received 132 bytes from 192.168.1.100"
+2018-05-05 00:25:28:711  WARNING : *************************START*****************************************
+2018-05-05 00:25:28:772  WARNING : *************************STOP*****************************************
+2018-05-05 00:25:28:773  WARNING : 62
+2018-05-05 00:25:28:774  WARNING : *************************STOP*****************************************
+2018-05-05 00:25:28:960  INFO : "SocketHandler : handleReceiveData: received 132 bytes from 192.168.1.100"
+2018-05-05 00:25:28:961  WARNING : *************************START*****************************************
+2018-05-05 00:25:29:022  WARNING : *************************STOP*****************************************
+2018-05-05 00:25:29:023  WARNING : 62
+2018-05-05 00:25:29:024  WARNING : *************************STOP*****************************************
+2018-05-05 00:25:29:210  INFO : "SocketHandler : handleReceiveData: received 132 bytes from 192.168.1.100"
+2018-05-05 00:25:29:211  WARNING : *************************START*****************************************
+2018-05-05 00:25:29:271  WARNING : *************************STOP*****************************************
+2018-05-05 00:25:29:272  WARNING : 61
+2018-05-05 00:25:29:273  WARNING : *************************STOP*****************************************
+2018-05-05 00:25:29:460  INFO : "SocketHandler : handleReceiveData: received 132 bytes from 192.168.1.100"
+2018-05-05 00:25:29:461  WARNING : *************************START*****************************************
+2018-05-05 00:25:29:521  WARNING : *************************STOP*****************************************
+2018-05-05 00:25:29:522  WARNING : 61
+2018-05-05 00:25:29:523  WARNING : *************************STOP*****************************************
+2018-05-05 00:25:29:710  INFO : "SocketHandler : handleReceiveData: received 132 bytes from 192.168.1.100"
+2018-05-05 00:25:29:711  WARNING : *************************START*****************************************
+2018-05-05 00:25:29:772  WARNING : *************************STOP*****************************************
+2018-05-05 00:25:29:773  WARNING : 62
+2018-05-05 00:25:29:774  WARNING : *************************STOP*****************************************
+2018-05-05 00:25:29:960  INFO : "SocketHandler : handleReceiveData: received 132 bytes from 192.168.1.100"
+2018-05-05 00:25:29:961  WARNING : *************************START*****************************************
+2018-05-05 00:25:30:022  WARNING : *************************STOP*****************************************
+2018-05-05 00:25:30:023  WARNING : 62
+2018-05-05 00:25:30:024  WARNING : *************************STOP*****************************************
+2018-05-05 00:25:30:210  INFO : "SocketHandler : handleReceiveData: received 132 bytes from 192.168.1.100"
+2018-05-05 00:25:30:211  WARNING : *************************START*****************************************
+2018-05-05 00:25:30:271  WARNING : *************************STOP*****************************************
+2018-05-05 00:25:30:273  WARNING : 62
+2018-05-05 00:25:30:274  WARNING : *************************STOP*****************************************
+2018-05-05 00:25:30:460  INFO : "SocketHandler : handleReceiveData: received 132 bytes from 192.168.1.100"
+2018-05-05 00:25:30:461  WARNING : *************************START*****************************************
+2018-05-05 00:25:30:521  WARNING : *************************STOP*****************************************
+2018-05-05 00:25:30:522  WARNING : 61
+2018-05-05 00:25:30:523  WARNING : *************************STOP*****************************************
+2018-05-05 00:25:30:710  INFO : "SocketHandler : handleReceiveData: received 132 bytes from 192.168.1.100"
+2018-05-05 00:25:30:711  WARNING : *************************START*****************************************
+2018-05-05 00:25:30:772  WARNING : *************************STOP*****************************************
+2018-05-05 00:25:30:773  WARNING : 62
+2018-05-05 00:25:30:774  WARNING : *************************STOP*****************************************
+2018-05-05 00:25:30:961  INFO : "SocketHandler : handleReceiveData: received 132 bytes from 192.168.1.100"
+2018-05-05 00:25:30:962  WARNING : *************************START*****************************************
+2018-05-05 00:25:31:023  WARNING : *************************STOP*****************************************
+2018-05-05 00:25:31:024  WARNING : 62
+2018-05-05 00:25:31:025  WARNING : *************************STOP*****************************************
+2018-05-05 00:25:31:210  INFO : "SocketHandler : handleReceiveData: received 132 bytes from 192.168.1.100"
+2018-05-05 00:25:31:211  WARNING : *************************START*****************************************
+2018-05-05 00:25:31:272  WARNING : *************************STOP*****************************************
+2018-05-05 00:25:31:273  WARNING : 62
+2018-05-05 00:25:31:274  WARNING : *************************STOP*****************************************
+2018-05-05 00:25:31:460  INFO : "SocketHandler : handleReceiveData: received 132 bytes from 192.168.1.100"
+2018-05-05 00:25:31:461  WARNING : *************************START*****************************************
+2018-05-05 00:25:31:522  WARNING : *************************STOP*****************************************
+2018-05-05 00:25:31:523  WARNING : 62
+2018-05-05 00:25:31:524  WARNING : *************************STOP*****************************************
+2018-05-05 00:25:31:712  INFO : "SocketHandler : handleReceiveData: received 132 bytes from 192.168.1.100"
+2018-05-05 00:25:31:713  WARNING : *************************START*****************************************
+2018-05-05 00:25:31:774  WARNING : *************************STOP*****************************************
+2018-05-05 00:25:31:775  WARNING : 62
+2018-05-05 00:25:31:776  WARNING : *************************STOP*****************************************
+2018-05-05 00:25:31:960  INFO : "SocketHandler : handleReceiveData: received 132 bytes from 192.168.1.100"
+2018-05-05 00:25:31:961  WARNING : *************************START*****************************************
+2018-05-05 00:25:32:022  WARNING : *************************STOP*****************************************
+2018-05-05 00:25:32:023  WARNING : 62
+2018-05-05 00:25:32:024  WARNING : *************************STOP*****************************************
+2018-05-05 00:25:32:210  INFO : "SocketHandler : handleReceiveData: received 132 bytes from 192.168.1.100"
+2018-05-05 00:25:32:211  WARNING : *************************START*****************************************
+2018-05-05 00:25:32:272  WARNING : *************************STOP*****************************************
+2018-05-05 00:25:32:273  WARNING : 62
+2018-05-05 00:25:32:274  WARNING : *************************STOP*****************************************
+2018-05-05 00:25:32:373  INFO : "ScanClientGui : tcpDisconnect"
+2018-05-05 00:25:32:374  INFO : "SocketHandler : hanldeSocketState: closing"
+2018-05-05 00:25:32:375  INFO : "TcpClient : displaySocketState: autoreconnect"
+2018-05-05 00:25:32:376  INFO : "SocketHandler : hanldeSocketState: disconnected"
+2018-05-05 00:25:32:376  INFO : "TcpClient : disconnectFromHost"
+2018-05-05 00:25:32:376  INFO : "ScanClientGui : EXIT"

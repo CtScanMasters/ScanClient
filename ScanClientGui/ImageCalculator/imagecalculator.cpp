@@ -30,9 +30,7 @@ void ImageCalculator::setDimensions(quint8 numberOfSensors, quint16 pixelWidth, 
 
 void ImageCalculator::calculateBeam(QList<quint16> sensorIntensityList, quint16 sourceMask, QImage &image)
 {
-    image.fill(qRgb(0,0,0));
-
-    quint16 imageWidth = image.width();
+    quint16 offset = (quint16)((double)((m_pixelWidth / 3) + 0.5));
     quint8 source = 0;
     quint16 x = 0;
     quint16 y1 = 0;
@@ -41,6 +39,7 @@ void ImageCalculator::calculateBeam(QList<quint16> sensorIntensityList, quint16 
     quint16 y2 = 0;
     double a2 = 0;
     double b2 = 0;
+
 
     for(int i = 0; i < m_numberOfSources; i++)
     {
@@ -52,25 +51,23 @@ void ImageCalculator::calculateBeam(QList<quint16> sensorIntensityList, quint16 
             {
                 quint16 sensor = j;
 
-                for(int k = 0; k < imageWidth; k++)
+                for(int k = offset; k < m_pixelWidth - offset; k++)
                 {
-
                     x = k;
 
-                    a1 = (((source * m_sourceDistance) + m_sensorOffset) - (((sensor * m_sensorDistance) + m_sensorOffset) - (0.5 * m_sensorDistance))) / imageWidth;
+                    a1 = (((source * m_sourceDistance) + m_sensorOffset) - (((sensor * m_sensorDistance) + m_sensorOffset) - (0.5 * m_sensorDistance))) / m_pixelWidth;
                     b1 = ((sensor * m_sensorDistance) + m_sensorOffset) - (0.5 * m_sensorDistance);
 
-                    a2 = (((source * m_sourceDistance) + m_sensorOffset) - (((sensor * m_sensorDistance) + m_sensorOffset) + (0.5 * m_sensorDistance))) / imageWidth;
+                    a2 = (((source * m_sourceDistance) + m_sensorOffset) - (((sensor * m_sensorDistance) + m_sensorOffset) + (0.5 * m_sensorDistance))) / m_pixelWidth;
                     b2 = ((sensor * m_sensorDistance) + m_sensorOffset)  + (0.5 * m_sensorDistance);
 
                     y1 = (quint16)(a1 * x + b1);
                     y2 = (quint16)(a2 * x + b2);
 
-                    for(int k = 0; k < (y2 - y1); k++)
+                    for(int l = 0; l < (y2 - y1); l++)
                     {
-                        QColor color1 = image.pixelColor(y1 + k, x);
                         QColor color2 = qRgb(sensorIntensityList.at(sensor),sensorIntensityList.at(sensor),sensorIntensityList.at(sensor));
-                        image.setPixelColor(y1 + k, x, calculateColorSum(color1, color2));
+                        image.setPixelColor(y1 + l, x, color2);
                     }
                 }
             }
@@ -94,60 +91,44 @@ quint16 ImageCalculator::getRotationOffset(double angle, double imageWidth)
 }
 
 void ImageCalculator::mergeImages(QImage &image, double angle, QImage &destinationImage)
-{    
+{        
+
     quint16 rotationAngle = (quint16)(angle + 0.5);
-    quint16 imageWidth = image.width();
-    quint16 imageHeight = image.height();
     QTransform rotationMatrix;
-    quint16 rotationalOffset = getRotationOffset(rotationAngle, imageWidth);
+    quint16 rotationalOffset = getRotationOffset(rotationAngle, m_pixelWidth);
+    quint8 offsetFactor = 32;
 
     rotationMatrix.rotate(rotationAngle);
     image = image.transformed(rotationMatrix);
-    imageWidth = image.width();
-    imageHeight = image.height();
 
-    quint16 offset = m_pixelWidth / 2;
+    quint16 centerOffset = (destinationImage.width() - m_pixelWidth) / 2;    //Make sure source image is placed in middel of destination image
+    quint16 offset = (quint16)((double)((m_pixelWidth / offsetFactor) + 0.5));
 
-    for(int x = 0; x < imageWidth; x++)
+    for(int x = offset * (offsetFactor / 4); x < m_pixelWidth - (offset * (offsetFactor / 16)); x++)
     {
-        for(int y = 0; y < imageHeight ; y++)
+        for(int y = offset * (offsetFactor / 4); y < m_pixelWidth - (offset * (offsetFactor / 16)); y++)
         {
             QColor color1 = image.pixelColor(x, y);
-            QColor color2 = destinationImage.pixelColor((x + offset) - rotationalOffset , (y + offset) - rotationalOffset);
-
-            destinationImage.setPixelColor((x + offset) - rotationalOffset, (y + offset) - rotationalOffset, calculateColorSum(color1, color2));
+            if(color1.red() != 0)
+            {
+                QColor color2 = destinationImage.pixelColor((x + centerOffset) - rotationalOffset , (y + centerOffset) - rotationalOffset);
+                destinationImage.setPixelColor((x + centerOffset) - rotationalOffset, (y + centerOffset) - rotationalOffset, calculateColorSum(color1, color2));
+            }
         }
     }
 }
 
-QColor ImageCalculator::calculateColorSum(QColor color1, QColor color2)
+QColor ImageCalculator::calculateColorSum(QColor &color1, QColor &color2)
 {
-    int r1 = 0;
-    int g1 = 0;
-    int b1 = 0;
-    int a1 = 0;
 
-    int r2 = 0;
-    int g2 = 0;
-    int b2 = 0;
-    int a2 = 0;
-
-    color1.getRgb(&r1, &g1, &b1, &a1);
-    color2.getRgb(&r2, &g2, &b2, &a2);
+    //Only one value is important RGB will all raise with same value when using grayscal
+    int r1 = color1.red();
+    int r2 = color2.red();
 
     r1 += r2;
-    g1 += g2;
-    b1 += b2;
 
     if(r1 > 255)
         r1 = 255;
-    if(g1 > 255)
-        g1 = 255;
-    if(b1 > 255)
-        b1 = 255;
 
-    QColor color;
-    color.setRgb(r1, g1, b1);
-
-    return(color);
+    return(QColor(r1, r1, r1));
 }

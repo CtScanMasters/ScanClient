@@ -20,6 +20,7 @@
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QPlainTextEdit>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QSlider>
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QTabWidget>
 #include <QtWidgets/QWidget>
@@ -66,6 +67,7 @@ public:
     QWidget *scanImaging;
     QGridLayout *gridLayout_10;
     QLabel *imagingWidget;
+    QSlider *verticalSlider;
     QWidget *arrayControl;
     QPushButton *pushButton;
     QSpacerItem *horizontalSpacer;
@@ -397,6 +399,17 @@ public:
         imagingWidget->setObjectName(QStringLiteral("imagingWidget"));
 
         gridLayout_10->addWidget(imagingWidget, 0, 0, 1, 1);
+
+        verticalSlider = new QSlider(scanImaging);
+        verticalSlider->setObjectName(QStringLiteral("verticalSlider"));
+        verticalSlider->setMinimum(1);
+        verticalSlider->setMaximum(255);
+        verticalSlider->setSingleStep(8);
+        verticalSlider->setPageStep(16);
+        verticalSlider->setValue(128);
+        verticalSlider->setOrientation(Qt::Vertical);
+
+        gridLayout_10->addWidget(verticalSlider, 0, 1, 1, 1);
 
         tabWidget->addTab(scanImaging, QString());
         arrayControl = new QWidget();

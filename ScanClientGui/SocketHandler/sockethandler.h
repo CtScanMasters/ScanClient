@@ -23,7 +23,7 @@ protected:
 
 public:
     SocketHandler();
-    void getReceivedData(QByteArray &byteArray);
+    bool getReceivedData(QByteArray &byteArray);
     QString getSocketState();
     QString handleRetreiveIpAddress();
 

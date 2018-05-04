@@ -78,7 +78,7 @@ bool SocketHandler::handleReceiveData(QTcpSocket *tcpSocket)
         }
 }
 
-void SocketHandler::getReceivedData(QByteArray &byteArray)
+bool SocketHandler::getReceivedData(QByteArray &byteArray)
 {
     if(m_dataInBufferList.size() > 0)
     {
@@ -86,11 +86,13 @@ void SocketHandler::getReceivedData(QByteArray &byteArray)
 
         m_mutex.lock();
         m_dataInBufferList.removeLast();
-        m_mutex.unlock();        
+        m_mutex.unlock();
+        return true;
     }
     else
     {
         qWarning() << m_logName + "getReceivedData: BUFFER EMPTY";
+        return false;
     }
 
 }

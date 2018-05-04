@@ -21,8 +21,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_ScanClientGui_t {
-    QByteArrayData data[13];
-    char stringdata0[171];
+    QByteArrayData data[24];
+    char stringdata0[312];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -32,25 +32,40 @@ struct qt_meta_stringdata_ScanClientGui_t {
 static const qt_meta_stringdata_ScanClientGui_t qt_meta_stringdata_ScanClientGui = {
     {
 QT_MOC_LITERAL(0, 0, 13), // "ScanClientGui"
-QT_MOC_LITERAL(1, 14, 10), // "tcpConnect"
-QT_MOC_LITERAL(2, 25, 0), // ""
-QT_MOC_LITERAL(3, 26, 13), // "tcpDisconnect"
-QT_MOC_LITERAL(4, 40, 14), // "tcpStateChange"
-QT_MOC_LITERAL(5, 55, 11), // "tcpSendData"
-QT_MOC_LITERAL(6, 67, 14), // "arraySetSource"
-QT_MOC_LITERAL(7, 82, 10), // "sourceMask"
-QT_MOC_LITERAL(8, 93, 14), // "arrayGetSensor"
-QT_MOC_LITERAL(9, 108, 14), // "getMeasurement"
-QT_MOC_LITERAL(10, 123, 18), // "actuatorJogForward"
-QT_MOC_LITERAL(11, 142, 15), // "actuatorJogBack"
-QT_MOC_LITERAL(12, 158, 12) // "actuatorHome"
+QT_MOC_LITERAL(1, 14, 14), // "commandHandler"
+QT_MOC_LITERAL(2, 29, 0), // ""
+QT_MOC_LITERAL(3, 30, 7), // "command"
+QT_MOC_LITERAL(4, 38, 9), // "scanStart"
+QT_MOC_LITERAL(5, 48, 8), // "scanStop"
+QT_MOC_LITERAL(6, 57, 15), // "setScanProgress"
+QT_MOC_LITERAL(7, 73, 11), // "getScanData"
+QT_MOC_LITERAL(8, 85, 18), // "actuatorJogForward"
+QT_MOC_LITERAL(9, 104, 15), // "actuatorJogBack"
+QT_MOC_LITERAL(10, 120, 16), // "actuatorPosition"
+QT_MOC_LITERAL(11, 137, 12), // "actuatorHome"
+QT_MOC_LITERAL(12, 150, 12), // "sendNotReady"
+QT_MOC_LITERAL(13, 163, 9), // "sendReady"
+QT_MOC_LITERAL(14, 173, 10), // "tcpConnect"
+QT_MOC_LITERAL(15, 184, 13), // "tcpDisconnect"
+QT_MOC_LITERAL(16, 198, 14), // "tcpStateChange"
+QT_MOC_LITERAL(17, 213, 11), // "tcpSendData"
+QT_MOC_LITERAL(18, 225, 11), // "tcpReadData"
+QT_MOC_LITERAL(19, 237, 18), // "arraySetSourceMask"
+QT_MOC_LITERAL(20, 256, 10), // "sourceMask"
+QT_MOC_LITERAL(21, 267, 14), // "arraySetSource"
+QT_MOC_LITERAL(22, 282, 14), // "arrayGetSensor"
+QT_MOC_LITERAL(23, 297, 14) // "getMeasurement"
 
     },
-    "ScanClientGui\0tcpConnect\0\0tcpDisconnect\0"
-    "tcpStateChange\0tcpSendData\0arraySetSource\0"
-    "sourceMask\0arrayGetSensor\0getMeasurement\0"
-    "actuatorJogForward\0actuatorJogBack\0"
-    "actuatorHome"
+    "ScanClientGui\0commandHandler\0\0command\0"
+    "scanStart\0scanStop\0setScanProgress\0"
+    "getScanData\0actuatorJogForward\0"
+    "actuatorJogBack\0actuatorPosition\0"
+    "actuatorHome\0sendNotReady\0sendReady\0"
+    "tcpConnect\0tcpDisconnect\0tcpStateChange\0"
+    "tcpSendData\0tcpReadData\0arraySetSourceMask\0"
+    "sourceMask\0arraySetSource\0arrayGetSensor\0"
+    "getMeasurement"
 };
 #undef QT_MOC_LITERAL
 
@@ -60,7 +75,7 @@ static const uint qt_meta_data_ScanClientGui[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-      10,   14, // methods
+      20,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -68,25 +83,45 @@ static const uint qt_meta_data_ScanClientGui[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,   64,    2, 0x08 /* Private */,
-       3,    0,   65,    2, 0x08 /* Private */,
-       4,    0,   66,    2, 0x08 /* Private */,
-       5,    0,   67,    2, 0x08 /* Private */,
-       6,    1,   68,    2, 0x08 /* Private */,
-       8,    0,   71,    2, 0x08 /* Private */,
-       9,    0,   72,    2, 0x08 /* Private */,
-      10,    0,   73,    2, 0x08 /* Private */,
-      11,    0,   74,    2, 0x08 /* Private */,
-      12,    0,   75,    2, 0x08 /* Private */,
+       1,    1,  114,    2, 0x08 /* Private */,
+       4,    0,  117,    2, 0x08 /* Private */,
+       5,    0,  118,    2, 0x08 /* Private */,
+       6,    0,  119,    2, 0x08 /* Private */,
+       7,    0,  120,    2, 0x08 /* Private */,
+       8,    0,  121,    2, 0x08 /* Private */,
+       9,    0,  122,    2, 0x08 /* Private */,
+      10,    0,  123,    2, 0x08 /* Private */,
+      11,    0,  124,    2, 0x08 /* Private */,
+      12,    0,  125,    2, 0x08 /* Private */,
+      13,    0,  126,    2, 0x08 /* Private */,
+      14,    0,  127,    2, 0x08 /* Private */,
+      15,    0,  128,    2, 0x08 /* Private */,
+      16,    0,  129,    2, 0x08 /* Private */,
+      17,    0,  130,    2, 0x08 /* Private */,
+      18,    0,  131,    2, 0x08 /* Private */,
+      19,    1,  132,    2, 0x08 /* Private */,
+      21,    0,  135,    2, 0x08 /* Private */,
+      22,    0,  136,    2, 0x08 /* Private */,
+      23,    0,  137,    2, 0x08 /* Private */,
 
  // slots: parameters
+    QMetaType::Void, QMetaType::UShort,    3,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::UChar,    7,
     QMetaType::Void,
     QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void, QMetaType::UChar,   20,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -100,16 +135,26 @@ void ScanClientGui::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
         ScanClientGui *_t = static_cast<ScanClientGui *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
-        case 0: _t->tcpConnect(); break;
-        case 1: _t->tcpDisconnect(); break;
-        case 2: _t->tcpStateChange(); break;
-        case 3: _t->tcpSendData(); break;
-        case 4: _t->arraySetSource((*reinterpret_cast< quint8(*)>(_a[1]))); break;
-        case 5: _t->arrayGetSensor(); break;
-        case 6: _t->getMeasurement(); break;
-        case 7: _t->actuatorJogForward(); break;
-        case 8: _t->actuatorJogBack(); break;
-        case 9: _t->actuatorHome(); break;
+        case 0: _t->commandHandler((*reinterpret_cast< quint16(*)>(_a[1]))); break;
+        case 1: _t->scanStart(); break;
+        case 2: _t->scanStop(); break;
+        case 3: _t->setScanProgress(); break;
+        case 4: _t->getScanData(); break;
+        case 5: _t->actuatorJogForward(); break;
+        case 6: _t->actuatorJogBack(); break;
+        case 7: _t->actuatorPosition(); break;
+        case 8: _t->actuatorHome(); break;
+        case 9: _t->sendNotReady(); break;
+        case 10: _t->sendReady(); break;
+        case 11: _t->tcpConnect(); break;
+        case 12: _t->tcpDisconnect(); break;
+        case 13: _t->tcpStateChange(); break;
+        case 14: _t->tcpSendData(); break;
+        case 15: _t->tcpReadData(); break;
+        case 16: _t->arraySetSourceMask((*reinterpret_cast< quint8(*)>(_a[1]))); break;
+        case 17: _t->arraySetSource(); break;
+        case 18: _t->arrayGetSensor(); break;
+        case 19: _t->getMeasurement(); break;
         default: ;
         }
     }
@@ -140,13 +185,13 @@ int ScanClientGui::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 10)
+        if (_id < 20)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 10;
+        _id -= 20;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 10)
+        if (_id < 20)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 10;
+        _id -= 20;
     }
     return _id;
 }

@@ -12,13 +12,11 @@ private:
     MessageLogger();
     QPlainTextEdit *m_textEditor;
     bool m_textEditorEnabled;
-    QFile m_logFile;
 
 public:
     static MessageLogger* getInstance();
-    void messageHandler(QtMsgType type, const QString & str);
+    void messageHandler(QString string);
     void setTextEdit(QPlainTextEdit *textEditor);
-    void clearLogFile();
 };
 
 #endif // MESSAGELOGGER_H

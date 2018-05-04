@@ -26,7 +26,7 @@ private:
     quint16 m_innerDiameter;
     quint16 m_outerDiamter;
 
-    QColor calculateColorSum(QColor color1, QColor color2);
+    QColor calculateColorSum(QColor &color1, QColor &color2);
     quint16 getRotationOffset(double angle, double imageWidth);
 
 };

@@ -50,7 +50,8 @@ HEADERS += \
     TcpClient/tcpclient.h \
     TcpClientWidget/tcpclientwidget.h \
     MessageLogger/messagelogger.h \
-    ImageCalculator/imagecalculator.h
+    ImageCalculator/imagecalculator.h \
+    commandlist.h
 
 FORMS += \
         scanclientgui.ui

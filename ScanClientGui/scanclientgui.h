@@ -16,6 +16,7 @@
 #include "TcpClientWidget/tcpclientwidget.h"
 #include "TcpClient/tcpclient.h"
 #include "MessageLogger/messagelogger.h"
+#include "commandlist.h"
 
 
 namespace Ui {
@@ -33,6 +34,24 @@ public:
 private:
     Ui::ScanClientGui *ui;
 
+    enum COMMANDLIST
+    {
+        COMMAND_SCAN_START,
+        COMMAND_SCAN_STOP,
+        COMMAND_SCAN_SET_PROGRESS,
+        COMMAND_SCAN_GET_DATA,
+        COMMAND_ACTUATOR_FORWARD,
+        COMMAND_ACTUATOR_BACKWARD,
+        COMMAND_ACTUATOR_POSITION,
+        COMMAND_ACTUATOR_HOME,
+        COMMAND_SENSOR_VALUE,
+        COMMAND_SOURCE_VALUE,
+        COMMAND_READY,
+        COMMAND_NOT_READY
+
+    };
+
+
     QString m_logName;
 
     QList<ArrayWidget *> m_arrayWidgetList;
@@ -45,10 +64,9 @@ private:
     TcpClient *m_tcpClient;
     bool m_tcpIsConnected;
     QByteArray m_dataBufferOut;
+    QList<quint16> m_dataBufferInList;
 
     MessageLogger *m_dataLogger;
-
-    QList<QImage* > m_imageList;
 
     void buildMainGui();
     void buildArrayTab();
@@ -59,18 +77,30 @@ private:
     void drawGraph(QList<uint16_t> sensorValueList, quint8 source);
 
 private slots:
+    void commandHandler(quint16 command);
+    void scanStart();
+    void scanStop();
+    void setScanProgress();
+    void getScanData();
+    void actuatorJogForward();
+    void actuatorJogBack();
+    void actuatorPosition();
+    void actuatorHome();
+    void sendNotReady();
+    void sendReady();
+
     void tcpConnect();
     void tcpDisconnect();
     void tcpStateChange();
     void tcpSendData();
+    void tcpReadData();
 
-    void arraySetSource(quint8 sourceMask);
+    void arraySetSourceMask(quint8 sourceMask);
+    void arraySetSource();
     void arrayGetSensor();
     void getMeasurement();
 
-    void actuatorJogForward();
-    void actuatorJogBack();
-    void actuatorHome();
+
 
 
 
