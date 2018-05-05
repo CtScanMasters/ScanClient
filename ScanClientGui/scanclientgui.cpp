@@ -303,6 +303,7 @@ void ScanClientGui::arraySetSourceMask(quint8 sourceMask)
 
 void ScanClientGui::getMeasurement()
 {   
+//    m_tcpClient->disconnectFromHost();
 
     QTime time;
     time.start();
@@ -315,22 +316,23 @@ void ScanClientGui::getMeasurement()
     QDataStream dataInStream(&dataInArray, QIODevice::ReadWrite);
     dataInStream >> sensorIntensity;
 
-    const quint16 imageWidth = 512;
-    quint8 numberOfSensors = 8;
+    const quint32 imageWidth = 255;         //Image resolution
+    const quint16 imageWidthDivider = 2;    //Result image resolution
+    const quint8 numberOfSensors = 8;       //Sensor in array
+    double innerDiameter = 60;
+    double outerdiameter = 120;
 
     ImageCalculator imageCalculator;
-    imageCalculator.setDimensions(numberOfSensors, imageWidth, 60, 120);
+    imageCalculator.setDimensions(numberOfSensors, imageWidth, innerDiameter, outerdiameter);
 
-    QList<QImage* > imageList0;
-
+    QList<QImage* > imageList;
     for(int i = 0; i < 8; i++)
     {
-        QImage image(imageWidth, imageWidth, QImage::Format_Grayscale8);
-        imageList0.append(new QImage(imageWidth, imageWidth, QImage::Format_Grayscale8));
-        imageList0.at(i)->fill(qRgb(0,0,0));
+        imageList.append(new QImage(imageWidth, imageWidth, QImage::Format_Grayscale8));
+        imageList.at(i)->fill(qRgb(0,0,0));
     }
 
-    QImage imageSum(imageWidth  + (imageWidth / 4), imageWidth + (imageWidth / 4), QImage::Format_Grayscale8);
+    QImage imageSum(imageWidth  + (imageWidth / imageWidthDivider), imageWidth + (imageWidth / imageWidthDivider), QImage::Format_Grayscale8);
     imageSum.fill(qRgb(0,0,0));
 
 
@@ -340,25 +342,25 @@ void ScanClientGui::getMeasurement()
         QList<quint16> list;
         for(int j = 0; j < 8; j++)
         {
-            list.append((quint16)((double)((sensorIntensity.at((i * 8) + j)) / ui->verticalSlider->value()) + 0.5 ));
+            list.append((quint32)((double)((sensorIntensity.at((i * 8) + j)) / ui->verticalSlider->value()) + 0.5 ));
         }
         //qInfo() << m_logName + "getMeasurement: " << sensorIntensity << list;
-        imageCalculator.calculateBeam(list, sourceMask << i, *imageList0.at(i));
+        imageCalculator.calculateBeam(list, sourceMask << i, *imageList.at(i));
 
     }
 
     for(int i = 0; i < 8; i++)
     {
-        imageCalculator.mergeImages(*imageList0.at(i), 0.0, imageSum);
+        imageCalculator.mergeImages(*imageList.at(i), 0.0, imageSum);
     }
 
 // Use to check image offset
-//    for(int i = 0; i < 8; i++)
-//    {
-//        imageCalculator.mergeImages(*imageList0.at(i), 45.0, imageSum);
-//    }
+    for(int i = 0; i < 8; i++)
+    {
+        imageCalculator.mergeImages(*imageList.at(i), 45, imageSum);
+    }
 
-    //imageSum.invertPixels();
+//    imageSum.invertPixels();
 
     QPixmap pixMapSum = QPixmap::fromImage(imageSum);
 
@@ -391,7 +393,7 @@ void ScanClientGui::getMeasurement()
 
 //    for(int i = 0; i < 8; i++)
 //    {
-//        imageList0.at(i)->save(filepath
+//        imageList.at(i)->save(filepath
 //                                  + QString("IMG%1_%2.png")
 //                                  .arg(i,3,10, QChar('0')));
 //    }
@@ -399,9 +401,9 @@ void ScanClientGui::getMeasurement()
 //    imageSum.save(filepath + "sum.png");
 
 
-    for(int i = 0; i < imageList0.size(); i++)
+    for(int i = 0; i < imageList.size(); i++)
     {
-        delete imageList0.at(i);
+        delete imageList.at(i);
     }
 
 qWarning() << "*************************STOP*****************************************";

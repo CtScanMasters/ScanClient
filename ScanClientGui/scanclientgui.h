@@ -76,6 +76,8 @@ private:
 
     void drawGraph(QList<uint16_t> sensorValueList, quint8 source);
 
+
+
 private slots:
     void commandHandler(quint16 command);
     void scanStart();

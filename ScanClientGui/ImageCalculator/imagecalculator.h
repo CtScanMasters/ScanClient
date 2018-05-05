@@ -9,25 +9,30 @@ class ImageCalculator
 {
 public:
     ImageCalculator();
-    void setDimensions(quint8 numberOfSensors, quint16 pixelWidth, quint16 innerDiameter, quint16 outerDiamter);
+    void setDimensions(quint8 numberOfSensors, quint32 pixelWidth, double innerDiameter, double outerDiamter);
     void calculateBeam(QList<quint16> sensorIntensityList, quint16 sourceMask, QImage &image);
     void mergeImages(QImage &image, double angle, QImage &destinationImage);
+    double getLinearFunction(double a, double X, double b);
 
 private:
     bool m_dimensionsSet;
-    quint8 m_numberOfSensors;
-    quint8 m_numberOfSources;
-    quint8 m_sensorDistance;
-    quint8 m_sourceDistance;
-    quint8 m_sensorOffset;
-    quint16 m_pixelWidth;
-    quint16 m_pixelWidthSum;
-    quint16 m_arrayWidth;
-    quint16 m_innerDiameter;
-    quint16 m_outerDiamter;
+    quint16 m_numberOfSensors;
+    quint16 m_numberOfSources;
+    quint16 m_sensorDistance;
+    quint16 m_sourceDistance;
+    quint16 m_sensorOffset;
+    quint32 m_pixelWidth;
+    quint32 m_pixelWidthSum;
+    double m_innerDiameter;
+    double m_outerDiamter;
+
+    double m_diameterRatio;
+    quint32 m_virtualCanvasSize;
+    quint32 m_xOffset;
+    quint32 m_yOffset;
 
     QColor calculateColorSum(QColor &color1, QColor &color2);
-    quint16 getRotationOffset(double angle, double imageWidth);
+    quint32 getRotationOffset(double angle, double imageWidth);
 
 };
 
