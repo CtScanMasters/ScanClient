@@ -20,7 +20,7 @@ void ImageCalculator::setDimensions(quint8 numberOfSensors, quint32 pixelWidth, 
     m_diameterRatio = m_outerDiamter / m_innerDiameter;
     m_virtualCanvasSize = (quint32)((double)(m_pixelWidth * m_diameterRatio));                   //Virtual canvas is made bigger, we are only interested in inner diameter
     m_xOffset = (quint32)(((double)m_virtualCanvasSize - m_pixelWidth) / 4) + 0.5;            //Move centre point in X direction
-    m_yOffset = m_xOffset;                                                 //Inner diameter is a circle so no need for different yOffset
+    m_yOffset = m_xOffset;                                                                  //Inner diameter is a circle so no need for different yOffset
     m_sensorDistance = (quint16)((double)(m_pixelWidth / (numberOfSensors +1)) + 0.5);
     m_sourceDistance = m_sensorDistance;
 
@@ -68,8 +68,8 @@ void ImageCalculator::calculateBeam(QList<quint16> sensorIntensityList, quint16 
                     a2 = (((source * m_sourceDistance)) - (((sensor * m_sensorDistance)) + (0.5 * m_sensorDistance))) / m_virtualCanvasSize;
                     b2 = ((sensor * m_sensorDistance))  + (0.5 * m_sensorDistance);
 
-                    y1 = (quint32)(getLinearFunction(a1, x + m_xOffset, b1) + 0.5);
-                    y2 = (quint32)(getLinearFunction(a2, x + m_xOffset, b2) + 0.5);
+                    y1 = (quint32)((a1 * (x + m_xOffset) + b1) + 0.5);  //y = ax + b;
+                    y2 = (quint32)((a2 * (x + m_xOffset) + b2) + 0.5);
 
                     for(quint32 y = y1; y < y2; y++)
                     {
@@ -138,7 +138,3 @@ QColor ImageCalculator::calculateColorSum(QColor &color1, QColor &color2)
     return(QColor(r1, r1, r1));
 }
 
-double ImageCalculator::getLinearFunction(double a, double X, double b)
-{
-    return ((a * X) + b); // Function: y = aX + b
-}

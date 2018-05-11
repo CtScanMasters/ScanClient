@@ -16,6 +16,7 @@
 #include "TcpClientWidget/tcpclientwidget.h"
 #include "TcpClient/tcpclient.h"
 #include "MessageLogger/messagelogger.h"
+#include "ImageCalculator/imagecalculator.h"
 #include "commandlist.h"
 
 
@@ -76,7 +77,13 @@ private:
 
     void drawGraph(QList<uint16_t> sensorValueList, quint8 source);
 
-
+    void doCalculatorStuff();
+     quint32 imageWidth = 255;         //Image resolution
+     quint16 imageWidthDivider = 2;    //Result image resolution
+     quint8 numberOfSensors = 8;       //Sensor in array
+    double innerDiameter = 60;
+    double outerdiameter = 120;
+    ImageCalculator imageCalculator;
 
 private slots:
     void commandHandler(quint16 command);
