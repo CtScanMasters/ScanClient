@@ -3,6 +3,7 @@
 #include <QDebug>
 #include <QDir>
 #include <QDateTime>
+#include <QThread>
 #include "commandlist.h"
 
 ScanClientGui::ScanClientGui(QWidget *parent) :
@@ -18,7 +19,11 @@ ScanClientGui::ScanClientGui(QWidget *parent) :
 
     m_arrayCount = 8;
     m_tcpIsConnected = false;
-    m_sourceMask = 0;
+    m_iamBusy = false;
+    m_dataAvailable = false;
+    m_isScanStopped = true;
+    m_dataEnd = true;
+    m_sourceMask = 0; 
 
     buildMainGui();
 
@@ -47,6 +52,15 @@ void ScanClientGui::commandHandler(quint16 command)
         break;
     case COMMAND_SCAN_GET_DATA:
         getScanData();
+        break;
+    case COMMAND_SCAN_NEW_DATA:
+        newScanData();
+        break;
+    case COMMAND_SCAN_DATA_DELIVERY:
+        dataDelivery();
+        break;
+    case COMMAND_SCAN_DATA_END:
+        dataEnd();
         break;
     case COMMAND_ACTUATOR_FORWARD:
         actuatorJogForward();
@@ -79,12 +93,24 @@ void ScanClientGui::commandHandler(quint16 command)
 
 void ScanClientGui::scanStart()
 {
+    qDebug() << m_logName + "send start scan";
 
+    m_bufferOut.clear();
+    m_bufferIn.clear();
+    m_dataBufferInList.clear();
+    m_isScanStopped = false;
+    m_dataEnd = false;
+    m_bufferOut.append(COMMAND_SCAN_START);
+    tcpSendData();
 }
 
 void ScanClientGui::scanStop()
 {
-
+    qDebug() << m_logName + "send stop scan";
+    m_bufferOut.append(COMMAND_SCAN_STOP);
+    m_isScanStopped = true;
+    m_iamBusy = false;
+    tcpSendData();
 }
 
 void ScanClientGui::setScanProgress()
@@ -93,31 +119,75 @@ void ScanClientGui::setScanProgress()
 }
 
 void ScanClientGui::getScanData()
+{          
+    if(!m_isScanStopped)
+    {
+        qDebug() << m_logName + "get scan data";
+        m_iamBusy = false;
+        m_bufferOut.append(COMMAND_SCAN_GET_DATA);
+        tcpSendData();        
+    }
+    else
+    {
+        qDebug() << m_logName + "scan was stopped";
+    }
+}
+
+void ScanClientGui::newScanData()
 {
+    m_dataAvailable = true;
+    qDebug() << m_logName + "new scan data";
+
+    if(!m_iamBusy)
+    {
+        qDebug() << m_logName + "new scan data handle";
+        m_dataAvailable = false;
+        m_iamBusy = true;
+        getScanData();
+    }
+}
+
+void ScanClientGui::dataDelivery()
+{
+    if(!m_dataEnd)
+    {
+        qDebug() << "Scandata: " << m_bufferIn.size();
+        m_dataBufferInList.append(m_bufferIn);
+
+        commandHandler(COMMAND_SCAN_GET_DATA);
+    }
+    else
+    {
+        qDebug() << "No data available" << m_bufferIn;
+    }
+}
+
+void ScanClientGui::dataEnd()
+{
+    m_dataEnd = true;
+    qDebug() << "Received data: " << m_dataBufferInList.size();
     getMeasurement();
-    commandHandler(COMMAND_READY);
-    qInfo() << m_logName + "COMMAND_SCAN_GET_DATA";
 }
 
 void ScanClientGui::actuatorJogBack()
 {
-    m_dataBufferOut.append(0x01);
-    m_dataBufferOut.append(0x01);
-    tcpSendData();
+//    m_dataBufferOut.append(0x01);
+//    m_dataBufferOut.append(0x01);
+//    tcpSendData();
 }
 
 void ScanClientGui::actuatorJogForward()
 {
-    m_dataBufferOut.append(0x01);
-    m_dataBufferOut.append(0x02);
-    tcpSendData();
+//    m_dataBufferOut.append(0x01);
+//    m_dataBufferOut.append(0x02);
+//    tcpSendData();
 }
 
 void ScanClientGui::actuatorHome()
 {
-    m_dataBufferOut.append(0x01);
-    m_dataBufferOut.append(0x03);
-    tcpSendData();
+//    m_dataBufferOut.append(0x01);
+//    m_dataBufferOut.append(0x03);
+//    tcpSendData();
 }
 
 void ScanClientGui::actuatorPosition()
@@ -156,10 +226,10 @@ void ScanClientGui::arraySetSource()
 
 void ScanClientGui::sendReady()
 {
-    m_dataBufferOut.append(QString::number(COMMAND_READY,10));
-    m_tcpClient->sendData(m_dataBufferOut);
+//    m_dataBufferOut.append(QString::number(COMMAND_READY,10));
+//    m_tcpClient->sendData(m_dataBufferOut);
 
-    qInfo() << m_logName + "COMMAND_READY";
+//    qInfo() << m_logName + "COMMAND_READY";
 }
 
 void ScanClientGui::sendNotReady()
@@ -178,6 +248,9 @@ void ScanClientGui::buildMainGui()
     ui->scatterPlot->setAxisRange(0,0,15);
     ui->scatterPlot->setAxisRange(1,0,6);
     ui->scatterPlot->setAxisRange(2,0,5);
+
+    connect(ui->scanControlWidget, SIGNAL(startScanSignal()), this, SLOT(scanStart()));
+    connect(ui->scanControlWidget, SIGNAL(stopScanSignal()), this, SLOT(scanStop()));
 }
 
 void ScanClientGui::buildArrayTab()
@@ -216,7 +289,7 @@ void ScanClientGui::buildTcpClient()
     connect(ui->tcpControlWidget, SIGNAL(connectToHostSignal()), this, SLOT(tcpConnect()));
     connect(ui->tcpControlWidget, SIGNAL(disconnectFromHostSignal()), this, SLOT(tcpDisconnect()));
     connect(m_tcpClient, SIGNAL(socketStateChangedSignal()), this, SLOT(tcpStateChange()));
-    connect(m_tcpClient, SIGNAL(newDataAvailableSignal()), this, SLOT(getMeasurement()));
+    connect(m_tcpClient, SIGNAL(newDataAvailableSignal()), this, SLOT(tcpReadData()));
     ui->tcpControlWidget->setClientIpAddress(m_tcpClient->handleRetreiveIpAddress());
 }
 
@@ -256,8 +329,8 @@ void ScanClientGui::tcpSendData()
 {
     if(m_tcpIsConnected)
     {
-        m_tcpClient->sendData(m_dataBufferOut);
-        m_dataBufferOut.clear();
+        m_tcpClient->sendData(m_bufferOut);
+        m_bufferOut.clear();
     }
     else
     {
@@ -267,13 +340,10 @@ void ScanClientGui::tcpSendData()
 
 void ScanClientGui::tcpReadData()
 {
-    m_dataBufferInList.clear();
-    QByteArray dataBufferIn;
-    m_tcpClient->getReceivedData(dataBufferIn);
-    QDataStream dataInStream(&dataBufferIn, QIODevice::ReadWrite);
-    dataInStream >> m_dataBufferInList;
-    qInfo() << m_logName + "tcpReadData: " << m_dataBufferInList;
-    commandHandler(m_dataBufferInList.at(0));
+    m_bufferIn.clear();
+    m_tcpClient->getReceivedData(m_bufferIn);
+    //qInfo() << m_logName + "tcpReadData: " << m_bufferIn;
+    commandHandler(m_bufferIn.at(0));
 }
 
 void ScanClientGui::buildActuatorControl()
@@ -319,93 +389,101 @@ void ScanClientGui::getMeasurement()
     time.start();
     qWarning() << "*************************START*****************************************";
 
-    QByteArray dataInArray;
-    m_tcpClient->getReceivedData(dataInArray);
 
-    QList<quint16> sensorIntensity;
-    QDataStream dataInStream(&dataInArray, QIODevice::ReadWrite);
-    dataInStream >> sensorIntensity;
+    QThread::msleep(100);
 
-    QList<QImage* > imageList;
-    for(int i = 0; i < 8; i++)
-    {
-        imageList.append(new QImage(imageWidth, imageWidth, QImage::Format_Grayscale8));
-        imageList.at(i)->fill(qRgb(0,0,0));
-    }
 
-    QImage imageSum(imageWidth  + (imageWidth / imageWidthDivider), imageWidth + (imageWidth / imageWidthDivider), QImage::Format_Grayscale8);
-    imageSum.fill(qRgb(0,0,0));
+//    QByteArray dataInArray;
+//    m_tcpClient->getReceivedData(dataInArray);
 
-    quint8 sourceMask = 0x01;
-    for(int i = 0; i < 8; i++)
-    {
-        QList<quint16> list;
-        for(int j = 0; j < 8; j++)
-        {
-            list.append((quint32)((double)((sensorIntensity.at((i * 8) + j)) / ui->verticalSlider->value()) + 0.5 ));
-        }
-        imageCalculator.calculateBeam(list, sourceMask << i, *imageList.at(i));
-    }
+//    QList<quint16> sensorIntensity;
+//    QDataStream dataInStream(&dataInArray, QIODevice::ReadWrite);
+//    dataInStream >> sensorIntensity;
 
-    for(int i = 0; i < 8; i++)
-    {
-        imageCalculator.mergeImages(*imageList.at(i), 0.0, imageSum);
-    }
-
-// Use to check image offset
+//    QList<QImage* > imageList;
 //    for(int i = 0; i < 8; i++)
 //    {
-//        imageCalculator.mergeImages(*imageList.at(i), 45.0, imageSum);
+//        imageList.append(new QImage(imageWidth, imageWidth, QImage::Format_Grayscale8));
+//        imageList.at(i)->fill(qRgb(0,0,0));
 //    }
 
-//    imageSum.invertPixels();
+//    QImage imageSum(imageWidth  + (imageWidth / imageWidthDivider), imageWidth + (imageWidth / imageWidthDivider), QImage::Format_Grayscale8);
+//    imageSum.fill(qRgb(0,0,0));
 
-    QPixmap pixMapSum = QPixmap::fromImage(imageSum);
-
-    ui->imagingWidget->setPixmap(pixMapSum.scaledToHeight(this->height() - 200));
-//    ui->imagingWidget->setPixmap(pixMapSum);
-
-//    QString filepath;
-
-//    for(int i = 0; i < 1000; i++)
+//    quint8 sourceMask = 0x01;
+//    for(int i = 0; i < 8; i++)
 //    {
-//        filepath = QCoreApplication::applicationDirPath()
-//                            + QString("/IMG%1/")
-//                                .arg(i,3,10, QChar('0'));
-
-
-//        if(!QDir(filepath).exists() && (i < 999))
+//        QList<quint16> list;
+//        for(int j = 0; j < 8; j++)
 //        {
-//            QDir().mkdir(filepath);
-//            break;
+//            list.append((quint32)((double)((sensorIntensity.at((i * 8) + j)) / ui->verticalSlider->value()) + 0.5 ));
 //        }
-//        if(i > 999)
-//        {
-//            qWarning() << "all foldernames occupied";
-//            break;
-//        }
+//        imageCalculator.calculateBeam(list, sourceMask << i, *imageList.at(i));
 //    }
-
-
-//    qInfo() << m_logName + "getMeasurement: " + filepath;
 
 //    for(int i = 0; i < 8; i++)
 //    {
-//        imageList.at(i)->save(filepath
-//                                  + QString("IMG%1_%2.png")
-//                                  .arg(i,3,10, QChar('0')));
+//        imageCalculator.mergeImages(*imageList.at(i), 0.0, imageSum);
 //    }
 
-//    imageSum.save(filepath + "sum.png");
+//// Use to check image offset
+////    for(int i = 0; i < 8; i++)
+////    {
+////        imageCalculator.mergeImages(*imageList.at(i), 45.0, imageSum);
+////    }
 
-    for(int i = 0; i < imageList.size(); i++)
-    {
-        delete imageList.at(i);
-    }
+////    imageSum.invertPixels();
+
+//    QPixmap pixMapSum = QPixmap::fromImage(imageSum);
+
+//    ui->imagingWidget->setPixmap(pixMapSum.scaledToHeight(this->height() - 200));
+////    ui->imagingWidget->setPixmap(pixMapSum);
+
+////    QString filepath;
+
+////    for(int i = 0; i < 1000; i++)
+////    {
+////        filepath = QCoreApplication::applicationDirPath()
+////                            + QString("/IMG%1/")
+////                                .arg(i,3,10, QChar('0'));
+
+
+////        if(!QDir(filepath).exists() && (i < 999))
+////        {
+////            QDir().mkdir(filepath);
+////            break;
+////        }
+////        if(i > 999)
+////        {
+////            qWarning() << "all foldernames occupied";
+////            break;
+////        }
+////    }
+
+
+////    qInfo() << m_logName + "getMeasurement: " + filepath;
+
+////    for(int i = 0; i < 8; i++)
+////    {
+////        imageList.at(i)->save(filepath
+////                                  + QString("IMG%1_%2.png")
+////                                  .arg(i,3,10, QChar('0')));
+////    }
+
+////    imageSum.save(filepath + "sum.png");
+
+//    for(int i = 0; i < imageList.size(); i++)
+//    {
+//        delete imageList.at(i);
+//    }
 
 qWarning() << "*************************TIME*****************************************";
 qWarning() << time.elapsed();
 qWarning() << "*************************STOP*****************************************";
+
+    m_iamBusy = false;
+
+
 }
 
 void ScanClientGui::drawGraph(QList<uint16_t> sensorValueList, quint8 source)

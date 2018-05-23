@@ -41,6 +41,9 @@ private:
         COMMAND_SCAN_STOP,
         COMMAND_SCAN_SET_PROGRESS,
         COMMAND_SCAN_GET_DATA,
+        COMMAND_SCAN_NEW_DATA,
+        COMMAND_SCAN_DATA_DELIVERY,
+        COMMAND_SCAN_DATA_END,
         COMMAND_ACTUATOR_FORWARD,
         COMMAND_ACTUATOR_BACKWARD,
         COMMAND_ACTUATOR_POSITION,
@@ -64,8 +67,17 @@ private:
 
     TcpClient *m_tcpClient;
     bool m_tcpIsConnected;
-    QByteArray m_dataBufferOut;
-    QList<quint16> m_dataBufferInList;
+    bool m_iamBusy;
+    bool m_dataAvailable;
+    bool m_isScanStopped;
+    bool m_dataEnd;
+    QByteArray m_bufferOut;
+    QByteArray m_bufferIn;
+
+    quint8 m_numberOfscans;
+    quint8 m_scanDistance;
+
+    QList<QByteArray> m_dataBufferInList;
 
     MessageLogger *m_dataLogger;
 
@@ -78,9 +90,9 @@ private:
     void drawGraph(QList<uint16_t> sensorValueList, quint8 source);
 
     void doCalculatorStuff();
-     quint32 imageWidth = 255;         //Image resolution
-     quint16 imageWidthDivider = 2;    //Result image resolution
-     quint8 numberOfSensors = 8;       //Sensor in array
+    quint32 imageWidth = 255;         //Image resolution
+    quint16 imageWidthDivider = 2;    //Result image resolution
+    quint8 numberOfSensors = 8;       //Sensor in array
     double innerDiameter = 60;
     double outerdiameter = 120;
     ImageCalculator imageCalculator;
@@ -97,6 +109,9 @@ private slots:
     void actuatorHome();
     void sendNotReady();
     void sendReady();
+    void newScanData();
+    void dataDelivery();
+    void dataEnd();
 
     void tcpConnect();
     void tcpDisconnect();

@@ -17,8 +17,8 @@ TcpClient::TcpClient()
 
     m_myIp = QHostAddress(handleRetreiveIpAddress());
 
-    m_autoReconnectTime = 5000;
-    qInfo() << m_logName + "m_autoReconnectTime: " << m_autoReconnectTime;
+    //m_autoReconnectTime = 5000;
+    //qInfo() << m_logName + "m_autoReconnectTime: " << m_autoReconnectTime;
 
     connect(m_tcpSocket, SIGNAL(readyRead()), this, SLOT(readData()));
     connect(m_tcpSocket, SIGNAL(stateChanged(QAbstractSocket::SocketState)),
@@ -39,8 +39,8 @@ void TcpClient::connectToHost()
     else
     {
         m_tcpSocket->connectToHost(m_hostIpAddress, m_hostPort);
-        connect(m_reconnectTimer, SIGNAL(timeout()), this, SLOT(connectToHost()));
-        m_reconnectTimer->start(m_autoReconnectTime);
+        //connect(m_reconnectTimer, SIGNAL(timeout()), this, SLOT(connectToHost()));
+        //m_reconnectTimer->start(m_autoReconnectTime);
         qInfo() << m_logName + QString("connectToHost IP: %1 PORT: %2")
                                                    .arg(m_hostIpAddress.toString())
                                                    .arg(m_hostPort);
@@ -52,8 +52,8 @@ void TcpClient::connectToHost()
 void TcpClient::disconnectFromHost()
 {
     m_tcpSocket->disconnectFromHost();
-    m_reconnectTimer->stop();
-    disconnect(m_reconnectTimer, SIGNAL(timeout()), this, SLOT(connectToHost()));
+    //m_reconnectTimer->stop();
+    //disconnect(m_reconnectTimer, SIGNAL(timeout()), this, SLOT(connectToHost()));
     qInfo() << m_logName + "disconnectFromHost";
 }
 
@@ -83,18 +83,18 @@ void TcpClient::displaySocketState(QAbstractSocket::SocketState socketState)
 {
     hanldeSocketState(socketState);
 
-    if(!m_isSocketReady)
-    {
-        if(!m_reconnectTimer->isActive())
-        {
-            m_reconnectTimer->start(m_autoReconnectTime);
-            qInfo() << m_logName + "displaySocketState: autoreconnect";
-        }
-    }
-    else
-    {
-        m_reconnectTimer->stop();
-    }
+//    if(!m_isSocketReady)
+//    {
+//        if(!m_reconnectTimer->isActive())
+//        {
+//            m_reconnectTimer->start(m_autoReconnectTime);
+//            qInfo() << m_logName + "displaySocketState: autoreconnect";
+//        }
+//    }
+//    else
+//    {
+//        m_reconnectTimer->stop();
+//    }
 
     emit socketStateChangedSignal();
 }
