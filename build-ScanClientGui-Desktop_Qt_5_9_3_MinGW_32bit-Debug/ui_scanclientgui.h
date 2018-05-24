@@ -406,7 +406,8 @@ public:
         verticalSlider->setMaximum(255);
         verticalSlider->setSingleStep(8);
         verticalSlider->setPageStep(16);
-        verticalSlider->setValue(128);
+        verticalSlider->setValue(16);
+        verticalSlider->setSliderPosition(16);
         verticalSlider->setOrientation(Qt::Vertical);
 
         gridLayout_10->addWidget(verticalSlider, 0, 1, 1, 1);

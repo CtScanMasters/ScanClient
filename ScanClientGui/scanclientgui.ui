@@ -400,7 +400,10 @@ QTabBar::tab:left:only-one, QTabBar::tab:right:only-one {
            <number>16</number>
           </property>
           <property name="value">
-           <number>128</number>
+           <number>16</number>
+          </property>
+          <property name="sliderPosition">
+           <number>16</number>
           </property>
           <property name="orientation">
            <enum>Qt::Vertical</enum>

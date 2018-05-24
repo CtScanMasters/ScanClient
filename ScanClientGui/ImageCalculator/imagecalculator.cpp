@@ -36,6 +36,7 @@ void ImageCalculator::setDimensions(quint8 numberOfSensors, quint32 pixelWidth, 
         qInfo() << "Sourcedistance:     " << m_sourceDistance;
         qInfo() << "DiameterRatio:      " << m_diameterRatio;
         qInfo() << "CanvasSize:         " << m_virtualCanvasSize;
+        qInfo() << "********************************************************";
 
 
     m_dimensionsSet = true;

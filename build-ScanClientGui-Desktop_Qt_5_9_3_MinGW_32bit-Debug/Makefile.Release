@@ -397,6 +397,10 @@ release/moc_scanclientgui.cpp: C:/Qt/5.9.3/mingw53_32/include/QtWidgets/QMainWin
 		C:/Qt/5.9.3/mingw53_32/include/QtGui/qrawfont.h \
 		C:/Qt/5.9.3/mingw53_32/include/QtGui/qfontdatabase.h \
 		C:/Qt/5.9.3/mingw53_32/include/QtCore/QFile \
+		../ScanClientGui/ImageCalculator/imagecalculator.h \
+		C:/Qt/5.9.3/mingw53_32/include/QtGui/QTransform \
+		C:/Qt/5.9.3/mingw53_32/include/QtGui/QImage \
+		../ScanClientGui/commandlist.h \
 		../ScanClientGui/scanclientgui.h \
 		release/moc_predefs.h \
 		C:/Qt/5.9.3/mingw53_32/bin/moc.exe
@@ -2208,6 +2212,10 @@ release/main.o: ../ScanClientGui/main.cpp ../ScanClientGui/scanclientgui.h \
 		C:/Qt/5.9.3/mingw53_32/include/QtGui/qrawfont.h \
 		C:/Qt/5.9.3/mingw53_32/include/QtGui/qfontdatabase.h \
 		C:/Qt/5.9.3/mingw53_32/include/QtCore/QFile \
+		../ScanClientGui/ImageCalculator/imagecalculator.h \
+		C:/Qt/5.9.3/mingw53_32/include/QtGui/QTransform \
+		C:/Qt/5.9.3/mingw53_32/include/QtGui/QImage \
+		../ScanClientGui/commandlist.h \
 		C:/Qt/5.9.3/mingw53_32/include/QtWidgets/QApplication \
 		C:/Qt/5.9.3/mingw53_32/include/QtWidgets/qapplication.h \
 		C:/Qt/5.9.3/mingw53_32/include/QtCore/qcoreapplication.h \
@@ -2459,43 +2467,18 @@ release/scanclientgui.o: ../ScanClientGui/scanclientgui.cpp ../ScanClientGui/sca
 		C:/Qt/5.9.3/mingw53_32/include/QtGui/qrawfont.h \
 		C:/Qt/5.9.3/mingw53_32/include/QtGui/qfontdatabase.h \
 		C:/Qt/5.9.3/mingw53_32/include/QtCore/QFile \
+		../ScanClientGui/ImageCalculator/imagecalculator.h \
+		C:/Qt/5.9.3/mingw53_32/include/QtGui/QTransform \
+		C:/Qt/5.9.3/mingw53_32/include/QtGui/QImage \
+		../ScanClientGui/commandlist.h \
 		ui_scanclientgui.h \
-		C:/Qt/5.9.3/mingw53_32/include/QtCore/QVariant \
-		C:/Qt/5.9.3/mingw53_32/include/QtWidgets/QAction \
-		C:/Qt/5.9.3/mingw53_32/include/QtWidgets/qaction.h \
-		C:/Qt/5.9.3/mingw53_32/include/QtWidgets/qactiongroup.h \
-		C:/Qt/5.9.3/mingw53_32/include/QtWidgets/QApplication \
-		C:/Qt/5.9.3/mingw53_32/include/QtWidgets/qapplication.h \
-		C:/Qt/5.9.3/mingw53_32/include/QtCore/qcoreapplication.h \
-		C:/Qt/5.9.3/mingw53_32/include/QtCore/qeventloop.h \
-		C:/Qt/5.9.3/mingw53_32/include/QtWidgets/qdesktopwidget.h \
-		C:/Qt/5.9.3/mingw53_32/include/QtGui/qguiapplication.h \
-		C:/Qt/5.9.3/mingw53_32/include/QtGui/qinputmethod.h \
-		C:/Qt/5.9.3/mingw53_32/include/QtWidgets/QButtonGroup \
-		C:/Qt/5.9.3/mingw53_32/include/QtWidgets/qbuttongroup.h \
-		C:/Qt/5.9.3/mingw53_32/include/QtWidgets/QHeaderView \
-		C:/Qt/5.9.3/mingw53_32/include/QtWidgets/qheaderview.h \
-		C:/Qt/5.9.3/mingw53_32/include/QtWidgets/qabstractitemview.h \
-		C:/Qt/5.9.3/mingw53_32/include/QtCore/qabstractitemmodel.h \
-		C:/Qt/5.9.3/mingw53_32/include/QtCore/qitemselectionmodel.h \
-		C:/Qt/5.9.3/mingw53_32/include/QtWidgets/qabstractitemdelegate.h \
-		C:/Qt/5.9.3/mingw53_32/include/QtWidgets/qstyleoption.h \
-		C:/Qt/5.9.3/mingw53_32/include/QtWidgets/qabstractspinbox.h \
-		C:/Qt/5.9.3/mingw53_32/include/QtWidgets/qslider.h \
-		C:/Qt/5.9.3/mingw53_32/include/QtWidgets/qabstractslider.h \
-		C:/Qt/5.9.3/mingw53_32/include/QtWidgets/qstyle.h \
-		C:/Qt/5.9.3/mingw53_32/include/QtWidgets/qtabbar.h \
-		C:/Qt/5.9.3/mingw53_32/include/QtWidgets/qrubberband.h \
-		C:/Qt/5.9.3/mingw53_32/include/QtWidgets/QSlider \
-		C:/Qt/5.9.3/mingw53_32/include/QtWidgets/QSpacerItem \
 		C:/Qt/5.9.3/mingw53_32/include/QtCore/QDir \
 		C:/Qt/5.9.3/mingw53_32/include/QtCore/qdir.h \
 		C:/Qt/5.9.3/mingw53_32/include/QtCore/qfileinfo.h \
 		C:/Qt/5.9.3/mingw53_32/include/QtCore/QDateTime \
 		C:/Qt/5.9.3/mingw53_32/include/QtCore/qdatetime.h \
-		../ScanClientGui/ImageCalculator/imagecalculator.h \
-		C:/Qt/5.9.3/mingw53_32/include/QtGui/QTransform \
-		C:/Qt/5.9.3/mingw53_32/include/QtGui/QImage
+		C:/Qt/5.9.3/mingw53_32/include/QtCore/QThread \
+		C:/Qt/5.9.3/mingw53_32/include/QtCore/qthread.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\scanclientgui.o ..\ScanClientGui\scanclientgui.cpp
 
 release/scatterwidget.o: ../ScanClientGui/3DScatterWidget/scatterwidget.cpp ../ScanClientGui/3DScatterWidget/scatterwidget.h \

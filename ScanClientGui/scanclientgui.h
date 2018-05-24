@@ -78,6 +78,7 @@ private:
     quint8 m_scanDistance;
 
     QList<QByteArray> m_dataBufferInList;
+    QList<QList<quint16>> m_scanDataList;
 
     MessageLogger *m_dataLogger;
 
@@ -112,6 +113,7 @@ private slots:
     void newScanData();
     void dataDelivery();
     void dataEnd();
+    void prepareData();
 
     void tcpConnect();
     void tcpDisconnect();
@@ -122,7 +124,7 @@ private slots:
     void arraySetSourceMask(quint8 sourceMask);
     void arraySetSource();
     void arrayGetSensor();
-    void getMeasurement();
+    void processData(quint16 scanNumber, quint16 arrayNumber);
 
 
 

@@ -166,7 +166,7 @@ void ScanClientGui::dataEnd()
 {
     m_dataEnd = true;
     qDebug() << "Received data: " << m_dataBufferInList.size();
-    getMeasurement();
+    prepareData();
 }
 
 void ScanClientGui::actuatorJogBack()
@@ -380,102 +380,119 @@ void ScanClientGui::doCalculatorStuff()
     imageCalculator.setDimensions(numberOfSensors, imageWidth, innerDiameter, outerdiameter);
 }
 
+void ScanClientGui::prepareData()
+{
+    m_scanDataList.clear();
 
-void ScanClientGui::getMeasurement()
+    for(int i = 0; i < m_dataBufferInList.size(); i++)
+    {
+        QList<quint16> dataList;
+
+        for(int j = 1; j < m_dataBufferInList.at(i).size() - 1; j+=2)
+        {
+            quint16 data0 = 0;
+            data0 = (m_dataBufferInList.at(i).at(j) << 8) | data0;
+            data0 = m_dataBufferInList.at(i).at(j+1) | data0;
+            dataList.append(data0);
+        }
+        m_scanDataList.append(dataList);
+    }
+
+    for(int i = 0; i < m_scanDataList.at(0).size(); i++)
+    {
+       //qDebug() << i << m_scanDataList.at(0).at(i);
+    }
+
+
+    processData(0,0);
+}
+
+void ScanClientGui::processData(quint16 scanNumber, quint16 arrayNumber)
 {   
-//    m_tcpClient->disconnectFromHost();
+    qDebug() << "processdata: " << scanNumber << arrayNumber;
+    quint8 m_numberOfScansPerArray = 8;
 
     QTime time;
     time.start();
     qWarning() << "*************************START*****************************************";
 
+    QList<QImage* > imageList;
+    for(int i = 0; i < m_numberOfScansPerArray; i++)
+    {
+        imageList.append(new QImage(imageWidth, imageWidth, QImage::Format_Grayscale8));
+        imageList.at(i)->fill(qRgb(0,0,0));
+    }
 
-    QThread::msleep(100);
+    QImage imageSum(imageWidth  + (imageWidth / imageWidthDivider), imageWidth + (imageWidth / imageWidthDivider), QImage::Format_Grayscale8);
+    imageSum.fill(qRgb(0,0,0));
 
+    for(int source = 0; source < m_numberOfScansPerArray; source++)
+    {
+        QList<quint16> list;
+        for(int sensor = 2; sensor < 10; sensor++)
+        {
+            list.append((quint16)((double)((m_scanDataList.at(scanNumber).at((source * 10) + sensor)))));// / ui->verticalSlider->value()) + 0.5 ));
+        }
+        qDebug() << list;
+        imageCalculator.calculateBeam(list, 0x0001 << m_scanDataList.at(scanNumber).at(source * 10 + 1), *imageList.at(source));
 
-//    QByteArray dataInArray;
-//    m_tcpClient->getReceivedData(dataInArray);
+    }
 
-//    QList<quint16> sensorIntensity;
-//    QDataStream dataInStream(&dataInArray, QIODevice::ReadWrite);
-//    dataInStream >> sensorIntensity;
+    for(int i = 0; i < 8; i++)
+    {
+        imageCalculator.mergeImages(*imageList.at(i), 0.0, imageSum);
+    }
 
-//    QList<QImage* > imageList;
+// Use to check image offset
 //    for(int i = 0; i < 8; i++)
 //    {
-//        imageList.append(new QImage(imageWidth, imageWidth, QImage::Format_Grayscale8));
-//        imageList.at(i)->fill(qRgb(0,0,0));
+//        imageCalculator.mergeImages(*imageList.at(i), 45.0, imageSum);
 //    }
 
-//    QImage imageSum(imageWidth  + (imageWidth / imageWidthDivider), imageWidth + (imageWidth / imageWidthDivider), QImage::Format_Grayscale8);
-//    imageSum.fill(qRgb(0,0,0));
+//    imageSum.invertPixels();
 
-//    quint8 sourceMask = 0x01;
-//    for(int i = 0; i < 8; i++)
+    QPixmap pixMapSum = QPixmap::fromImage(imageSum);
+
+    ui->imagingWidget->setPixmap(pixMapSum.scaledToHeight(this->height() - 200));
+//    ui->imagingWidget->setPixmap(pixMapSum);
+
+//    QString filepath;
+
+//    for(int i = 0; i < 1000; i++)
 //    {
-//        QList<quint16> list;
-//        for(int j = 0; j < 8; j++)
+//        filepath = QCoreApplication::applicationDirPath()
+//                            + QString("/IMG%1/")
+//                                .arg(i,3,10, QChar('0'));
+
+
+//        if(!QDir(filepath).exists() && (i < 999))
 //        {
-//            list.append((quint32)((double)((sensorIntensity.at((i * 8) + j)) / ui->verticalSlider->value()) + 0.5 ));
+//            QDir().mkdir(filepath);
+//            break;
 //        }
-//        imageCalculator.calculateBeam(list, sourceMask << i, *imageList.at(i));
+//        if(i > 999)
+//        {
+//            qWarning() << "all foldernames occupied";
+//            break;
+//        }
 //    }
+
+
+//    qInfo() << m_logName + "getMeasurement: " + filepath;
 
 //    for(int i = 0; i < 8; i++)
 //    {
-//        imageCalculator.mergeImages(*imageList.at(i), 0.0, imageSum);
+//        imageList.at(i)->save(filepath
+//                                  + QString("IMG%1_%2.png")
+//                                  .arg(i,3,10, QChar('0')));
 //    }
 
-//// Use to check image offset
-////    for(int i = 0; i < 8; i++)
-////    {
-////        imageCalculator.mergeImages(*imageList.at(i), 45.0, imageSum);
-////    }
+//    imageSum.save(filepath + "sum.png");
 
-////    imageSum.invertPixels();
-
-//    QPixmap pixMapSum = QPixmap::fromImage(imageSum);
-
-//    ui->imagingWidget->setPixmap(pixMapSum.scaledToHeight(this->height() - 200));
-////    ui->imagingWidget->setPixmap(pixMapSum);
-
-////    QString filepath;
-
-////    for(int i = 0; i < 1000; i++)
-////    {
-////        filepath = QCoreApplication::applicationDirPath()
-////                            + QString("/IMG%1/")
-////                                .arg(i,3,10, QChar('0'));
-
-
-////        if(!QDir(filepath).exists() && (i < 999))
-////        {
-////            QDir().mkdir(filepath);
-////            break;
-////        }
-////        if(i > 999)
-////        {
-////            qWarning() << "all foldernames occupied";
-////            break;
-////        }
-////    }
-
-
-////    qInfo() << m_logName + "getMeasurement: " + filepath;
-
-////    for(int i = 0; i < 8; i++)
-////    {
-////        imageList.at(i)->save(filepath
-////                                  + QString("IMG%1_%2.png")
-////                                  .arg(i,3,10, QChar('0')));
-////    }
-
-////    imageSum.save(filepath + "sum.png");
-
-//    for(int i = 0; i < imageList.size(); i++)
-//    {
-//        delete imageList.at(i);
-//    }
+    for(int i = 0; i < imageList.size(); i++)
+    {
+        delete imageList.at(i);
+    }
 
 qWarning() << "*************************TIME*****************************************";
 qWarning() << time.elapsed();
