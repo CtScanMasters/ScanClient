@@ -30,13 +30,13 @@ ActuatorWidget::ActuatorWidget(QWidget *parent) :
     m_positionLineEdit->setReadOnly(true);
     m_positionLineEdit->setPlaceholderText("unkown");
 
-    m_mainGridlayout->addWidget(m_statusLabel, 0, 0, 1, 1);
-    m_mainGridlayout->addWidget(m_statusLineEdit, 0, 1, 1, 4);
-    m_mainGridlayout->addWidget(m_positionLabel, 1, 0, 2, 1);
-    m_mainGridlayout->addWidget(m_positionLineEdit, 1, 1, 2, 4);
-    m_mainGridlayout->addWidget(m_jogBackButton, 3, 0, 1, 2);
-    m_mainGridlayout->addWidget(m_homeButton, 3, 2, 1, 1);
-    m_mainGridlayout->addWidget(m_jogForwardButton, 3, 3, 1, 2);
+    m_mainGridlayout->addWidget(m_statusLabel,      0, 0, 1, 2);
+    m_mainGridlayout->addWidget(m_statusLineEdit,   0, 2, 1, 4);
+    m_mainGridlayout->addWidget(m_positionLabel,    1, 0, 2, 2);
+    m_mainGridlayout->addWidget(m_positionLineEdit, 1, 2, 2, 4);
+    m_mainGridlayout->addWidget(m_jogBackButton,    3, 0, 1, 2);
+    m_mainGridlayout->addWidget(m_homeButton,       3, 2, 1, 2);
+    m_mainGridlayout->addWidget(m_jogForwardButton, 3, 4, 1, 2);
 
 
     connect(m_jogForwardButton, SIGNAL(clicked(bool)), this, SLOT(jogForward()));

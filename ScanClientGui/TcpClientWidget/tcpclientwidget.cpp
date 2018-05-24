@@ -20,10 +20,12 @@ TcpClientWidget::TcpClientWidget(QWidget *parent) :
     m_hostIpLabel->setText("Host IP: ");
     m_hostPortLabel->setText("Host PORT:");
     m_statusLabel->setText("Status: ");
-    m_connectButton->setText("Connect");
+    m_connectButton->setText("Connect");    
     m_connectButton->setToolTip("connect to host");
-    m_disconnectButton->setText("Disconnect");
+    m_connectButton->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+    m_disconnectButton->setText("  Disconnect  ");
     m_disconnectButton->setToolTip("disconnect from host");
+    m_disconnectButton->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     m_statusLineEdit->setReadOnly(true);
     m_statusLineEdit->setPlaceholderText("unkown");
     m_clienIpLineEdit->setReadOnly(true);
@@ -43,16 +45,16 @@ TcpClientWidget::TcpClientWidget(QWidget *parent) :
     portValidator = new QIntValidator(1, 99999, this);
     m_hostPortLineEdit->setValidator(portValidator);
 
-    m_mainGridLayout->addWidget(m_statusLabel, 0, 0, 1, 1);
-    m_mainGridLayout->addWidget(m_statusLineEdit, 0, 1, 1, 3);
-    m_mainGridLayout->addWidget(m_hostIpLabel, 1, 0, 1, 1);
-    m_mainGridLayout->addWidget(m_hostIpLineEdit, 1, 1, 1, 3);
-    m_mainGridLayout->addWidget(m_hostPortLabel, 2, 0, 1, 1);
-    m_mainGridLayout->addWidget(m_hostPortLineEdit, 2, 1, 1, 3);
-    m_mainGridLayout->addWidget(m_clientIpLabel, 3, 0, 1, 1);
-    m_mainGridLayout->addWidget(m_clienIpLineEdit, 3, 1, 1, 3);
-    m_mainGridLayout->addWidget(m_connectButton, 4, 0, 1, 2);
-    m_mainGridLayout->addWidget(m_disconnectButton, 4, 2, 1, 2);
+    m_mainGridLayout->addWidget(m_statusLabel,      0, 0, 1, 1);
+    m_mainGridLayout->addWidget(m_statusLineEdit,   0, 1, 1, 2);
+    m_mainGridLayout->addWidget(m_hostIpLabel,      1, 0, 1, 1);
+    m_mainGridLayout->addWidget(m_hostIpLineEdit,   1, 1, 1, 2);
+    m_mainGridLayout->addWidget(m_hostPortLabel,    2, 0, 1, 1);
+    m_mainGridLayout->addWidget(m_hostPortLineEdit, 2, 1, 1, 2);
+    m_mainGridLayout->addWidget(m_clientIpLabel,    3, 0, 1, 1);
+    m_mainGridLayout->addWidget(m_clienIpLineEdit,  3, 1, 1, 2);
+    m_mainGridLayout->addWidget(m_connectButton,    0, 3, 2, 2);
+    m_mainGridLayout->addWidget(m_disconnectButton, 2, 3, 2, 2);
 
     setLayout(m_mainGridLayout);
 

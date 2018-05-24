@@ -391,20 +391,26 @@ void ScanClientGui::prepareData()
         for(int j = 1; j < m_dataBufferInList.at(i).size() - 1; j+=2)
         {
             quint16 data0 = 0;
-            data0 = (m_dataBufferInList.at(i).at(j) << 8) | data0;
-            data0 = m_dataBufferInList.at(i).at(j+1) | data0;
+            quint8 byte0 = m_dataBufferInList.at(i).at(j);
+            quint8 byte1 = m_dataBufferInList.at(i).at(j+1);
+            data0 = byte0;
+            data0 = data0 << 8;
+            data0 = data0 | byte1;
             dataList.append(data0);
         }
         m_scanDataList.append(dataList);
     }
 
-    for(int i = 0; i < m_scanDataList.at(0).size(); i++)
-    {
-       //qDebug() << i << m_scanDataList.at(0).at(i);
-    }
+//    for(int i = 0; i < m_scanDataList.at(0).size(); i++)
+//    {
+//       qDebug() << i << m_scanDataList.at(0).at(i);
+//    }
 
 
     processData(0,0);
+
+    commandHandler(COMMAND_SCAN_START);
+
 }
 
 void ScanClientGui::processData(quint16 scanNumber, quint16 arrayNumber)
@@ -423,18 +429,21 @@ void ScanClientGui::processData(quint16 scanNumber, quint16 arrayNumber)
         imageList.at(i)->fill(qRgb(0,0,0));
     }
 
-    QImage imageSum(imageWidth  + (imageWidth / imageWidthDivider), imageWidth + (imageWidth / imageWidthDivider), QImage::Format_Grayscale8);
+    QImage imageSum(imageWidth  + (imageWidth / imageWidthDivider), imageWidth +
+                    (imageWidth / imageWidthDivider), QImage::Format_Grayscale8);
     imageSum.fill(qRgb(0,0,0));
 
     for(int source = 0; source < m_numberOfScansPerArray; source++)
     {
         QList<quint16> list;
-        for(int sensor = 2; sensor < 10; sensor++)
+        for(int sensor = 3; sensor < 11; sensor++)
         {
-            list.append((quint16)((double)((m_scanDataList.at(scanNumber).at((source * 10) + sensor)))));// / ui->verticalSlider->value()) + 0.5 ));
+            list.append((quint16)((double)((m_scanDataList.at(scanNumber).at((source * 11) + sensor))
+                                           / ui->verticalSlider->value()) + 0.5 ));
         }
         qDebug() << list;
-        imageCalculator.calculateBeam(list, 0x0001 << m_scanDataList.at(scanNumber).at(source * 10 + 1), *imageList.at(source));
+        imageCalculator.calculateBeam(list, 0x0001 << m_scanDataList.at(scanNumber)
+                                      .at(source * 11 + 2), *imageList.at(source));
 
     }
 

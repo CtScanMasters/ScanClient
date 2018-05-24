@@ -25,11 +25,11 @@ ScanWidget::ScanWidget(QWidget *parent) :
     m_statusLineEdit->setReadOnly(true);
     m_statusLineEdit->setPlaceholderText("unknown");
 
-    m_mainGridLayout->addWidget(m_statusLabel,0, 0, 1, 1);
-    m_mainGridLayout->addWidget(m_statusLineEdit, 0, 1, 1, 3);
-    m_mainGridLayout->addWidget(m_progressBar, 1, 0, 2, 4);
-    m_mainGridLayout->addWidget(m_startScanButton, 3, 0, 1, 2);
-    m_mainGridLayout->addWidget(m_stopScanButton, 3, 2, 1, 2);
+    m_mainGridLayout->addWidget(m_statusLabel,      0, 0, 1, 1);
+    m_mainGridLayout->addWidget(m_statusLineEdit,   0, 1, 1, 3);
+    m_mainGridLayout->addWidget(m_progressBar,      1, 0, 2, 4);
+    m_mainGridLayout->addWidget(m_startScanButton,  3, 0, 1, 2);
+    m_mainGridLayout->addWidget(m_stopScanButton,   3, 2, 1, 2);
 
     connect(m_startScanButton, SIGNAL(clicked(bool)), this, SLOT(startScan()));
     connect(m_stopScanButton, SIGNAL(clicked(bool)), this, SLOT(stopScan()));
