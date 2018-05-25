@@ -10,7 +10,7 @@ class ImageCalculator
 public:
     ImageCalculator();
     void setDimensions(quint8 numberOfSensors, quint32 pixelWidth, double innerDiameter, double outerDiamter);
-    void calculateBeam(QList<quint16> sensorIntensityList, quint16 sourceMask, QImage &image);
+    void calculateBeam(QVector<quint16> sensorIntensityList, quint16 sourceMask, QImage &image);
     void mergeImages(QImage &image, double angle, QImage &destinationImage);
     double getLinearFunction(double a, double X, double b);
 

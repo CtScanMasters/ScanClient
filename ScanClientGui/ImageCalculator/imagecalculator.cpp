@@ -42,7 +42,7 @@ void ImageCalculator::setDimensions(quint8 numberOfSensors, quint32 pixelWidth, 
     m_dimensionsSet = true;
 }
 
-void ImageCalculator::calculateBeam(QList<quint16> sensorIntensityList, quint16 sourceMask, QImage &image)
+void ImageCalculator::calculateBeam(QVector<quint16> sensorIntensityList, quint16 sourceMask, QImage &image)
 {
     quint32 y1 = 0;
     double a1 = 0;

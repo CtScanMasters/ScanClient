@@ -11,6 +11,7 @@ INPUT(
 ./release\tcpclientwidget.o
 ./release\messagelogger.o
 ./release\imagecalculator.o
+./release\imageprocessor.o
 ./release\moc_scanclientgui.o
 ./release\moc_scatterwidget.o
 ./release\moc_actuatorwidget.o
@@ -19,4 +20,5 @@ INPUT(
 ./release\moc_scanwidget.o
 ./release\moc_tcpclient.o
 ./release\moc_tcpclientwidget.o
+./release\moc_imageprocessor.o
 );

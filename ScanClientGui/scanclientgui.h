@@ -76,9 +76,12 @@ private:
 
     quint8 m_numberOfscans;
     quint8 m_scanDistance;
+    quint8 m_numberOfScansPerArray;
+    quint8 m_scanDataOffset;
+    quint8 m_scanDataSize;
 
-    QList<QByteArray> m_dataBufferInList;
-    QList<QList<quint16>> m_scanDataList;
+    QVector<QByteArray> m_dataBufferInList;
+    QVector<QVector<quint16>> m_scanDataList;
 
     MessageLogger *m_dataLogger;
 

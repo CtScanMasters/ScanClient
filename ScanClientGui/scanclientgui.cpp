@@ -6,6 +6,8 @@
 #include <QThread>
 #include "commandlist.h"
 
+#include "ImageCalculator/imageprocessor.h"
+
 ScanClientGui::ScanClientGui(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::ScanClientGui)
@@ -18,12 +20,15 @@ ScanClientGui::ScanClientGui(QWidget *parent) :
     m_logName = "ScanClientGui : ";
 
     m_arrayCount = 8;
+    m_numberOfScansPerArray = 8;
     m_tcpIsConnected = false;
     m_iamBusy = false;
     m_dataAvailable = false;
     m_isScanStopped = true;
     m_dataEnd = true;
-    m_sourceMask = 0; 
+    m_sourceMask = 0;
+    m_scanDataSize = 11;
+    m_scanDataOffset = m_numberOfScansPerArray * m_scanDataSize;
 
     buildMainGui();
 
@@ -386,7 +391,7 @@ void ScanClientGui::prepareData()
 
     for(int i = 0; i < m_dataBufferInList.size(); i++)
     {
-        QList<quint16> dataList;
+        QVector<quint16> dataList;
 
         for(int j = 1; j < m_dataBufferInList.at(i).size() - 1; j+=2)
         {
@@ -401,68 +406,79 @@ void ScanClientGui::prepareData()
         m_scanDataList.append(dataList);
     }
 
-//    for(int i = 0; i < m_scanDataList.at(0).size(); i++)
-//    {
-//       qDebug() << i << m_scanDataList.at(0).at(i);
-//    }
+    quint16 arrayNumber = 0;
 
-
-    processData(0,0);
-
-    commandHandler(COMMAND_SCAN_START);
+    processData(1,arrayNumber);
 
 }
 
 void ScanClientGui::processData(quint16 scanNumber, quint16 arrayNumber)
 {   
     qDebug() << "processdata: " << scanNumber << arrayNumber;
-    quint8 m_numberOfScansPerArray = 8;
 
     QTime time;
     time.start();
     qWarning() << "*************************START*****************************************";
 
-    QList<QImage* > imageList;
-    for(int i = 0; i < m_numberOfScansPerArray; i++)
-    {
-        imageList.append(new QImage(imageWidth, imageWidth, QImage::Format_Grayscale8));
-        imageList.at(i)->fill(qRgb(0,0,0));
-    }
+    ImageProcessor imageProcessor;
+    imageProcessor.setPresets(8, 11, 255);
+    QPixmap pixMapSum = QPixmap::fromImage(imageProcessor.processData(&m_scanDataList));
+    ui->imagingWidget->setPixmap(pixMapSum);
 
-    QImage imageSum(imageWidth  + (imageWidth / imageWidthDivider), imageWidth +
-                    (imageWidth / imageWidthDivider), QImage::Format_Grayscale8);
-    imageSum.fill(qRgb(0,0,0));
+    /******************************************************************************************************/
+    /******************************************************************************************************/
 
-    for(int source = 0; source < m_numberOfScansPerArray; source++)
-    {
-        QList<quint16> list;
-        for(int sensor = 3; sensor < 11; sensor++)
-        {
-            list.append((quint16)((double)((m_scanDataList.at(scanNumber).at((source * 11) + sensor))
-                                           / ui->verticalSlider->value()) + 0.5 ));
-        }
-        qDebug() << list;
-        imageCalculator.calculateBeam(list, 0x0001 << m_scanDataList.at(scanNumber)
-                                      .at(source * 11 + 2), *imageList.at(source));
+//    QVector<QImage* > imageList;
+//    for(int i = 0; i < m_numberOfScansPerArray; i++)
+//    {
+//        imageList.append(new QImage(imageWidth, imageWidth, QImage::Format_Grayscale8));
+//        imageList.at(i)->fill(qRgb(0,0,0));
+//    }
 
-    }
+//    QImage imageSum(imageWidth  + (imageWidth / imageWidthDivider), imageWidth +
+//                    (imageWidth / imageWidthDivider), QImage::Format_Grayscale8);
+//    imageSum.fill(qRgb(0,0,0));
 
-    for(int i = 0; i < 8; i++)
-    {
-        imageCalculator.mergeImages(*imageList.at(i), 0.0, imageSum);
-    }
+//    for(int source = 0; source < m_numberOfScansPerArray; source++)
+//    {
+//        QVector<quint16> list;
+//        for(int sensor = 3; sensor < m_scanDataSize; sensor++)
+//        {
+//            list.append((quint16)((double)((m_scanDataList.at(scanNumber - 1).at(source * m_scanDataSize + (arrayNumber * m_scanDataOffset) + sensor)
+//                                           / ui->verticalSlider->value()) + 0.5 )));
+
+//            qDebug() << "Scan:   " << m_scanDataList.at(scanNumber - 1).at((source * m_scanDataSize + (arrayNumber * m_scanDataOffset)) + 0);
+//            qDebug() << "Source: " << m_scanDataList.at(scanNumber - 1).at((source * m_scanDataSize + (arrayNumber * m_scanDataOffset)) + 1);
+//            qDebug() << "Sensor: " << m_scanDataList.at(scanNumber - 1).at((source * m_scanDataSize + (arrayNumber * m_scanDataOffset)) + 2);
+
+//        }
+//        qDebug() << list;
+
+
+//        imageCalculator.calculateBeam(list, 0x0001 << m_scanDataList.at(scanNumber)
+//                                      .at(source * 11 + 2), *imageList.at(source));
+//    }
+
+//    for(int i = 0; i < 8; i++)
+//    {
+//        imageCalculator.mergeImages(*imageList.at(i), 0.0, imageSum);
+//    }
+
+    /******************************************************************************************************/
+    /******************************************************************************************************/
+
 
 // Use to check image offset
 //    for(int i = 0; i < 8; i++)
 //    {
-//        imageCalculator.mergeImages(*imageList.at(i), 45.0, imageSum);
+//        imageCalculator.mergeImages(*imageList.at(i), 135.0, imageSum);
 //    }
 
 //    imageSum.invertPixels();
 
-    QPixmap pixMapSum = QPixmap::fromImage(imageSum);
+//    QPixmap pixMapSum = QPixmap::fromImage(imageSum);
 
-    ui->imagingWidget->setPixmap(pixMapSum.scaledToHeight(this->height() - 200));
+//    ui->imagingWidget->setPixmap(pixMapSum.scaledToHeight(this->height() - 200));
 //    ui->imagingWidget->setPixmap(pixMapSum);
 
 //    QString filepath;
@@ -498,10 +514,10 @@ void ScanClientGui::processData(quint16 scanNumber, quint16 arrayNumber)
 
 //    imageSum.save(filepath + "sum.png");
 
-    for(int i = 0; i < imageList.size(); i++)
-    {
-        delete imageList.at(i);
-    }
+//    for(int i = 0; i < imageList.size(); i++)
+//    {
+//        delete imageList.at(i);
+//    }
 
 qWarning() << "*************************TIME*****************************************";
 qWarning() << time.elapsed();
