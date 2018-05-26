@@ -100,13 +100,61 @@ void ScanClientGui::scanStart()
 {
     qDebug() << m_logName + "send start scan";
 
-    m_bufferOut.clear();
-    m_bufferIn.clear();
-    m_dataBufferInList.clear();
-    m_isScanStopped = false;
-    m_dataEnd = false;
-    m_bufferOut.append(COMMAND_SCAN_START);
-    tcpSendData();
+//    m_bufferOut.clear();
+//    m_bufferIn.clear();
+//    m_dataBufferInList.clear();
+//    m_isScanStopped = false;
+//    m_dataEnd = false;
+//    m_bufferOut.append(COMMAND_SCAN_START);
+//    tcpSendData();
+
+/*******************************************************************************/
+
+    for(quint16 scans = 0; scans < 10; scans++)
+    {
+        QByteArray byteArray;
+        quint8 byte1 = 0;
+        quint8 byte2 = 0;
+
+        byteArray.append(0x05);
+
+        for(quint16 array = 0; array < 8; array++)
+        {
+            for(quint16 source = 0; source < 8; source++)
+            {
+                byte1 = (scans >> 8) & 0xFF;
+                byte2 = scans & 0xFF;
+                byteArray.append(byte1);
+                byteArray.append(byte2);
+
+                byte1 = (array >> 8) & 0xFF;
+                byte2 = array & 0xFF;
+                byteArray.append(byte1);
+                byteArray.append(byte2);
+
+                byte1 = (source >> 8) & 0xFF;
+                byte2 = source & 0xFF;
+                byteArray.append(byte1);
+                byteArray.append(byte2);
+
+                for(quint16 sensor = 0; sensor < 8; sensor++)
+                {
+                    quint16 data = sensor * 64;
+                    byte1 = (data >> 8) & 0xFF;
+                    byte2 = data & 0xFF;
+                    byteArray.append(byte1);
+                    byteArray.append(byte2);
+                }
+            }
+
+        }
+
+        m_dataBufferInList.append(byteArray);
+    }
+
+    prepareData();
+
+/*******************************************************************************/
 }
 
 void ScanClientGui::scanStop()
@@ -404,6 +452,7 @@ void ScanClientGui::prepareData()
             dataList.append(data0);
         }
         m_scanDataList.append(dataList);
+        qDebug() << dataList.size();
     }
 
     quint16 arrayNumber = 0;
@@ -422,102 +471,26 @@ void ScanClientGui::processData(quint16 scanNumber, quint16 arrayNumber)
 
     ImageProcessor imageProcessor;
     imageProcessor.setPresets(8, 11, 255);
-    QPixmap pixMapSum = QPixmap::fromImage(imageProcessor.processData(&m_scanDataList));
+    QImage image = imageProcessor.processData(&m_scanDataList);
+    QPixmap pixMapSum = QPixmap::fromImage(image);
     ui->imagingWidget->setPixmap(pixMapSum);
 
-    /******************************************************************************************************/
-    /******************************************************************************************************/
+    QString filepath;
 
-//    QVector<QImage* > imageList;
-//    for(int i = 0; i < m_numberOfScansPerArray; i++)
-//    {
-//        imageList.append(new QImage(imageWidth, imageWidth, QImage::Format_Grayscale8));
-//        imageList.at(i)->fill(qRgb(0,0,0));
-//    }
-
-//    QImage imageSum(imageWidth  + (imageWidth / imageWidthDivider), imageWidth +
-//                    (imageWidth / imageWidthDivider), QImage::Format_Grayscale8);
-//    imageSum.fill(qRgb(0,0,0));
-
-//    for(int source = 0; source < m_numberOfScansPerArray; source++)
-//    {
-//        QVector<quint16> list;
-//        for(int sensor = 3; sensor < m_scanDataSize; sensor++)
-//        {
-//            list.append((quint16)((double)((m_scanDataList.at(scanNumber - 1).at(source * m_scanDataSize + (arrayNumber * m_scanDataOffset) + sensor)
-//                                           / ui->verticalSlider->value()) + 0.5 )));
-
-//            qDebug() << "Scan:   " << m_scanDataList.at(scanNumber - 1).at((source * m_scanDataSize + (arrayNumber * m_scanDataOffset)) + 0);
-//            qDebug() << "Source: " << m_scanDataList.at(scanNumber - 1).at((source * m_scanDataSize + (arrayNumber * m_scanDataOffset)) + 1);
-//            qDebug() << "Sensor: " << m_scanDataList.at(scanNumber - 1).at((source * m_scanDataSize + (arrayNumber * m_scanDataOffset)) + 2);
-
-//        }
-//        qDebug() << list;
+    filepath = QCoreApplication::applicationDirPath()
+                        + QString("/IMG%1/")
+                            .arg(0,3,10, QChar('0'));
 
 
-//        imageCalculator.calculateBeam(list, 0x0001 << m_scanDataList.at(scanNumber)
-//                                      .at(source * 11 + 2), *imageList.at(source));
-//    }
+    if(!QDir(filepath).exists())
+    {
+        QDir().mkdir(filepath);
+    }
 
-//    for(int i = 0; i < 8; i++)
-//    {
-//        imageCalculator.mergeImages(*imageList.at(i), 0.0, imageSum);
-//    }
+    qInfo() << m_logName + "getMeasurement: " + filepath;
 
-    /******************************************************************************************************/
-    /******************************************************************************************************/
+    image.save(filepath + "sum.png");
 
-
-// Use to check image offset
-//    for(int i = 0; i < 8; i++)
-//    {
-//        imageCalculator.mergeImages(*imageList.at(i), 135.0, imageSum);
-//    }
-
-//    imageSum.invertPixels();
-
-//    QPixmap pixMapSum = QPixmap::fromImage(imageSum);
-
-//    ui->imagingWidget->setPixmap(pixMapSum.scaledToHeight(this->height() - 200));
-//    ui->imagingWidget->setPixmap(pixMapSum);
-
-//    QString filepath;
-
-//    for(int i = 0; i < 1000; i++)
-//    {
-//        filepath = QCoreApplication::applicationDirPath()
-//                            + QString("/IMG%1/")
-//                                .arg(i,3,10, QChar('0'));
-
-
-//        if(!QDir(filepath).exists() && (i < 999))
-//        {
-//            QDir().mkdir(filepath);
-//            break;
-//        }
-//        if(i > 999)
-//        {
-//            qWarning() << "all foldernames occupied";
-//            break;
-//        }
-//    }
-
-
-//    qInfo() << m_logName + "getMeasurement: " + filepath;
-
-//    for(int i = 0; i < 8; i++)
-//    {
-//        imageList.at(i)->save(filepath
-//                                  + QString("IMG%1_%2.png")
-//                                  .arg(i,3,10, QChar('0')));
-//    }
-
-//    imageSum.save(filepath + "sum.png");
-
-//    for(int i = 0; i < imageList.size(); i++)
-//    {
-//        delete imageList.at(i);
-//    }
 
 qWarning() << "*************************TIME*****************************************";
 qWarning() << time.elapsed();

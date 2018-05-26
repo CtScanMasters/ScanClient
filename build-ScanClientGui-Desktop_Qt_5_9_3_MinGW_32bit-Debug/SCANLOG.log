@@ -1,326 +1,82 @@
-2018-05-25 17:57:17:476  INFO : ------------BUILD APPLICATION CT SCANMASTER-------------
-2018-05-25 17:57:17:483  INFO : "ActuatorWidget : creating widget"
-2018-05-25 17:57:17:792  INFO : "ScatterWidget : creating graph"
-2018-05-25 17:57:18:143  DEBUG : OpenGL version: 4.6.0 NVIDIA 388.13
-2018-05-25 17:57:18:143  DEBUG : GLSL version: 4.60 NVIDIA
-2018-05-25 17:57:18:202  INFO : "ScatterWidget : axis 0 range set: -10 - 10"
-2018-05-25 17:57:18:202  INFO : "ScatterWidget : grid 0 main: 10 sub: 5"
-2018-05-25 17:57:18:203  INFO : "ScatterWidget : axis 1 range set: -10 - 10"
-2018-05-25 17:57:18:203  INFO : "ScatterWidget : grid 1 main: 10 sub: 5"
-2018-05-25 17:57:18:203  INFO : "ScatterWidget : axis 2 range set: -10 - 10"
-2018-05-25 17:57:18:203  INFO : "ScatterWidget : grid 2 main: 10 sub: 5"
-2018-05-25 17:57:18:203  INFO : "ScatterWidget : " setPointSize
-2018-05-25 17:57:18:215  INFO : "ScanWidget : creating widget"
-2018-05-25 17:57:18:217  INFO : ------------STARTING CT SCANMASTER 2018 V1.0------------
-2018-05-25 17:57:18:218  INFO : "ScanClientGui : buildArrayTab"
-2018-05-25 17:57:18:218  INFO : "ArrayWidget : creating widget"
-2018-05-25 17:57:18:220  INFO : "ArrayWidget : creating widget"
-2018-05-25 17:57:18:222  INFO : "ArrayWidget : creating widget"
-2018-05-25 17:57:18:224  INFO : "ArrayWidget : creating widget"
-2018-05-25 17:57:18:226  INFO : "ArrayWidget : creating widget"
-2018-05-25 17:57:18:228  INFO : "ArrayWidget : creating widget"
-2018-05-25 17:57:18:230  INFO : "ArrayWidget : creating widget"
-2018-05-25 17:57:18:232  INFO : "ArrayWidget : creating widget"
-2018-05-25 17:57:18:234  WARNING : QObject::connect: No such signal ArrayWidget::sourceSetSignalMask(quint8) in ..\ScanClientGui\scanclientgui.cpp:286
-2018-05-25 17:57:18:234  WARNING : QObject::connect:  (receiver name: 'ScanClientGui')
-2018-05-25 17:57:18:234  INFO : "ScanClientGui : buildTcpClient"
-2018-05-25 17:57:18:234  INFO : "SocketHandler : starting"
-2018-05-25 17:57:18:235  INFO : "TcpClient : starting"
-2018-05-25 17:57:18:238  INFO : "SocketHandler : handleRetreiveIpAddress: " "169.254.78.233"
-2018-05-25 17:57:18:238  INFO : "TcpClient : CLIENT IP: 169.254.78.233 READY"
-2018-05-25 17:57:18:240  INFO : "SocketHandler : handleRetreiveIpAddress: " "169.254.78.233"
-2018-05-25 17:57:18:240  INFO : "ScanClientGui : buildActuatorControl"
-2018-05-25 17:57:18:240  INFO : "ScatterWidget : axis 0 range set: 0 - 15"
-2018-05-25 17:57:18:241  INFO : "ScatterWidget : axis 1 range set: 0 - 6"
-2018-05-25 17:57:18:241  INFO : "ScatterWidget : axis 2 range set: 0 - 5"
-2018-05-25 17:57:18:241  INFO : ********************************************************
-2018-05-25 17:57:18:241  INFO : Number of sensors:   8
-2018-05-25 17:57:18:242  INFO : Number of sources:   8
-2018-05-25 17:57:18:242  INFO : PixelWidth:          255
-2018-05-25 17:57:18:242  INFO : InnerDiameter:       70
-2018-05-25 17:57:18:242  INFO : OuterDiameter:       140
-2018-05-25 17:57:18:242  INFO : X offset:            63
-2018-05-25 17:57:18:242  INFO : Y offset:            63
-2018-05-25 17:57:18:243  INFO : Sensordistance:      28
-2018-05-25 17:57:18:243  INFO : Sourcedistance:      28
-2018-05-25 17:57:18:243  INFO : DiameterRatio:       2
-2018-05-25 17:57:18:243  INFO : CanvasSize:          510
-2018-05-25 17:57:18:243  INFO : ********************************************************
-2018-05-25 17:57:22:827  INFO : "ScanClientGui : tcpConnect"
-2018-05-25 17:57:22:832  INFO : "SocketHandler : hanldeSocketState: lookup state"
-2018-05-25 17:57:22:833  INFO : "SocketHandler : hanldeSocketState: connecting"
-2018-05-25 17:57:22:838  INFO : "TcpClient : connectToHost IP: 192.168.1.100 PORT: 5010"
-2018-05-25 17:57:22:839  INFO : "SocketHandler : hanldeSocketState: connected"
-2018-05-25 17:57:23:465  INFO : "ScanWidget : emitStartScanSignal"
-2018-05-25 17:57:23:466  DEBUG : "ScanClientGui : send start scan"
-2018-05-25 17:57:23:466  INFO : "SocketHandler : handleSendData: " "Set: 5 bytes to 192.168.1.100"
-2018-05-25 17:57:24:432  INFO : "SocketHandler : handleReceiveData: received 1 bytes from 192.168.1.100"
-2018-05-25 17:57:24:432  DEBUG : "ScanClientGui : new scan data"
-2018-05-25 17:57:24:433  DEBUG : "ScanClientGui : new scan data handle"
-2018-05-25 17:57:24:433  DEBUG : "ScanClientGui : get scan data"
-2018-05-25 17:57:24:433  INFO : "SocketHandler : handleSendData: " "Set: 5 bytes to 192.168.1.100"
-2018-05-25 17:57:24:440  INFO : "SocketHandler : handleReceiveData: received 1409 bytes from 192.168.1.100"
-2018-05-25 17:57:24:440  DEBUG : Scandata:  1409
-2018-05-25 17:57:24:441  DEBUG : "ScanClientGui : get scan data"
-2018-05-25 17:57:24:441  INFO : "SocketHandler : handleSendData: " "Set: 5 bytes to 192.168.1.100"
-2018-05-25 17:57:24:446  INFO : "SocketHandler : handleReceiveData: received 1409 bytes from 192.168.1.100"
-2018-05-25 17:57:24:447  DEBUG : Scandata:  1409
-2018-05-25 17:57:24:447  DEBUG : "ScanClientGui : get scan data"
-2018-05-25 17:57:24:447  INFO : "SocketHandler : handleSendData: " "Set: 5 bytes to 192.168.1.100"
-2018-05-25 17:57:24:453  INFO : "SocketHandler : handleReceiveData: received 1409 bytes from 192.168.1.100"
-2018-05-25 17:57:24:453  DEBUG : Scandata:  1409
-2018-05-25 17:57:24:453  DEBUG : "ScanClientGui : get scan data"
-2018-05-25 17:57:24:453  INFO : "SocketHandler : handleSendData: " "Set: 5 bytes to 192.168.1.100"
-2018-05-25 17:57:24:458  INFO : "SocketHandler : handleReceiveData: received 1409 bytes from 192.168.1.100"
-2018-05-25 17:57:24:458  DEBUG : Scandata:  1409
-2018-05-25 17:57:24:459  DEBUG : "ScanClientGui : get scan data"
-2018-05-25 17:57:24:459  INFO : "SocketHandler : handleSendData: " "Set: 5 bytes to 192.168.1.100"
-2018-05-25 17:57:24:463  INFO : "SocketHandler : handleReceiveData: received 1409 bytes from 192.168.1.100"
-2018-05-25 17:57:24:463  DEBUG : Scandata:  1409
-2018-05-25 17:57:24:464  DEBUG : "ScanClientGui : get scan data"
-2018-05-25 17:57:24:464  INFO : "SocketHandler : handleSendData: " "Set: 5 bytes to 192.168.1.100"
-2018-05-25 17:57:24:470  INFO : "SocketHandler : handleReceiveData: received 1409 bytes from 192.168.1.100"
-2018-05-25 17:57:24:470  DEBUG : Scandata:  1409
-2018-05-25 17:57:24:470  DEBUG : "ScanClientGui : get scan data"
-2018-05-25 17:57:24:471  INFO : "SocketHandler : handleSendData: " "Set: 5 bytes to 192.168.1.100"
-2018-05-25 17:57:24:478  INFO : "SocketHandler : handleReceiveData: received 1409 bytes from 192.168.1.100"
-2018-05-25 17:57:24:478  DEBUG : Scandata:  1409
-2018-05-25 17:57:24:479  DEBUG : "ScanClientGui : get scan data"
-2018-05-25 17:57:24:480  INFO : "SocketHandler : handleSendData: " "Set: 5 bytes to 192.168.1.100"
-2018-05-25 17:57:24:508  INFO : "SocketHandler : handleReceiveData: received 1409 bytes from 192.168.1.100"
-2018-05-25 17:57:24:509  DEBUG : Scandata:  1409
-2018-05-25 17:57:24:509  DEBUG : "ScanClientGui : get scan data"
-2018-05-25 17:57:24:509  INFO : "SocketHandler : handleSendData: " "Set: 5 bytes to 192.168.1.100"
-2018-05-25 17:57:24:516  INFO : "SocketHandler : handleReceiveData: received 1409 bytes from 192.168.1.100"
-2018-05-25 17:57:24:517  DEBUG : Scandata:  1409
-2018-05-25 17:57:24:517  DEBUG : "ScanClientGui : get scan data"
-2018-05-25 17:57:24:517  INFO : "SocketHandler : handleSendData: " "Set: 5 bytes to 192.168.1.100"
-2018-05-25 17:57:24:522  INFO : "SocketHandler : handleReceiveData: received 1409 bytes from 192.168.1.100"
-2018-05-25 17:57:24:522  DEBUG : Scandata:  1409
-2018-05-25 17:57:24:522  DEBUG : "ScanClientGui : get scan data"
-2018-05-25 17:57:24:523  INFO : "SocketHandler : handleSendData: " "Set: 5 bytes to 192.168.1.100"
-2018-05-25 17:57:24:537  INFO : "SocketHandler : handleReceiveData: received 1 bytes from 192.168.1.100"
-2018-05-25 17:57:24:538  DEBUG : Received data:  10
-2018-05-25 17:57:24:539  DEBUG : processdata:  1 0
-2018-05-25 17:57:24:539  WARNING : *************************START*****************************************
-2018-05-25 17:57:24:539  INFO : ********************************************************
-2018-05-25 17:57:24:539  INFO : Number of sensors:   8
-2018-05-25 17:57:24:540  INFO : Number of sources:   8
-2018-05-25 17:57:24:540  INFO : PixelWidth:          255
-2018-05-25 17:57:24:540  INFO : InnerDiameter:       70
-2018-05-25 17:57:24:540  INFO : OuterDiameter:       140
-2018-05-25 17:57:24:541  INFO : X offset:            63
-2018-05-25 17:57:24:541  INFO : Y offset:            63
-2018-05-25 17:57:24:541  INFO : Sensordistance:      28
-2018-05-25 17:57:24:541  INFO : Sourcedistance:      28
-2018-05-25 17:57:24:541  INFO : DiameterRatio:       2
-2018-05-25 17:57:24:542  INFO : CanvasSize:          510
-2018-05-25 17:57:24:542  INFO : ********************************************************
-2018-05-25 17:57:24:542  DEBUG : Scan:    9
-2018-05-25 17:57:24:542  DEBUG : Source:  0
-2018-05-25 17:57:24:543  DEBUG : Sensor:  0
-2018-05-25 17:57:24:543  DEBUG : Scan:    9
-2018-05-25 17:57:24:543  DEBUG : Source:  0
-2018-05-25 17:57:24:543  DEBUG : Sensor:  0
-2018-05-25 17:57:24:543  DEBUG : Scan:    9
-2018-05-25 17:57:24:544  DEBUG : Source:  0
-2018-05-25 17:57:24:544  DEBUG : Sensor:  0
-2018-05-25 17:57:24:544  DEBUG : Scan:    9
-2018-05-25 17:57:24:544  DEBUG : Source:  0
-2018-05-25 17:57:24:544  DEBUG : Sensor:  0
-2018-05-25 17:57:24:545  DEBUG : Scan:    9
-2018-05-25 17:57:24:545  DEBUG : Source:  0
-2018-05-25 17:57:24:545  DEBUG : Sensor:  0
-2018-05-25 17:57:24:545  DEBUG : Scan:    9
-2018-05-25 17:57:24:545  DEBUG : Source:  0
-2018-05-25 17:57:24:546  DEBUG : Sensor:  0
-2018-05-25 17:57:24:546  DEBUG : Scan:    9
-2018-05-25 17:57:24:546  DEBUG : Source:  0
-2018-05-25 17:57:24:546  DEBUG : Sensor:  0
-2018-05-25 17:57:24:546  DEBUG : Scan:    9
-2018-05-25 17:57:24:547  DEBUG : Source:  0
-2018-05-25 17:57:24:547  DEBUG : Sensor:  0
-2018-05-25 17:57:24:547  DEBUG : QVector(11, 11, 8, 11, 11, 10, 11, 11)
-2018-05-25 17:57:24:551  DEBUG : Scan:    9
-2018-05-25 17:57:24:551  DEBUG : Source:  0
-2018-05-25 17:57:24:551  DEBUG : Sensor:  1
-2018-05-25 17:57:24:551  DEBUG : Scan:    9
-2018-05-25 17:57:24:552  DEBUG : Source:  0
-2018-05-25 17:57:24:552  DEBUG : Sensor:  1
-2018-05-25 17:57:24:552  DEBUG : Scan:    9
-2018-05-25 17:57:24:552  DEBUG : Source:  0
-2018-05-25 17:57:24:552  DEBUG : Sensor:  1
-2018-05-25 17:57:24:553  DEBUG : Scan:    9
-2018-05-25 17:57:24:553  DEBUG : Source:  0
-2018-05-25 17:57:24:553  DEBUG : Sensor:  1
-2018-05-25 17:57:24:553  DEBUG : Scan:    9
-2018-05-25 17:57:24:553  DEBUG : Source:  0
-2018-05-25 17:57:24:554  DEBUG : Sensor:  1
-2018-05-25 17:57:24:554  DEBUG : Scan:    9
-2018-05-25 17:57:24:554  DEBUG : Source:  0
-2018-05-25 17:57:24:554  DEBUG : Sensor:  1
-2018-05-25 17:57:24:554  DEBUG : Scan:    9
-2018-05-25 17:57:24:555  DEBUG : Source:  0
-2018-05-25 17:57:24:555  DEBUG : Sensor:  1
-2018-05-25 17:57:24:555  DEBUG : Scan:    9
-2018-05-25 17:57:24:555  DEBUG : Source:  0
-2018-05-25 17:57:24:556  DEBUG : Sensor:  1
-2018-05-25 17:57:24:556  DEBUG : QVector(11, 11, 8, 11, 11, 10, 11, 11, 11, 11, 8, 11, 11, 11, 11, 11)
-2018-05-25 17:57:24:559  DEBUG : Scan:    9
-2018-05-25 17:57:24:560  DEBUG : Source:  0
-2018-05-25 17:57:24:560  DEBUG : Sensor:  2
-2018-05-25 17:57:24:560  DEBUG : Scan:    9
-2018-05-25 17:57:24:560  DEBUG : Source:  0
-2018-05-25 17:57:24:561  DEBUG : Sensor:  2
-2018-05-25 17:57:24:561  DEBUG : Scan:    9
-2018-05-25 17:57:24:561  DEBUG : Source:  0
-2018-05-25 17:57:24:561  DEBUG : Sensor:  2
-2018-05-25 17:57:24:561  DEBUG : Scan:    9
-2018-05-25 17:57:24:562  DEBUG : Source:  0
-2018-05-25 17:57:24:562  DEBUG : Sensor:  2
-2018-05-25 17:57:24:562  DEBUG : Scan:    9
-2018-05-25 17:57:24:562  DEBUG : Source:  0
-2018-05-25 17:57:24:563  DEBUG : Sensor:  2
-2018-05-25 17:57:24:563  DEBUG : Scan:    9
-2018-05-25 17:57:24:563  DEBUG : Source:  0
-2018-05-25 17:57:24:563  DEBUG : Sensor:  2
-2018-05-25 17:57:24:563  DEBUG : Scan:    9
-2018-05-25 17:57:24:564  DEBUG : Source:  0
-2018-05-25 17:57:24:564  DEBUG : Sensor:  2
-2018-05-25 17:57:24:564  DEBUG : Scan:    9
-2018-05-25 17:57:24:564  DEBUG : Source:  0
-2018-05-25 17:57:24:564  DEBUG : Sensor:  2
-2018-05-25 17:57:24:565  DEBUG : QVector(11, 11, 8, 11, 11, 10, 11, 11, 11, 11, 8, 11, 11, 11, 11, 11, 11, 11, 8, 11, 11, 10, 11, 11)
-2018-05-25 17:57:24:568  DEBUG : Scan:    9
-2018-05-25 17:57:24:569  DEBUG : Source:  0
-2018-05-25 17:57:24:569  DEBUG : Sensor:  3
-2018-05-25 17:57:24:569  DEBUG : Scan:    9
-2018-05-25 17:57:24:569  DEBUG : Source:  0
-2018-05-25 17:57:24:569  DEBUG : Sensor:  3
-2018-05-25 17:57:24:570  DEBUG : Scan:    9
-2018-05-25 17:57:24:570  DEBUG : Source:  0
-2018-05-25 17:57:24:570  DEBUG : Sensor:  3
-2018-05-25 17:57:24:570  DEBUG : Scan:    9
-2018-05-25 17:57:24:571  DEBUG : Source:  0
-2018-05-25 17:57:24:571  DEBUG : Sensor:  3
-2018-05-25 17:57:24:571  DEBUG : Scan:    9
-2018-05-25 17:57:24:571  DEBUG : Source:  0
-2018-05-25 17:57:24:571  DEBUG : Sensor:  3
-2018-05-25 17:57:24:572  DEBUG : Scan:    9
-2018-05-25 17:57:24:572  DEBUG : Source:  0
-2018-05-25 17:57:24:572  DEBUG : Sensor:  3
-2018-05-25 17:57:24:572  DEBUG : Scan:    9
-2018-05-25 17:57:24:572  DEBUG : Source:  0
-2018-05-25 17:57:24:573  DEBUG : Sensor:  3
-2018-05-25 17:57:24:573  DEBUG : Scan:    9
-2018-05-25 17:57:24:573  DEBUG : Source:  0
-2018-05-25 17:57:24:573  DEBUG : Sensor:  3
-2018-05-25 17:57:24:574  DEBUG : QVector(11, 11, 8, 11, 11, 10, 11, 11, 11, 11, 8, 11, 11, 11, 11, 11, 11, 11, 8, 11, 11, 10, 11, 11, 11, 11, 8, 11, 11, 10, 11, 11)
-2018-05-25 17:57:24:577  DEBUG : Scan:    9
-2018-05-25 17:57:24:578  DEBUG : Source:  0
-2018-05-25 17:57:24:578  DEBUG : Sensor:  4
-2018-05-25 17:57:24:578  DEBUG : Scan:    9
-2018-05-25 17:57:24:578  DEBUG : Source:  0
-2018-05-25 17:57:24:578  DEBUG : Sensor:  4
-2018-05-25 17:57:24:579  DEBUG : Scan:    9
-2018-05-25 17:57:24:579  DEBUG : Source:  0
-2018-05-25 17:57:24:579  DEBUG : Sensor:  4
-2018-05-25 17:57:24:579  DEBUG : Scan:    9
-2018-05-25 17:57:24:579  DEBUG : Source:  0
-2018-05-25 17:57:24:580  DEBUG : Sensor:  4
-2018-05-25 17:57:24:580  DEBUG : Scan:    9
-2018-05-25 17:57:24:580  DEBUG : Source:  0
-2018-05-25 17:57:24:580  DEBUG : Sensor:  4
-2018-05-25 17:57:24:581  DEBUG : Scan:    9
-2018-05-25 17:57:24:581  DEBUG : Source:  0
-2018-05-25 17:57:24:581  DEBUG : Sensor:  4
-2018-05-25 17:57:24:581  DEBUG : Scan:    9
-2018-05-25 17:57:24:581  DEBUG : Source:  0
-2018-05-25 17:57:24:582  DEBUG : Sensor:  4
-2018-05-25 17:57:24:582  DEBUG : Scan:    9
-2018-05-25 17:57:24:582  DEBUG : Source:  0
-2018-05-25 17:57:24:582  DEBUG : Sensor:  4
-2018-05-25 17:57:24:582  DEBUG : QVector(11, 11, 8, 11, 11, 10, 11, 11, 11, 11, 8, 11, 11, 11, 11, 11, 11, 11, 8, 11, 11, 10, 11, 11, 11, 11, 8, 11, 11, 10, 11, 11, 11, 11, 8, 11, 11, 11, 11, 11)
-2018-05-25 17:57:24:586  DEBUG : Scan:    9
-2018-05-25 17:57:24:587  DEBUG : Source:  0
-2018-05-25 17:57:24:587  DEBUG : Sensor:  5
-2018-05-25 17:57:24:587  DEBUG : Scan:    9
-2018-05-25 17:57:24:587  DEBUG : Source:  0
-2018-05-25 17:57:24:588  DEBUG : Sensor:  5
-2018-05-25 17:57:24:588  DEBUG : Scan:    9
-2018-05-25 17:57:24:588  DEBUG : Source:  0
-2018-05-25 17:57:24:588  DEBUG : Sensor:  5
-2018-05-25 17:57:24:589  DEBUG : Scan:    9
-2018-05-25 17:57:24:589  DEBUG : Source:  0
-2018-05-25 17:57:24:589  DEBUG : Sensor:  5
-2018-05-25 17:57:24:589  DEBUG : Scan:    9
-2018-05-25 17:57:24:590  DEBUG : Source:  0
-2018-05-25 17:57:24:590  DEBUG : Sensor:  5
-2018-05-25 17:57:24:590  DEBUG : Scan:    9
-2018-05-25 17:57:24:590  DEBUG : Source:  0
-2018-05-25 17:57:24:590  DEBUG : Sensor:  5
-2018-05-25 17:57:24:591  DEBUG : Scan:    9
-2018-05-25 17:57:24:591  DEBUG : Source:  0
-2018-05-25 17:57:24:591  DEBUG : Sensor:  5
-2018-05-25 17:57:24:591  DEBUG : Scan:    9
-2018-05-25 17:57:24:591  DEBUG : Source:  0
-2018-05-25 17:57:24:592  DEBUG : Sensor:  5
-2018-05-25 17:57:24:592  DEBUG : QVector(11, 11, 8, 11, 11, 10, 11, 11, 11, 11, 8, 11, 11, 11, 11, 11, 11, 11, 8, 11, 11, 10, 11, 11, 11, 11, 8, 11, 11, 10, 11, 11, 11, 11, 8, 11, 11, 11, 11, 11, 11, 11, 8, 11, 11, 11, 11, 11)
-2018-05-25 17:57:24:596  DEBUG : Scan:    9
-2018-05-25 17:57:24:596  DEBUG : Source:  0
-2018-05-25 17:57:24:596  DEBUG : Sensor:  6
-2018-05-25 17:57:24:596  DEBUG : Scan:    9
-2018-05-25 17:57:24:597  DEBUG : Source:  0
-2018-05-25 17:57:24:597  DEBUG : Sensor:  6
-2018-05-25 17:57:24:597  DEBUG : Scan:    9
-2018-05-25 17:57:24:597  DEBUG : Source:  0
-2018-05-25 17:57:24:598  DEBUG : Sensor:  6
-2018-05-25 17:57:24:598  DEBUG : Scan:    9
-2018-05-25 17:57:24:598  DEBUG : Source:  0
-2018-05-25 17:57:24:598  DEBUG : Sensor:  6
-2018-05-25 17:57:24:598  DEBUG : Scan:    9
-2018-05-25 17:57:24:599  DEBUG : Source:  0
-2018-05-25 17:57:24:599  DEBUG : Sensor:  6
-2018-05-25 17:57:24:599  DEBUG : Scan:    9
-2018-05-25 17:57:24:599  DEBUG : Source:  0
-2018-05-25 17:57:24:599  DEBUG : Sensor:  6
-2018-05-25 17:57:24:600  DEBUG : Scan:    9
-2018-05-25 17:57:24:600  DEBUG : Source:  0
-2018-05-25 17:57:24:600  DEBUG : Sensor:  6
-2018-05-25 17:57:24:600  DEBUG : Scan:    9
-2018-05-25 17:57:24:601  DEBUG : Source:  0
-2018-05-25 17:57:24:601  DEBUG : Sensor:  6
-2018-05-25 17:57:24:601  DEBUG : QVector(11, 11, 8, 11, 11, 10, 11, 11, 11, 11, 8, 11, 11, 11, 11, 11, 11, 11, 8, 11, 11, 10, 11, 11, 11, 11, 8, 11, 11, 10, 11, 11, 11, 11, 8, 11, 11, 11, 11, 11, 11, 11, 8, 11, 11, 11, 11, 11, 11, 11, 8, 11, 11, 11, 11, 11)
-2018-05-25 17:57:24:605  DEBUG : Scan:    9
-2018-05-25 17:57:24:605  DEBUG : Source:  0
-2018-05-25 17:57:24:605  DEBUG : Sensor:  7
-2018-05-25 17:57:24:605  DEBUG : Scan:    9
-2018-05-25 17:57:24:606  DEBUG : Source:  0
-2018-05-25 17:57:24:606  DEBUG : Sensor:  7
-2018-05-25 17:57:24:606  DEBUG : Scan:    9
-2018-05-25 17:57:24:606  DEBUG : Source:  0
-2018-05-25 17:57:24:607  DEBUG : Sensor:  7
-2018-05-25 17:57:24:607  DEBUG : Scan:    9
-2018-05-25 17:57:24:607  DEBUG : Source:  0
-2018-05-25 17:57:24:607  DEBUG : Sensor:  7
-2018-05-25 17:57:24:608  DEBUG : Scan:    9
-2018-05-25 17:57:24:608  DEBUG : Source:  0
-2018-05-25 17:57:24:608  DEBUG : Sensor:  7
-2018-05-25 17:57:24:608  DEBUG : Scan:    9
-2018-05-25 17:57:24:608  DEBUG : Source:  0
-2018-05-25 17:57:24:609  DEBUG : Sensor:  7
-2018-05-25 17:57:24:609  DEBUG : Scan:    9
-2018-05-25 17:57:24:609  DEBUG : Source:  0
-2018-05-25 17:57:24:609  DEBUG : Sensor:  7
-2018-05-25 17:57:24:609  DEBUG : Scan:    9
-2018-05-25 17:57:24:610  DEBUG : Source:  0
-2018-05-25 17:57:24:610  DEBUG : Sensor:  7
-2018-05-25 17:57:24:610  DEBUG : QVector(11, 11, 8, 11, 11, 10, 11, 11, 11, 11, 8, 11, 11, 11, 11, 11, 11, 11, 8, 11, 11, 10, 11, 11, 11, 11, 8, 11, 11, 10, 11, 11, 11, 11, 8, 11, 11, 11, 11, 11, 11, 11, 8, 11, 11, 11, 11, 11, 11, 11, 8, 11, 11, 11, 11, 11, 11, 6, 4, 4, 4, 5, 4, 4)
-2018-05-25 17:57:24:693  WARNING : *************************TIME*****************************************
-2018-05-25 17:57:24:694  WARNING : 155
-2018-05-25 17:57:24:694  WARNING : *************************STOP*****************************************
-2018-05-25 17:57:29:913  INFO : "ScanClientGui : tcpDisconnect"
-2018-05-25 17:57:29:914  INFO : "SocketHandler : hanldeSocketState: closing"
-2018-05-25 17:57:29:915  INFO : "SocketHandler : hanldeSocketState: disconnected"
-2018-05-25 17:57:29:916  INFO : "TcpClient : disconnectFromHost"
-2018-05-25 17:57:29:916  INFO : "ScanClientGui : EXIT"
+2018-05-26 15:56:06:235  INFO : ------------BUILD APPLICATION CT SCANMASTER-------------
+2018-05-26 15:56:06:241  INFO : "ActuatorWidget : creating widget"
+2018-05-26 15:56:06:552  INFO : "ScatterWidget : creating graph"
+2018-05-26 15:56:06:906  DEBUG : OpenGL version: 4.6.0 NVIDIA 388.13
+2018-05-26 15:56:06:906  DEBUG : GLSL version: 4.60 NVIDIA
+2018-05-26 15:56:06:966  INFO : "ScatterWidget : axis 0 range set: -10 - 10"
+2018-05-26 15:56:06:966  INFO : "ScatterWidget : grid 0 main: 10 sub: 5"
+2018-05-26 15:56:06:966  INFO : "ScatterWidget : axis 1 range set: -10 - 10"
+2018-05-26 15:56:06:966  INFO : "ScatterWidget : grid 1 main: 10 sub: 5"
+2018-05-26 15:56:06:966  INFO : "ScatterWidget : axis 2 range set: -10 - 10"
+2018-05-26 15:56:06:966  INFO : "ScatterWidget : grid 2 main: 10 sub: 5"
+2018-05-26 15:56:06:966  INFO : "ScatterWidget : " setPointSize
+2018-05-26 15:56:06:978  INFO : "ScanWidget : creating widget"
+2018-05-26 15:56:06:980  INFO : ------------STARTING CT SCANMASTER 2018 V1.0------------
+2018-05-26 15:56:06:980  INFO : "ScanClientGui : buildArrayTab"
+2018-05-26 15:56:06:980  INFO : "ArrayWidget : creating widget"
+2018-05-26 15:56:06:982  INFO : "ArrayWidget : creating widget"
+2018-05-26 15:56:06:984  INFO : "ArrayWidget : creating widget"
+2018-05-26 15:56:06:986  INFO : "ArrayWidget : creating widget"
+2018-05-26 15:56:06:988  INFO : "ArrayWidget : creating widget"
+2018-05-26 15:56:06:990  INFO : "ArrayWidget : creating widget"
+2018-05-26 15:56:06:992  INFO : "ArrayWidget : creating widget"
+2018-05-26 15:56:06:994  INFO : "ArrayWidget : creating widget"
+2018-05-26 15:56:06:996  WARNING : QObject::connect: No such signal ArrayWidget::sourceSetSignalMask(quint8) in ..\ScanClientGui\scanclientgui.cpp:334
+2018-05-26 15:56:06:996  WARNING : QObject::connect:  (receiver name: 'ScanClientGui')
+2018-05-26 15:56:06:996  INFO : "ScanClientGui : buildTcpClient"
+2018-05-26 15:56:06:996  INFO : "SocketHandler : starting"
+2018-05-26 15:56:06:996  INFO : "TcpClient : starting"
+2018-05-26 15:56:06:999  INFO : "SocketHandler : handleRetreiveIpAddress: " "169.254.78.233"
+2018-05-26 15:56:07:000  INFO : "TcpClient : CLIENT IP: 169.254.78.233 READY"
+2018-05-26 15:56:07:001  INFO : "SocketHandler : handleRetreiveIpAddress: " "169.254.78.233"
+2018-05-26 15:56:07:002  INFO : "ScanClientGui : buildActuatorControl"
+2018-05-26 15:56:07:002  INFO : "ScatterWidget : axis 0 range set: 0 - 15"
+2018-05-26 15:56:07:002  INFO : "ScatterWidget : axis 1 range set: 0 - 6"
+2018-05-26 15:56:07:002  INFO : "ScatterWidget : axis 2 range set: 0 - 5"
+2018-05-26 15:56:07:002  INFO : ********************************************************
+2018-05-26 15:56:07:003  INFO : Number of sensors:   8
+2018-05-26 15:56:07:003  INFO : Number of sources:   8
+2018-05-26 15:56:07:003  INFO : PixelWidth:          255
+2018-05-26 15:56:07:003  INFO : InnerDiameter:       70
+2018-05-26 15:56:07:003  INFO : OuterDiameter:       140
+2018-05-26 15:56:07:004  INFO : X offset:            63
+2018-05-26 15:56:07:004  INFO : Y offset:            63
+2018-05-26 15:56:07:004  INFO : Sensordistance:      28
+2018-05-26 15:56:07:004  INFO : Sourcedistance:      28
+2018-05-26 15:56:07:004  INFO : DiameterRatio:       2
+2018-05-26 15:56:07:005  INFO : CanvasSize:          510
+2018-05-26 15:56:07:005  INFO : ********************************************************
+2018-05-26 15:56:13:139  INFO : "ScanWidget : emitStartScanSignal"
+2018-05-26 15:56:13:139  DEBUG : "ScanClientGui : send start scan"
+2018-05-26 15:56:13:140  DEBUG : 704
+2018-05-26 15:56:13:140  DEBUG : 704
+2018-05-26 15:56:13:140  DEBUG : 704
+2018-05-26 15:56:13:141  DEBUG : 704
+2018-05-26 15:56:13:141  DEBUG : 704
+2018-05-26 15:56:13:141  DEBUG : 704
+2018-05-26 15:56:13:141  DEBUG : 704
+2018-05-26 15:56:13:142  DEBUG : 704
+2018-05-26 15:56:13:142  DEBUG : 704
+2018-05-26 15:56:13:142  DEBUG : 704
+2018-05-26 15:56:13:143  DEBUG : processdata:  1 0
+2018-05-26 15:56:13:143  WARNING : *************************START*****************************************
+2018-05-26 15:56:13:143  INFO : ********************************************************
+2018-05-26 15:56:13:143  INFO : Number of sensors:   8
+2018-05-26 15:56:13:144  INFO : Number of sources:   8
+2018-05-26 15:56:13:144  INFO : PixelWidth:          255
+2018-05-26 15:56:13:144  INFO : InnerDiameter:       70
+2018-05-26 15:56:13:144  INFO : OuterDiameter:       140
+2018-05-26 15:56:13:144  INFO : X offset:            63
+2018-05-26 15:56:13:144  INFO : Y offset:            63
+2018-05-26 15:56:13:145  INFO : Sensordistance:      28
+2018-05-26 15:56:13:145  INFO : Sourcedistance:      28
+2018-05-26 15:56:13:145  INFO : DiameterRatio:       2
+2018-05-26 15:56:13:145  INFO : CanvasSize:          510
+2018-05-26 15:56:13:145  INFO : ********************************************************
+2018-05-26 15:56:13:726  INFO : "ScanClientGui : getMeasurement: D:/HBO electrotechniek/Project CT scanner/Software/Repositories/ClientProject/ScanClient/build-ScanClientGui-Desktop_Qt_5_9_3_MinGW_32bit-Debug/debug/IMG000/"
+2018-05-26 15:56:13:771  WARNING : *************************TIME*****************************************
+2018-05-26 15:56:13:771  WARNING : 628
+2018-05-26 15:56:13:772  WARNING : *************************STOP*****************************************
+2018-05-26 15:56:22:195  INFO : "ScanClientGui : tcpDisconnect"
+2018-05-26 15:56:22:196  INFO : "TcpClient : disconnectFromHost"
+2018-05-26 15:56:22:196  INFO : "ScanClientGui : EXIT"

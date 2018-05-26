@@ -2,6 +2,8 @@
 #include <QDebug>
 #include <QCoreApplication>
 #include <QDir>
+#include <QPainter>
+#include <QDateTime>
 
 ImageProcessor::ImageProcessor()
 {
@@ -39,54 +41,38 @@ QImage ImageProcessor::processData(QVector<QVector<quint16>> *scanData)
 {
     m_scanDataVector = scanData;
 
-    createImageBuffers();
-    createArraySenseList(0, 64);
-    createArraySumImage();
+    createSumImage();
 
-    QString filepath;
-
-    for(int i = 0; i < 1000; i++)
+    for(int i = 0; i < 8; i++)
     {
-        filepath = QCoreApplication::applicationDirPath()
-                            + QString("/IMG%1/")
-                                .arg(i,3,10, QChar('0'));
-
-
-        if(!QDir(filepath).exists() && (i < 999))
-        {
-            QDir().mkdir(filepath);
-            break;
-        }
-        if(i > 999)
-        {
-            qWarning() << "all foldernames occupied";
-            break;
-        }
+        createArrayImage();
+        createArraySenseList(i, 128);
+        createArraySumImage(i);
+        clearArrayImage();
+        createScanSumImage(i);
     }
 
-    m_sumImage.save(filepath + "sum.png");
+    QString imageTag;
+    QDateTime dateTime;
+    dateTime = QDateTime::currentDateTime();
+    imageTag.append(dateTime.toString("yyyy-MM-dd hh:mm:ss:zzz"));
+    imageTag.append(QString(" - scan: %1").arg(m_scanNumber));
+
+    QPainter p;
+    p.begin(&m_sumImage);
+    p.setPen(QPen(Qt::white));
+    p.setFont(QFont("Times", 8, QFont::Bold));
+    p.drawText(20,20,imageTag);
+    p.drawEllipse(71,71,240,240);
+    p.end();
+
+    clearSumImage();
 
     return(m_sumImage);
 }
 
-void ImageProcessor::createImageBuffers()
-{
-
-    for(int i = 0; i < m_numberOfScansPerArray; i++)
-    {
-        m_imageVector.append(new QImage(m_imageSize, m_imageSize, QImage::Format_Grayscale8));
-        m_imageVector.at(i)->fill(qRgb(0,0,0));
-    }
-
-
-    m_sumImage = QImage(m_imageSize  + (m_imageSize / m_imageWidthDivider), m_imageSize +
-                            (m_imageSize / m_imageWidthDivider), QImage::Format_Grayscale8);
-    m_sumImage.fill(qRgb(0,0,0));
-}
-
 void ImageProcessor::createArraySenseList(quint16 arrayNumber, quint16 contrast)
 {
-
     for(int source = 0; source < m_numberOfScansPerArray; source++)
     {
         for(int sensor = 3; sensor < m_arrayDataSize; sensor++)
@@ -94,44 +80,88 @@ void ImageProcessor::createArraySenseList(quint16 arrayNumber, quint16 contrast)
             m_sensorValueVector.append((quint16)((double)((m_scanDataVector->at(m_scanNumber - 1).at(source * m_arrayDataSize + (arrayNumber * m_scanDataOffset) + sensor)
                                            / contrast) + 0.5 )));
 
-            qDebug() << "Scan:   " << m_scanDataVector->at(m_scanNumber - 1).at((source * m_arrayDataSize + (arrayNumber * m_scanDataOffset)) + 0);
-            qDebug() << "Source: " << m_scanDataVector->at(m_scanNumber - 1).at((source * m_arrayDataSize + (arrayNumber * m_scanDataOffset)) + 1);
-            qDebug() << "Sensor: " << m_scanDataVector->at(m_scanNumber - 1).at((source * m_arrayDataSize + (arrayNumber * m_scanDataOffset)) + 2);
         }
-        qDebug() << m_sensorValueVector;
-
-
         calculateScanBeams(source);
+        m_sensorValueVector.clear();
     }
 }
 
 void ImageProcessor::calculateScanBeams(quint16 source)
 {
+
     m_imageCalculator.calculateBeam(m_sensorValueVector, 0x0001 << m_scanDataVector->at(m_scanNumber)
                                   .at(source * m_arrayDataSize + 2), *m_imageVector.at(source));
 
 }
 
-void ImageProcessor::createArraySumImage()
+void ImageProcessor::createArraySumImage(quint16 arrayNumber)
 {
+
     for(int i = 0; i < 8; i++)
     {
-        m_imageCalculator.mergeImages(*m_imageVector.at(i), 0.0, m_sumImage);
+
+        m_imageCalculator.mergeImages(*m_imageVector.at(i), 0.0, *m_sumImageVector.at(arrayNumber));
+
+        QPainter p;
+        QPen pen;
+
+        pen.setColor(Qt::white);
+        p.begin(m_sumImageVector.at(arrayNumber));
+        p.setPen(pen);
+        p.setFont(QFont("Times", 8, QFont::Bold));
+        p.drawText(20,127,QString::number(arrayNumber));
+
+        pen.setColor(qRgb(50,50,50));
+        p.setPen(pen);
+        p.drawRect(5,5,245,245);
+        p.end();
+
     }
 }
 
-void ImageProcessor::createScanSumImage()
+void ImageProcessor::createScanSumImage(quint16 arrayNumber)
 {
+
+    m_imageCalculator.mergeImages(*m_sumImageVector.at(arrayNumber), arrayNumber * 22.5, m_sumImage);
 
 }
 
-void ImageProcessor::clearData()
+void ImageProcessor::createSumImage()
+{
+    for(int i = 0; i < m_numberOfScansPerArray; i++)
+    {
+        m_sumImageVector.append(new QImage(m_imageSize, m_imageSize, QImage::Format_Grayscale8));
+        m_sumImageVector.at(i)->fill(qRgb(0,0,0));
+    }
+
+    m_sumImage = QImage(m_imageSize  + (m_imageSize / m_imageWidthDivider), m_imageSize +
+                            (m_imageSize / m_imageWidthDivider), QImage::Format_Grayscale8);
+    m_sumImage.fill(qRgb(0,0,0));
+}
+void ImageProcessor::clearSumImage()
+{
+    for(int i = 0; i < m_sumImageVector.size(); i++)
+    {
+        delete m_sumImageVector.at(i);
+    }
+
+    m_sumImageVector.clear();
+}
+void ImageProcessor::createArrayImage()
+{
+    for(int i = 0; i < m_numberOfScansPerArray; i++)
+    {
+        m_imageVector.append(new QImage(m_imageSize, m_imageSize, QImage::Format_Grayscale8));
+        m_imageVector.at(i)->fill(qRgb(0,0,0));
+    }
+}
+void ImageProcessor::clearArrayImage()
 {
     for(int i = 0; i < m_imageVector.size(); i++)
     {
         delete m_imageVector.at(i);
     }
 
-     m_sensorValueVector.clear();
+    m_imageVector.clear();
 }
 
