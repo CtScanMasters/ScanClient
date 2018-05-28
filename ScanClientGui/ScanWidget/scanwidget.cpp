@@ -1,7 +1,6 @@
 #include "scanwidget.h"
 #include <QDebug>
 
-
 ScanWidget::ScanWidget(QWidget *parent) :
     QWidget(parent)
 {
@@ -35,6 +34,7 @@ ScanWidget::ScanWidget(QWidget *parent) :
     connect(m_stopScanButton, SIGNAL(clicked(bool)), this, SLOT(stopScan()));
 
     setLayout(m_mainGridLayout);
+
 }
 
 ScanWidget::~ScanWidget()

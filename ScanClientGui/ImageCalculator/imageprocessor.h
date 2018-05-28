@@ -15,12 +15,13 @@ class ImageProcessor : public QObject
     public:
         ImageProcessor();
         void setPresets(quint16 numberOfscansPerArray, quint16 arrayDataSize, quint16 imageSize);
-        QImage processData(QVector<QVector<quint16>> *scanData);
+        QImage processData(QVector<quint16> *scanData, quint16 scanNumber);
 
 
     public slots:
 
     private:
+        QString m_logName;
         void createArraySenseList(quint16 arrayNumber, quint16 contrast);
         void calculateScanBeams(quint16 source);
         void createArraySumImage(quint16 arrayNumber);
@@ -30,7 +31,7 @@ class ImageProcessor : public QObject
         void createArrayImage();
         void clearArrayImage();
 
-        QVector<QVector<quint16>> *m_scanDataVector;
+        QVector<quint16> *m_scanDataVector;
         QVector<QImage* > m_imageVector;
         QVector<QImage* > m_sumImageVector;
         QVector<quint16> m_sensorValueVector;
@@ -41,7 +42,6 @@ class ImageProcessor : public QObject
         quint16 m_scanDataOffset;
         quint16 m_arrayDataSize;
         quint16 m_scanCount;
-        quint16 m_scanNumber;
         quint16 m_arrayNumber;
         quint16 m_imageWidthDivider;
         quint8 m_numberOfSensors;

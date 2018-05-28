@@ -38,7 +38,8 @@ SOURCES += \
     TcpClientWidget/tcpclientwidget.cpp \
     MessageLogger/messagelogger.cpp \
     ImageCalculator/imagecalculator.cpp \
-    ImageCalculator/imageprocessor.cpp
+    ImageCalculator/imageprocessor.cpp \
+    ImageCalculator/imageprocessmanager.cpp
 
 HEADERS += \
         scanclientgui.h \
@@ -53,7 +54,8 @@ HEADERS += \
     MessageLogger/messagelogger.h \
     ImageCalculator/imagecalculator.h \
     commandlist.h \
-    ImageCalculator/imageprocessor.h
+    ImageCalculator/imageprocessor.h \
+    ImageCalculator/imageprocessmanager.h
 
 FORMS += \
         scanclientgui.ui

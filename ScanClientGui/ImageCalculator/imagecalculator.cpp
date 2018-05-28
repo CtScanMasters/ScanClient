@@ -5,12 +5,13 @@
 
 ImageCalculator::ImageCalculator()
 {
+    m_logName = "ImageCalculator: ";
+    qInfo() << m_logName + "build";
     m_dimensionsSet = false;
 }
 
-
 void ImageCalculator::setDimensions(quint8 numberOfSensors, quint32 pixelWidth, double innerDiameter, double outerDiamter)
-{
+{    
     m_numberOfSensors = numberOfSensors;
     m_numberOfSources = m_numberOfSensors;
     m_pixelWidth = pixelWidth;
@@ -24,19 +25,19 @@ void ImageCalculator::setDimensions(quint8 numberOfSensors, quint32 pixelWidth, 
     m_sensorDistance = (quint16)((double)(m_pixelWidth / (numberOfSensors +1)) + 0.5);
     m_sourceDistance = m_sensorDistance;
 
-        qInfo() << "********************************************************";
-        qInfo() << "Number of sensors:  " << m_numberOfSensors;
-        qInfo() << "Number of sources:  " << m_numberOfSources;
-        qInfo() << "PixelWidth:         " << m_pixelWidth;
-        qInfo() << "InnerDiameter:      " << m_innerDiameter;
-        qInfo() << "OuterDiameter:      " << m_outerDiamter;
-        qInfo() << "X offset:           " << m_xOffset;
-        qInfo() << "Y offset:           " << m_yOffset;
-        qInfo() << "Sensordistance:     " << m_sensorDistance;
-        qInfo() << "Sourcedistance:     " << m_sourceDistance;
-        qInfo() << "DiameterRatio:      " << m_diameterRatio;
-        qInfo() << "CanvasSize:         " << m_virtualCanvasSize;
-        qInfo() << "********************************************************";
+//        qInfo() << "********************************************************";
+//        qInfo() << "Number of sensors:  " << m_numberOfSensors;
+//        qInfo() << "Number of sources:  " << m_numberOfSources;
+//        qInfo() << "PixelWidth:         " << m_pixelWidth;
+//        qInfo() << "InnerDiameter:      " << m_innerDiameter;
+//        qInfo() << "OuterDiameter:      " << m_outerDiamter;
+//        qInfo() << "X offset:           " << m_xOffset;
+//        qInfo() << "Y offset:           " << m_yOffset;
+//        qInfo() << "Sensordistance:     " << m_sensorDistance;
+//        qInfo() << "Sourcedistance:     " << m_sourceDistance;
+//        qInfo() << "DiameterRatio:      " << m_diameterRatio;
+//        qInfo() << "CanvasSize:         " << m_virtualCanvasSize;
+//        qInfo() << "********************************************************";
 
 
     m_dimensionsSet = true;

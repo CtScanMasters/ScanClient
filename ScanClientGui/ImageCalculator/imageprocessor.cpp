@@ -7,13 +7,14 @@
 
 ImageProcessor::ImageProcessor()
 {
+    m_logName = "ImageProcessor: ";
+    qInfo() << m_logName + "build";
 
     m_imageSize             = 0;
     m_numberOfScansPerArray = 0;
     m_scanDataOffset        = 0;
     m_arrayDataSize         = 0;
     m_scanCount             = 0;
-    m_scanNumber            = 0;
     m_arrayNumber           = 0;
     m_imageWidthDivider     = 0;
     m_numberOfSensors       = 0;
@@ -24,10 +25,11 @@ ImageProcessor::ImageProcessor()
 
 void ImageProcessor::setPresets(quint16 numberOfscansPerArray, quint16 arrayDataSize, quint16 imageSize)
 {
+//    qInfo() << m_logName + "setPresets";
+
     m_numberOfScansPerArray = numberOfscansPerArray;
     m_arrayDataSize = arrayDataSize;
     m_scanDataOffset = m_numberOfScansPerArray * m_arrayDataSize;
-    m_scanNumber = 1;
     m_imageSize = imageSize;    //Image resolution
     m_imageWidthDivider = 2;    //Result image resolution
     m_numberOfSensors = 8;      //Sensor in array
@@ -37,8 +39,10 @@ void ImageProcessor::setPresets(quint16 numberOfscansPerArray, quint16 arrayData
     m_imageCalculator.setDimensions(m_numberOfSensors, m_imageSize, m_innerDiameter, m_outerdiameter);
 }
 
-QImage ImageProcessor::processData(QVector<QVector<quint16>> *scanData)
+QImage ImageProcessor::processData(QVector<quint16> *scanData, quint16 scanNumber)
 {
+//    qInfo() << m_logName + "processData";
+
     m_scanDataVector = scanData;
 
     createSumImage();
@@ -55,8 +59,8 @@ QImage ImageProcessor::processData(QVector<QVector<quint16>> *scanData)
     QString imageTag;
     QDateTime dateTime;
     dateTime = QDateTime::currentDateTime();
-    imageTag.append(dateTime.toString("yyyy-MM-dd hh:mm:ss:zzz"));
-    imageTag.append(QString(" - scan: %1").arg(m_scanNumber));
+    imageTag.append(dateTime.toString("yyyy-MM-dd hh:mm:ss"));
+    imageTag.append(QString(" - scan: %1").arg(scanNumber,3,10, QChar('0')));
 
     QPainter p;
     p.begin(&m_sumImage);
@@ -73,11 +77,14 @@ QImage ImageProcessor::processData(QVector<QVector<quint16>> *scanData)
 
 void ImageProcessor::createArraySenseList(quint16 arrayNumber, quint16 contrast)
 {
+//    qInfo() << m_logName + "createArraySenseList";
+
     for(int source = 0; source < m_numberOfScansPerArray; source++)
     {
         for(int sensor = 3; sensor < m_arrayDataSize; sensor++)
         {
-            m_sensorValueVector.append((quint16)((double)((m_scanDataVector->at(m_scanNumber - 1).at(source * m_arrayDataSize + (arrayNumber * m_scanDataOffset) + sensor)
+            m_sensorValueVector.append((quint16)((double)((m_scanDataVector->
+                    at(source * m_arrayDataSize + (arrayNumber * m_scanDataOffset) + sensor)
                                            / contrast) + 0.5 )));
 
         }
@@ -89,13 +96,14 @@ void ImageProcessor::createArraySenseList(quint16 arrayNumber, quint16 contrast)
 void ImageProcessor::calculateScanBeams(quint16 source)
 {
 
-    m_imageCalculator.calculateBeam(m_sensorValueVector, 0x0001 << m_scanDataVector->at(m_scanNumber)
-                                  .at(source * m_arrayDataSize + 2), *m_imageVector.at(source));
+    m_imageCalculator.calculateBeam(m_sensorValueVector, 0x0001 << m_scanDataVector->
+                                  at(source * m_arrayDataSize + 2), *m_imageVector.at(source));
 
 }
 
 void ImageProcessor::createArraySumImage(quint16 arrayNumber)
 {
+//    qInfo() << m_logName + "createArraySumImage";
 
     for(int i = 0; i < 8; i++)
     {
@@ -121,13 +129,14 @@ void ImageProcessor::createArraySumImage(quint16 arrayNumber)
 
 void ImageProcessor::createScanSumImage(quint16 arrayNumber)
 {
+//    qInfo() << m_logName + "createScanSumImage";
 
     m_imageCalculator.mergeImages(*m_sumImageVector.at(arrayNumber), arrayNumber * 22.5, m_sumImage);
 
 }
 
 void ImageProcessor::createSumImage()
-{
+{   
     for(int i = 0; i < m_numberOfScansPerArray; i++)
     {
         m_sumImageVector.append(new QImage(m_imageSize, m_imageSize, QImage::Format_Grayscale8));

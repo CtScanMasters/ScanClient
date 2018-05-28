@@ -4,7 +4,6 @@
 #include <QTransform>
 #include <QImage>
 
-
 class ImageCalculator
 {
 public:
@@ -15,6 +14,7 @@ public:
     double getLinearFunction(double a, double X, double b);
 
 private:
+    QString m_logName;
     bool m_dimensionsSet;
     quint16 m_numberOfSensors;
     quint16 m_numberOfSources;

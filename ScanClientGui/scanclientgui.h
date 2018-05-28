@@ -92,14 +92,7 @@ private:
     void actuatorStatusChange();
 
     void drawGraph(QList<uint16_t> sensorValueList, quint8 source);
-
-    void doCalculatorStuff();
-    quint32 imageWidth = 255;         //Image resolution
-    quint16 imageWidthDivider = 2;    //Result image resolution
-    quint8 numberOfSensors = 8;       //Sensor in array
-    double innerDiameter = 60;
-    double outerdiameter = 120;
-    ImageCalculator imageCalculator;
+    quint16 m_imageWidth;
 
 private slots:
     void commandHandler(quint16 command);

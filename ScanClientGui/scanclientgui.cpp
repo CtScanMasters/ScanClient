@@ -6,7 +6,7 @@
 #include <QThread>
 #include "commandlist.h"
 
-#include "ImageCalculator/imageprocessor.h"
+#include "ImageCalculator/imageprocessmanager.h"
 
 ScanClientGui::ScanClientGui(QWidget *parent) :
     QMainWindow(parent),
@@ -18,6 +18,8 @@ ScanClientGui::ScanClientGui(QWidget *parent) :
     m_dataLogger->setTextEdit(ui->plainTextEdit);
 
     m_logName = "ScanClientGui : ";
+
+    m_imageWidth = 255;         //Image resolution
 
     m_arrayCount = 8;
     m_numberOfScansPerArray = 8;
@@ -31,8 +33,6 @@ ScanClientGui::ScanClientGui(QWidget *parent) :
     m_scanDataOffset = m_numberOfScansPerArray * m_scanDataSize;
 
     buildMainGui();
-
-    doCalculatorStuff();
 }
 
 ScanClientGui::~ScanClientGui()
@@ -110,7 +110,7 @@ void ScanClientGui::scanStart()
 
 /*******************************************************************************/
 
-    for(quint16 scans = 0; scans < 10; scans++)
+    for(quint16 scans = 0; scans < 50; scans++)
     {
         QByteArray byteArray;
         quint8 byte1 = 0;
@@ -139,7 +139,7 @@ void ScanClientGui::scanStart()
 
                 for(quint16 sensor = 0; sensor < 8; sensor++)
                 {
-                    quint16 data = sensor * 64;
+                    quint16 data = sensor * scans * 20;
                     byte1 = (data >> 8) & 0xFF;
                     byte2 = data & 0xFF;
                     byteArray.append(byte1);
@@ -422,17 +422,6 @@ void ScanClientGui::arraySetSourceMask(quint8 sourceMask)
 //    ui->plainTextEdit->appendPlainText(QString("Source mask: %1").arg(QString::number(sourceMask,2)));
 }
 
-void ScanClientGui::doCalculatorStuff()
-{
-    imageWidth = 255;         //Image resolution
-    imageWidthDivider = 2;    //Result image resolution
-    numberOfSensors = 8;       //Sensor in array
-    innerDiameter = 70;
-    outerdiameter = 140;
-
-    imageCalculator.setDimensions(numberOfSensors, imageWidth, innerDiameter, outerdiameter);
-}
-
 void ScanClientGui::prepareData()
 {
     m_scanDataList.clear();
@@ -469,32 +458,13 @@ void ScanClientGui::processData(quint16 scanNumber, quint16 arrayNumber)
     time.start();
     qWarning() << "*************************START*****************************************";
 
-    ImageProcessor imageProcessor;
-    imageProcessor.setPresets(8, 11, 255);
-    QImage image = imageProcessor.processData(&m_scanDataList);
-    QPixmap pixMapSum = QPixmap::fromImage(image);
-    ui->imagingWidget->setPixmap(pixMapSum);
-
-    QString filepath;
-
-    filepath = QCoreApplication::applicationDirPath()
-                        + QString("/IMG%1/")
-                            .arg(0,3,10, QChar('0'));
+    ImageProcessManager imageProcessManager;
+    imageProcessManager.processScanData(&m_scanDataList, m_imageWidth);
 
 
-    if(!QDir(filepath).exists())
-    {
-        QDir().mkdir(filepath);
-    }
-
-    qInfo() << m_logName + "getMeasurement: " + filepath;
-
-    image.save(filepath + "sum.png");
-
-
-qWarning() << "*************************TIME*****************************************";
-qWarning() << time.elapsed();
-qWarning() << "*************************STOP*****************************************";
+    qWarning() << "*************************TIME*****************************************";
+    qWarning() << time.elapsed();
+    qWarning() << "*************************STOP*****************************************";
 
     m_iamBusy = false;
 
