@@ -11,7 +11,7 @@ class ProcessorTask : public QObject, public QRunnable
 
     public:
         ProcessorTask();
-        ProcessorTask(QVector<quint16> *scanData, quint16 scanNumber);
+        ProcessorTask(QVector<quint16> scanData, quint16 scanNumber);
 
         bool busy() const;
 

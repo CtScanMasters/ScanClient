@@ -12,7 +12,7 @@ ProcessorTask::ProcessorTask()
 
 }
 
-ProcessorTask::ProcessorTask(QVector<quint16> *scanData, quint16 scanNumber)
+ProcessorTask::ProcessorTask(QVector<quint16> scanData, quint16 scanNumber)
 {
     setAutoDelete(false);
     m_scanData = scanData.at(m_scanNumber);
@@ -29,6 +29,7 @@ void ProcessorTask::run()
     imageProcessor.setPresets(8, 11, 255);
 
     QImage image = imageProcessor.processData(&m_scanData, m_scanNumber);
+
 //    QPixmap pixMapSum = QPixmap::fromImage(image);
 //    ui->imagingWidget->setPixmap(pixMapSum);
 

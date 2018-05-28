@@ -12,7 +12,7 @@ Processor::Processor(int processors)
 
 bool Processor::process(QVector<quint16> scanData, quint16 scanNumber)
 {
-    ProcessorTask* task = new ProcessorTask(&scanData, scanNumber);
+    ProcessorTask* task = new ProcessorTask(scanData, scanNumber);
     //connect(task, SIGNAL(done(ProcessorResult)), this, SLOT(gatherResult(ProcessorResult)));
 
     //m_activeTasks.push_back(task);
