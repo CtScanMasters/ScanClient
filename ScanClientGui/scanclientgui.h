@@ -17,6 +17,7 @@
 #include "TcpClient/tcpclient.h"
 #include "MessageLogger/messagelogger.h"
 #include "ImageCalculator/imagecalculator.h"
+#include "ImageCalculator/imageprocessmanager.h"
 #include "commandlist.h"
 
 
@@ -82,6 +83,8 @@ private:
 
     QVector<QByteArray> m_dataBufferInList;
     QVector<QVector<quint16>> m_scanDataList;
+
+    ImageProcessManager *m_imageProcessManager;
 
     MessageLogger *m_dataLogger;
 

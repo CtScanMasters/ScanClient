@@ -4,11 +4,13 @@
 #include <QObject>
 #include <QVector>
 
+#include "ProcessorManager/processor.h"
 
 class ImageProcessManager
 {
 private:
     QString m_logName;
+    Processor *m_scanProcessor;
 
 public:
     ImageProcessManager();

@@ -39,7 +39,9 @@ SOURCES += \
     MessageLogger/messagelogger.cpp \
     ImageCalculator/imagecalculator.cpp \
     ImageCalculator/imageprocessor.cpp \
-    ImageCalculator/imageprocessmanager.cpp
+    ImageCalculator/imageprocessmanager.cpp \
+    ProcessorManager/processor.cpp \
+    ProcessorManager/processortask.cpp
 
 HEADERS += \
         scanclientgui.h \
@@ -55,7 +57,9 @@ HEADERS += \
     ImageCalculator/imagecalculator.h \
     commandlist.h \
     ImageCalculator/imageprocessor.h \
-    ImageCalculator/imageprocessmanager.h
+    ImageCalculator/imageprocessmanager.h \
+    ProcessorManager/processor.h \
+    ProcessorManager/processortask.h
 
 FORMS += \
         scanclientgui.ui

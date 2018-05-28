@@ -12,6 +12,9 @@ INPUT(
 ./debug\messagelogger.o
 ./debug\imagecalculator.o
 ./debug\imageprocessor.o
+./debug\imageprocessmanager.o
+./debug\processor.o
+./debug\processortask.o
 ./debug\moc_scanclientgui.o
 ./debug\moc_scatterwidget.o
 ./debug\moc_actuatorwidget.o
@@ -21,4 +24,6 @@ INPUT(
 ./debug\moc_tcpclient.o
 ./debug\moc_tcpclientwidget.o
 ./debug\moc_imageprocessor.o
+./debug\moc_processor.o
+./debug\moc_processortask.o
 );

@@ -17,6 +17,8 @@ ScanClientGui::ScanClientGui(QWidget *parent) :
     m_dataLogger = MessageLogger::getInstance();
     m_dataLogger->setTextEdit(ui->plainTextEdit);
 
+    m_imageProcessManager = new ImageProcessManager;
+
     m_logName = "ScanClientGui : ";
 
     m_imageWidth = 255;         //Image resolution
@@ -42,58 +44,52 @@ ScanClientGui::~ScanClientGui()
     delete ui;
 }
 
-void ScanClientGui::commandHandler(quint16 command)
+void ScanClientGui::prepareData()
 {
-    switch(command)
+    m_scanDataList.clear();
+
+    for(int i = 0; i < m_dataBufferInList.size(); i++)
     {
-    case COMMAND_SCAN_START:
-        scanStart();
-        break;
-    case COMMAND_SCAN_STOP:
-        scanStop();
-        break;
-    case COMMAND_SCAN_SET_PROGRESS:
-        setScanProgress();
-        break;
-    case COMMAND_SCAN_GET_DATA:
-        getScanData();
-        break;
-    case COMMAND_SCAN_NEW_DATA:
-        newScanData();
-        break;
-    case COMMAND_SCAN_DATA_DELIVERY:
-        dataDelivery();
-        break;
-    case COMMAND_SCAN_DATA_END:
-        dataEnd();
-        break;
-    case COMMAND_ACTUATOR_FORWARD:
-        actuatorJogForward();
-        break;
-    case COMMAND_ACTUATOR_BACKWARD:
-        actuatorJogBack();
-        break;
-    case COMMAND_ACTUATOR_POSITION:
-        actuatorPosition();
-        break;
-    case COMMAND_ACTUATOR_HOME:
-        actuatorHome();
-        break;
-    case COMMAND_SENSOR_VALUE:
-        arrayGetSensor();
-        break;
-    case COMMAND_SOURCE_VALUE:
-        arraySetSource();
-        break;
-    case COMMAND_READY:
-        sendReady();
-        break;
-    case COMMAND_NOT_READY:
-        sendNotReady();
-        break;
-    default:
-        qWarning() << m_logName + "RECEIVED UNKOWN COMMAND";
+        QVector<quint16> dataList;
+
+        for(int j = 1; j < m_dataBufferInList.at(i).size() - 1; j+=2)
+        {
+            quint16 data0 = 0;
+            quint8 byte0 = m_dataBufferInList.at(i).at(j);
+            quint8 byte1 = m_dataBufferInList.at(i).at(j+1);
+            data0 = byte0;
+            data0 = data0 << 8;
+            data0 = data0 | byte1;
+            dataList.append(data0);
+        }
+        m_scanDataList.append(dataList);
+        qDebug() << dataList.size();
     }
+
+    quint16 arrayNumber = 0;
+
+    processData(1,arrayNumber);
+
+}
+
+void ScanClientGui::processData(quint16 scanNumber, quint16 arrayNumber)
+{
+    qDebug() << "processdata: " << scanNumber << arrayNumber;
+
+    QTime time;
+    time.start();
+    qWarning() << "*************************START*****************************************";
+
+    m_imageProcessManager->processScanData(&m_scanDataList, m_imageWidth);
+
+
+    qWarning() << "*************************TIME*****************************************";
+    qWarning() << time.elapsed();
+    qWarning() << "*************************STOP*****************************************";
+
+    m_iamBusy = false;
+
+
 }
 
 void ScanClientGui::scanStart()
@@ -110,7 +106,7 @@ void ScanClientGui::scanStart()
 
 /*******************************************************************************/
 
-    for(quint16 scans = 0; scans < 50; scans++)
+    for(quint16 scans = 0; scans < 10; scans++)
     {
         QByteArray byteArray;
         quint8 byte1 = 0;
@@ -422,54 +418,7 @@ void ScanClientGui::arraySetSourceMask(quint8 sourceMask)
 //    ui->plainTextEdit->appendPlainText(QString("Source mask: %1").arg(QString::number(sourceMask,2)));
 }
 
-void ScanClientGui::prepareData()
-{
-    m_scanDataList.clear();
 
-    for(int i = 0; i < m_dataBufferInList.size(); i++)
-    {
-        QVector<quint16> dataList;
-
-        for(int j = 1; j < m_dataBufferInList.at(i).size() - 1; j+=2)
-        {
-            quint16 data0 = 0;
-            quint8 byte0 = m_dataBufferInList.at(i).at(j);
-            quint8 byte1 = m_dataBufferInList.at(i).at(j+1);
-            data0 = byte0;
-            data0 = data0 << 8;
-            data0 = data0 | byte1;
-            dataList.append(data0);
-        }
-        m_scanDataList.append(dataList);
-        qDebug() << dataList.size();
-    }
-
-    quint16 arrayNumber = 0;
-
-    processData(1,arrayNumber);
-
-}
-
-void ScanClientGui::processData(quint16 scanNumber, quint16 arrayNumber)
-{   
-    qDebug() << "processdata: " << scanNumber << arrayNumber;
-
-    QTime time;
-    time.start();
-    qWarning() << "*************************START*****************************************";
-
-    ImageProcessManager imageProcessManager;
-    imageProcessManager.processScanData(&m_scanDataList, m_imageWidth);
-
-
-    qWarning() << "*************************TIME*****************************************";
-    qWarning() << time.elapsed();
-    qWarning() << "*************************STOP*****************************************";
-
-    m_iamBusy = false;
-
-
-}
 
 void ScanClientGui::drawGraph(QList<uint16_t> sensorValueList, quint8 source)
 {
@@ -500,4 +449,56 @@ void ScanClientGui::drawGraph(QList<uint16_t> sensorValueList, quint8 source)
 }
 
 
-
+void ScanClientGui::commandHandler(quint16 command)
+{
+    switch(command)
+    {
+    case COMMAND_SCAN_START:
+        scanStart();
+        break;
+    case COMMAND_SCAN_STOP:
+        scanStop();
+        break;
+    case COMMAND_SCAN_SET_PROGRESS:
+        setScanProgress();
+        break;
+    case COMMAND_SCAN_GET_DATA:
+        getScanData();
+        break;
+    case COMMAND_SCAN_NEW_DATA:
+        newScanData();
+        break;
+    case COMMAND_SCAN_DATA_DELIVERY:
+        dataDelivery();
+        break;
+    case COMMAND_SCAN_DATA_END:
+        dataEnd();
+        break;
+    case COMMAND_ACTUATOR_FORWARD:
+        actuatorJogForward();
+        break;
+    case COMMAND_ACTUATOR_BACKWARD:
+        actuatorJogBack();
+        break;
+    case COMMAND_ACTUATOR_POSITION:
+        actuatorPosition();
+        break;
+    case COMMAND_ACTUATOR_HOME:
+        actuatorHome();
+        break;
+    case COMMAND_SENSOR_VALUE:
+        arrayGetSensor();
+        break;
+    case COMMAND_SOURCE_VALUE:
+        arraySetSource();
+        break;
+    case COMMAND_READY:
+        sendReady();
+        break;
+    case COMMAND_NOT_READY:
+        sendNotReady();
+        break;
+    default:
+        qWarning() << m_logName + "RECEIVED UNKOWN COMMAND";
+    }
+}
