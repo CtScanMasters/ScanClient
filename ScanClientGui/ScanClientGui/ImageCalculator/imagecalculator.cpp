@@ -5,7 +5,9 @@
 
 ImageCalculator::ImageCalculator()
 {
-
+    m_logName = "ImageCalculator: ";
+    qInfo() << m_logName + "build";
+    m_dimensionsSet = false;
 }
 
 void ImageCalculator::setDimensions(quint8 numberOfSensors, quint32 pixelWidth, double innerDiameter, double outerDiamter)
@@ -22,6 +24,21 @@ void ImageCalculator::setDimensions(quint8 numberOfSensors, quint32 pixelWidth, 
     m_yOffset = m_xOffset;                                                                  //Inner diameter is a circle so no need for different yOffset
     m_sensorDistance = (quint16)((double)(m_pixelWidth / (numberOfSensors +1)) + 0.5);
     m_sourceDistance = m_sensorDistance;
+
+//        qInfo() << "********************************************************";
+//        qInfo() << "Number of sensors:  " << m_numberOfSensors;
+//        qInfo() << "Number of sources:  " << m_numberOfSources;
+//        qInfo() << "PixelWidth:         " << m_pixelWidth;
+//        qInfo() << "InnerDiameter:      " << m_innerDiameter;
+//        qInfo() << "OuterDiameter:      " << m_outerDiamter;
+//        qInfo() << "X offset:           " << m_xOffset;
+//        qInfo() << "Y offset:           " << m_yOffset;
+//        qInfo() << "Sensordistance:     " << m_sensorDistance;
+//        qInfo() << "Sourcedistance:     " << m_sourceDistance;
+//        qInfo() << "DiameterRatio:      " << m_diameterRatio;
+//        qInfo() << "CanvasSize:         " << m_virtualCanvasSize;
+//        qInfo() << "********************************************************";
+
 
     m_dimensionsSet = true;
 }
@@ -111,8 +128,7 @@ void ImageCalculator::mergeImages(QImage &image, double angle, QImage &destinati
 QColor ImageCalculator::calculateColorSum(QColor &color1, QColor &color2)
 {
 
-    //Only one value is important RGB will all raise
-    //with same value when using grayscale
+    //Only one value is important RGB will all raise with same value when using grayscal
     int r1 = color1.red();
     int r2 = color2.red();
 

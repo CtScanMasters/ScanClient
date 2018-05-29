@@ -4,24 +4,28 @@
 
 #include "imageprocessmanager.h"
 #include "imageprocessor.h"
+#include "imageprocesstask.h"
+
 
 ImageProcessManager::ImageProcessManager()
 {
     m_logName = "ImageProcessManager: ";
     qInfo() << m_logName + "build";
 
-    m_scanProcessor = new Processor(8);
+    m_threadPool = QThreadPool::globalInstance();
+    m_threadPool->setMaxThreadCount(16);
+    m_threadPool->setExpiryTimeout(10000);
 }
 
 void ImageProcessManager::processScanData(QVector<QVector<quint16>> *scanData, quint16 imageSize)
 {
-
-    for(int i = 0; i < 8; i++)
+    for(int scanNumber = 0; scanNumber < 100; scanNumber++)
     {
-        QVector<quint16> data = scanData->at(i);
-        m_scanProcessor->process(data, i);
+        qInfo() << m_logName + QString("processScanData scan %1").arg(scanNumber);
+        ImageProcessTask* task = new ImageProcessTask(scanData->at(scanNumber), scanNumber);
+        connect(task, SIGNAL(done(quint16)), this, SLOT(finishedProcessing(quint16)));
+        m_threadPool->start(task);
     }
-
 
 //    for(int scanNumber = 0; scanNumber < scanData->size(); scanNumber++)
 //    {
@@ -41,11 +45,16 @@ void ImageProcessManager::processScanData(QVector<QVector<quint16>> *scanData, q
 //        filepath = QCoreApplication::applicationDirPath()
 //                            + QString("/IMG%1/")
 //                                .arg(0,3,10, QChar('0'));
-//        if(!QDir(filepath).exists())
-//        {
-//            QDir().mkdir(filepath);
-//        }
+////        if(!QDir(filepath).exists())
+////        {
+////            QDir().mkdir(filepath);
+////        }
 
 //        image.save(filepath + QString("SUM%1.png").arg(scanNumber,3,10, QChar('0')));
 //    }
+}
+
+void ImageProcessManager::finishedProcessing(quint16 scanNumber)
+{
+    qInfo() << m_logName + QString("finished processing scan %1").arg(scanNumber);
 }

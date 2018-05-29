@@ -3,18 +3,28 @@
 
 #include <QObject>
 #include <QVector>
+#include <QThreadPool>
+#include <QVector>
+#include <QRunnable>
 
-#include "ProcessorManager/processor.h"
+#include "imageprocesstask.h"
 
-class ImageProcessManager
+class ImageProcessManager : public QObject
 {
+    Q_OBJECT
+
 private:
     QString m_logName;
-    Processor *m_scanProcessor;
+    QThreadPool* m_threadPool;
+    QVector<ImageProcessTask*> m_activeTasks;
 
 public:
     ImageProcessManager();
     void processScanData(QVector<QVector<quint16>> *scanData, quint16 imageSize);
+
+private slots:
+    void finishedProcessing(quint16 scanNumber);
+
 };
 
 #endif // IMAGEPROCESSMANAGER_H

@@ -39,8 +39,7 @@ SOURCES += \
     MessageLogger/messagelogger.cpp \
     ImageCalculator/imagecalculator.cpp \
     ImageCalculator/imageprocessor.cpp \
-    ImageCalculator/imageprocessmanager.cpp \
-    ImageCalculator/imageprocesstask.cpp
+    ImageCalculator/imageprocessmanager.cpp
 
 HEADERS += \
         scanclientgui.h \
@@ -56,15 +55,10 @@ HEADERS += \
     ImageCalculator/imagecalculator.h \
     commandlist.h \
     ImageCalculator/imageprocessor.h \
-    ImageCalculator/imageprocessmanager.h \
-    ImageCalculator/imageprocesstask.h
+    ImageCalculator/imageprocessmanager.h
 
 FORMS += \
         scanclientgui.ui
 
 DISTFILES += \
-    Stylesheet/StylesheetCt.txt \
-    Stylesheet/ScanMaster pic.png
-
-RESOURCES += \
-    Stylesheet/resource_file.qrc
+    Stylesheet/StylesheetCt.txt
