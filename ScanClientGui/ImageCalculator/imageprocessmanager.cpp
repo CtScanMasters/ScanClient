@@ -15,16 +15,23 @@ ImageProcessManager::ImageProcessManager()
     m_threadPool = QThreadPool::globalInstance();
     m_threadPool->setMaxThreadCount(16);
     m_threadPool->setExpiryTimeout(10000);
+    m_scanIterator = 0;
+    m_numberOfScans = 0;
 }
 
-void ImageProcessManager::processScanData(QVector<QVector<quint16>> *scanData, quint16 imageSize)
+void ImageProcessManager::processScanData(QVector<QVector<quint16>> *scanData, quint16 numberOfScans)
 {
-    for(int scanNumber = 0; scanNumber < 100; scanNumber++)
+    m_numberOfScans = numberOfScans;
+    m_scanIterator = 0;
+
+    for(quint16 scanNumber = 0; scanNumber < m_numberOfScans; scanNumber++)
     {
-        qInfo() << m_logName + QString("processScanData scan %1").arg(scanNumber);
-        ImageProcessTask* task = new ImageProcessTask(scanData->at(scanNumber), scanNumber);
-        connect(task, SIGNAL(done(quint16)), this, SLOT(finishedProcessing(quint16)));
-        m_threadPool->start(task);
+        m_processTaskVector.append(new ImageProcessTask(scanData->at(scanNumber), scanNumber));
+    }
+
+    for(int scanNumber = 0; scanNumber < 8; scanNumber++)
+    {
+        startNewTask();
     }
 
 //    for(int scanNumber = 0; scanNumber < scanData->size(); scanNumber++)
@@ -54,7 +61,21 @@ void ImageProcessManager::processScanData(QVector<QVector<quint16>> *scanData, q
 //    }
 }
 
+void ImageProcessManager::startNewTask()
+{
+    qInfo() << m_logName + QString("processScanData scan %1").arg(m_scanIterator);
+    connect(m_processTaskVector.at(m_scanIterator), SIGNAL(done(quint16)), this, SLOT(finishedProcessing(quint16)));
+    m_threadPool->start(m_processTaskVector.at(m_scanIterator));
+    m_scanIterator++;
+}
+
 void ImageProcessManager::finishedProcessing(quint16 scanNumber)
 {
     qInfo() << m_logName + QString("finished processing scan %1").arg(scanNumber);
+
+    if(m_scanIterator < m_numberOfScans)
+    {
+        startNewTask();
+    }
+
 }

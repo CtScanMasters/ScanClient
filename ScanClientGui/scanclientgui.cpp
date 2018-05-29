@@ -36,6 +36,7 @@ ScanClientGui::ScanClientGui(QWidget *parent) :
     m_dataEnd = true;
     m_sourceMask = 0;
     m_scanDataSize = 11;
+    m_numberOfscans = 200;
     m_scanDataOffset = m_numberOfScansPerArray * m_scanDataSize;
 
     buildMainGui();
@@ -82,9 +83,7 @@ void ScanClientGui::prepareData()
 //        qDebug() << dataList.size();
     }
 
-    quint16 arrayNumber = 0;
-
-    processData(1,arrayNumber);
+    processData();
 
 }
 
@@ -93,11 +92,11 @@ void ScanClientGui::prepareData()
 *
 *
 ***********************************************************************/
-void ScanClientGui::processData(quint16 scanNumber, quint16 arrayNumber)
+void ScanClientGui::processData()
 {
-    qInfo() << m_logName + "processdata: " << scanNumber << arrayNumber;
+    qInfo() << m_logName + "processdata scans: " << m_numberOfscans;
 
-    m_imageProcessManager->processScanData(&m_scanDataList, m_imageWidth);
+    m_imageProcessManager->processScanData(&m_scanDataList, m_numberOfscans);
 
     m_iamBusy = false;
 }
@@ -116,7 +115,7 @@ void ScanClientGui::scanStart()
 
 /*******************************************************************************/
 
-    for(quint16 scans = 0; scans < 100; scans++)
+    for(quint16 scans = 0; scans < m_numberOfscans; scans++)
     {
         QByteArray byteArray;
         quint8 byte1 = 0;

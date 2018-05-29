@@ -21,8 +21,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_ScanClientGui_t {
-    QByteArrayData data[30];
-    char stringdata0[377];
+    QByteArrayData data[28];
+    char stringdata0[354];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -58,9 +58,7 @@ QT_MOC_LITERAL(23, 282, 18), // "arraySetSourceMask"
 QT_MOC_LITERAL(24, 301, 10), // "sourceMask"
 QT_MOC_LITERAL(25, 312, 14), // "arraySetSource"
 QT_MOC_LITERAL(26, 327, 14), // "arrayGetSensor"
-QT_MOC_LITERAL(27, 342, 11), // "processData"
-QT_MOC_LITERAL(28, 354, 10), // "scanNumber"
-QT_MOC_LITERAL(29, 365, 11) // "arrayNumber"
+QT_MOC_LITERAL(27, 342, 11) // "processData"
 
     },
     "ScanClientGui\0commandHandler\0\0command\0"
@@ -72,8 +70,7 @@ QT_MOC_LITERAL(29, 365, 11) // "arrayNumber"
     "prepareData\0tcpConnect\0tcpDisconnect\0"
     "tcpStateChange\0tcpSendData\0tcpReadData\0"
     "arraySetSourceMask\0sourceMask\0"
-    "arraySetSource\0arrayGetSensor\0processData\0"
-    "scanNumber\0arrayNumber"
+    "arraySetSource\0arrayGetSensor\0processData"
 };
 #undef QT_MOC_LITERAL
 
@@ -114,7 +111,7 @@ static const uint qt_meta_data_ScanClientGui[] = {
       23,    1,  156,    2, 0x08 /* Private */,
       25,    0,  159,    2, 0x08 /* Private */,
       26,    0,  160,    2, 0x08 /* Private */,
-      27,    2,  161,    2, 0x08 /* Private */,
+      27,    0,  161,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void, QMetaType::UShort,    3,
@@ -140,7 +137,7 @@ static const uint qt_meta_data_ScanClientGui[] = {
     QMetaType::Void, QMetaType::UChar,   24,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::UShort, QMetaType::UShort,   28,   29,
+    QMetaType::Void,
 
        0        // eod
 };
@@ -174,7 +171,7 @@ void ScanClientGui::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
         case 20: _t->arraySetSourceMask((*reinterpret_cast< quint8(*)>(_a[1]))); break;
         case 21: _t->arraySetSource(); break;
         case 22: _t->arrayGetSensor(); break;
-        case 23: _t->processData((*reinterpret_cast< quint16(*)>(_a[1])),(*reinterpret_cast< quint16(*)>(_a[2]))); break;
+        case 23: _t->processData(); break;
         default: ;
         }
     }

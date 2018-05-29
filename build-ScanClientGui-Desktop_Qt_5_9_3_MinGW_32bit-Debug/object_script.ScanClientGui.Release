@@ -13,8 +13,8 @@ INPUT(
 ./release\imagecalculator.o
 ./release\imageprocessor.o
 ./release\imageprocessmanager.o
-./release\processor.o
-./release\processortask.o
+./release\imageprocesstask.o
+./release\qrc_resource_file.o
 ./release\moc_scanclientgui.o
 ./release\moc_scatterwidget.o
 ./release\moc_actuatorwidget.o
@@ -24,6 +24,6 @@ INPUT(
 ./release\moc_tcpclient.o
 ./release\moc_tcpclientwidget.o
 ./release\moc_imageprocessor.o
-./release\moc_processor.o
-./release\moc_processortask.o
+./release\moc_imageprocessmanager.o
+./release\moc_imageprocesstask.o
 );

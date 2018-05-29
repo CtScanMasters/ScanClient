@@ -75,7 +75,7 @@ private:
     QByteArray m_bufferOut;
     QByteArray m_bufferIn;
 
-    quint8 m_numberOfscans;
+    quint16 m_numberOfscans;
     quint8 m_scanDistance;
     quint8 m_numberOfScansPerArray;
     quint8 m_scanDataOffset;
@@ -123,7 +123,7 @@ private slots:
     void arraySetSourceMask(quint8 sourceMask);
     void arraySetSource();
     void arrayGetSensor();
-    void processData(quint16 scanNumber, quint16 arrayNumber);
+    void processData();
 
 
 
