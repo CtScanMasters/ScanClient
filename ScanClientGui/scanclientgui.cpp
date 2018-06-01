@@ -20,9 +20,6 @@ ScanClientGui::ScanClientGui(QWidget *parent) :
 
     m_dataLogger = MessageLogger::getInstance();
     m_dataLogger->setTextEdit(ui->plainTextEdit);
-
-    m_imageProcessManager = new ImageProcessManager;
-
     m_logName = "ScanClientGui : ";
 
     m_imageWidth = 255;         //Image resolution
@@ -101,6 +98,11 @@ void ScanClientGui::processData()
     m_iamBusy = false;
 }
 
+/***********************************************************************
+*
+*
+*
+***********************************************************************/
 void ScanClientGui::scanStart()
 {
     qInfo() << m_logName + "send start scan";
@@ -176,11 +178,21 @@ void ScanClientGui::scanStop()
     tcpSendData();
 }
 
+/***********************************************************************
+*
+*
+*
+***********************************************************************/
 void ScanClientGui::setScanProgress()
 {
 
 }
 
+/***********************************************************************
+*
+*
+*
+***********************************************************************/
 void ScanClientGui::getScanData()
 {          
     if(!m_isScanStopped)
@@ -362,6 +374,8 @@ void ScanClientGui::buildMainGui()
     buildArrayTab();
     buildTcpClient();
     buildActuatorControl();
+
+    m_imageProcessManager = new ImageProcessManager;
 
     ui->scatterPlot->setAxisRange(0,0,15);
     ui->scatterPlot->setAxisRange(1,0,6);
