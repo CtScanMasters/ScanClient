@@ -49,6 +49,8 @@ QImage ImageProcessor::processData(QVector<quint16> *scanData, quint16 scanNumbe
         createScanSumImage(i);
     }
 
+    m_imageCalculator.thresHoldImage(m_sumImage);
+
     QString imageTag;
     QDateTime dateTime;
     dateTime = QDateTime::currentDateTime();
@@ -57,10 +59,10 @@ QImage ImageProcessor::processData(QVector<quint16> *scanData, quint16 scanNumbe
 
     QPainter p;
     p.begin(&m_sumImage);
-    p.setPen(QPen(Qt::white));
+    p.setPen(QPen(Qt::white, 2));
     p.setFont(QFont("Times", 8, QFont::Bold));
     p.drawText(20,20,imageTag);
-    p.drawEllipse(71,71,240,240);
+    p.drawEllipse(72,72,240,240);
     p.end();
 
     clearSumImage();
@@ -106,13 +108,12 @@ void ImageProcessor::createArraySumImage(quint16 arrayNumber)
         p.begin(m_sumImageVector.at(arrayNumber));
         p.setPen(pen);
         p.setFont(QFont("Times", 8, QFont::Bold));
-        p.drawText(20,127,QString::number(arrayNumber));
+        p.drawText(10,128,QString::number(arrayNumber));
 
-        pen.setColor(qRgb(50,50,50));
+        pen.setColor(qRgb(205,205,205));
         p.setPen(pen);
         p.drawRect(5,5,245,245);
         p.end();
-
     }
 }
 

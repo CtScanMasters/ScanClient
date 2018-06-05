@@ -30,6 +30,10 @@ public:
 private slots:
     void finishedProcessing(quint16 scanNumber);
 
+signals:
+    void startProcessing(quint16);
+    void processingDone();
+
 };
 
 #endif // IMAGEPROCESSMANAGER_H

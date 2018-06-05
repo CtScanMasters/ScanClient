@@ -39,7 +39,7 @@ quint64 SocketHandler::handleSendData(QTcpSocket *tcpSocket, QByteArray &byteArr
 
     quint64 sendDataSize = tcpSocket->write(block);
 
-    qInfo() << m_logName + "handleSendData: " <<QString("Set: %1 bytes to %2")
+    qInfo() << m_logName + "handleSendData: " <<QString("Send: %1 bytes to %2")
                  .arg(sendDataSize).arg(tcpSocket->peerAddress().toString());
 
     return sendDataSize;

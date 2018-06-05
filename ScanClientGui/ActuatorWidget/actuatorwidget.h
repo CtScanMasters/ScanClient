@@ -33,11 +33,13 @@ private slots:
     void jogForward();
     void jogBack();
     void homeActuator();
+    void stopMovement();
 
 signals:
     void jogForwardSignal();
     void jogBackSignal();
     void homeActuatorSignal();
+    void stopMovementSignal();
 
 };
 

@@ -16,8 +16,10 @@ ScanWidget::ScanWidget(QWidget *parent) :
 
     m_startScanButton->setText("Start");
     m_startScanButton->setToolTip("initiate scan sequence");
+    m_startScanButton->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     m_stopScanButton->setText("Stop");
     m_stopScanButton->setToolTip("stop running scan sequence");
+    m_stopScanButton->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     m_statusLabel->setText("Status: ");    
     m_progressBar->setValue(0);
     m_progressBar->setAlignment(Qt::AlignCenter);

@@ -34,14 +34,17 @@ ActuatorWidget::ActuatorWidget(QWidget *parent) :
     m_mainGridlayout->addWidget(m_statusLineEdit,   0, 2, 1, 4);
     m_mainGridlayout->addWidget(m_positionLabel,    1, 0, 2, 2);
     m_mainGridlayout->addWidget(m_positionLineEdit, 1, 2, 2, 4);
-    m_mainGridlayout->addWidget(m_jogBackButton,    3, 0, 1, 2);
-    m_mainGridlayout->addWidget(m_homeButton,       3, 2, 1, 2);
-    m_mainGridlayout->addWidget(m_jogForwardButton, 3, 4, 1, 2);
+    m_mainGridlayout->addWidget(m_jogBackButton,    3, 0, 2, 2);
+    m_mainGridlayout->addWidget(m_homeButton,       3, 2, 2, 2);
+    m_mainGridlayout->addWidget(m_jogForwardButton, 3, 4, 2, 2);
 
 
-    connect(m_jogForwardButton, SIGNAL(clicked(bool)), this, SLOT(jogForward()));
-    connect(m_jogBackButton, SIGNAL(clicked(bool)), this, SLOT(jogBack()));
+    connect(m_jogForwardButton, SIGNAL(pressed()), this, SLOT(jogForward()));
+    connect(m_jogForwardButton, SIGNAL(released()), this, SLOT(stopMovement()));
+    connect(m_jogBackButton, SIGNAL(pressed()), this, SLOT(jogBack()));
+    connect(m_jogBackButton, SIGNAL(released()), this, SLOT(stopMovement()));
     connect(m_homeButton, SIGNAL(clicked(bool)), this, SLOT(homeActuator()));
+
 
     setLayout(m_mainGridlayout);
 
@@ -80,4 +83,10 @@ void ActuatorWidget::setStatus(QString status)
 {
     qInfo() << m_logName + "status changed: " + status;
     m_statusLineEdit->setText(status);
+}
+
+void ActuatorWidget::stopMovement()
+{
+    qInfo() << m_logName + "stop actuator";
+    emit stopMovementSignal();
 }

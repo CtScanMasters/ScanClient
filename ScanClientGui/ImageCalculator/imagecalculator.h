@@ -12,6 +12,7 @@ public:
     void calculateBeam(QVector<quint16> sensorIntensityList, quint16 sourceMask, QImage &image);
     void mergeImages(QImage &image, double angle, QImage &destinationImage);
     double getLinearFunction(double a, double X, double b);
+    void thresHoldImage(QImage &image);
 
 private:
     QString m_logName;

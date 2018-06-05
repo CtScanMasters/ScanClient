@@ -64,6 +64,7 @@ void ImageProcessManager::processScanData(QVector<QVector<quint16>> *scanData, q
 void ImageProcessManager::startNewTask()
 {
     qInfo() << m_logName + QString("processScanData scan %1").arg(m_scanIterator);
+    emit startProcessing(m_scanIterator);
     connect(m_processTaskVector.at(m_scanIterator), SIGNAL(done(quint16)), this, SLOT(finishedProcessing(quint16)));
     m_threadPool->start(m_processTaskVector.at(m_scanIterator));
     m_scanIterator++;
@@ -76,6 +77,10 @@ void ImageProcessManager::finishedProcessing(quint16 scanNumber)
     if(m_scanIterator < m_numberOfScans)
     {
         startNewTask();
+    }
+    else
+    {
+        emit processingDone();
     }
 
 }

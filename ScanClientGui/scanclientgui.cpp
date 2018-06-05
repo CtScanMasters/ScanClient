@@ -22,7 +22,7 @@ ScanClientGui::ScanClientGui(QWidget *parent) :
     m_dataLogger->setTextEdit(ui->plainTextEdit);
     m_logName = "ScanClientGui : ";
 
-    m_imageWidth = 255;         //Image resolution
+    m_imageWidth = 256;         //Image resolution
 
     m_arrayCount = 8;
     m_numberOfScansPerArray = 8;
@@ -33,10 +33,12 @@ ScanClientGui::ScanClientGui(QWidget *parent) :
     m_dataEnd = true;
     m_sourceMask = 0;
     m_scanDataSize = 11;
-    m_numberOfscans = 200;
+    m_numberOfscans = 100;
     m_scanDataOffset = m_numberOfScansPerArray * m_scanDataSize;
+    m_actuatorIsmoving = false;
 
     buildMainGui();
+
 }
 
 /***********************************************************************
@@ -107,59 +109,59 @@ void ScanClientGui::scanStart()
 {
     qInfo() << m_logName + "send start scan";
 
-//    m_bufferOut.clear();
-//    m_bufferIn.clear();
-//    m_dataBufferInList.clear();
-//    m_isScanStopped = false;
-//    m_dataEnd = false;
-//    m_bufferOut.append(COMMAND_SCAN_START);
-//    tcpSendData();
+    m_bufferOut.clear();
+    m_bufferIn.clear();
+    m_dataBufferInList.clear();
+    m_isScanStopped = false;
+    m_dataEnd = false;
+    m_bufferOut.append(COMMAND_SCAN_START);
+    tcpSendData();
 
 /*******************************************************************************/
 
-    for(quint16 scans = 0; scans < m_numberOfscans; scans++)
-    {
-        QByteArray byteArray;
-        quint8 byte1 = 0;
-        quint8 byte2 = 0;
+//    for(quint16 scans = 0; scans < m_numberOfscans; scans++)
+//    {
+//        QByteArray byteArray;
+//        quint8 byte1 = 0;
+//        quint8 byte2 = 0;
 
-        byteArray.append(0x05);
+//        byteArray.append(0x05);
 
-        for(quint16 array = 0; array < 8; array++)
-        {
-            for(quint16 source = 0; source < 8; source++)
-            {
-                byte1 = (scans >> 8) & 0xFF;
-                byte2 = scans & 0xFF;
-                byteArray.append(byte1);
-                byteArray.append(byte2);
+//        for(quint16 array = 0; array < 8; array++)
+//        {
+//            for(quint16 source = 0; source < 8; source++)
+//            {
+//                byte1 = (scans >> 8) & 0xFF;
+//                byte2 = scans & 0xFF;
+//                byteArray.append(byte1);
+//                byteArray.append(byte2);
 
-                byte1 = (array >> 8) & 0xFF;
-                byte2 = array & 0xFF;
-                byteArray.append(byte1);
-                byteArray.append(byte2);
+//                byte1 = (array >> 8) & 0xFF;
+//                byte2 = array & 0xFF;
+//                byteArray.append(byte1);
+//                byteArray.append(byte2);
 
-                byte1 = (source >> 8) & 0xFF;
-                byte2 = source & 0xFF;
-                byteArray.append(byte1);
-                byteArray.append(byte2);
+//                byte1 = (source >> 8) & 0xFF;
+//                byte2 = source & 0xFF;
+//                byteArray.append(byte1);
+//                byteArray.append(byte2);
 
-                for(quint16 sensor = 0; sensor < 8; sensor++)
-                {
-                    quint16 data = sensor * scans * 5;
-                    byte1 = (data >> 8) & 0xFF;
-                    byte2 = data & 0xFF;
-                    byteArray.append(byte1);
-                    byteArray.append(byte2);
-                }
-            }
+//                for(quint16 sensor = 0; sensor < 8; sensor++)
+//                {
+//                    quint16 data = sensor * scans * 5;
+//                    byte1 = (data >> 8) & 0xFF;
+//                    byte2 = data & 0xFF;
+//                    byteArray.append(byte1);
+//                    byteArray.append(byte2);
+//                }
+//            }
 
-        }
+//        }
 
-        m_dataBufferInList.append(byteArray);
-    }
+//        m_dataBufferInList.append(byteArray);
+//    }
 
-    prepareData();
+//    prepareData();
 
 /*******************************************************************************/
 }
@@ -266,9 +268,12 @@ void ScanClientGui::dataEnd()
 ***********************************************************************/
 void ScanClientGui::actuatorJogBack()
 {
-//    m_dataBufferOut.append(0x01);
-//    m_dataBufferOut.append(0x01);
-//    tcpSendData();
+    if(!m_actuatorIsmoving)
+    {
+        m_actuatorIsmoving  = true;
+        m_bufferOut.append(COMMAND_ACTUATOR_BACKWARD);
+        tcpSendData();
+    }
 }
 
 /***********************************************************************
@@ -278,9 +283,12 @@ void ScanClientGui::actuatorJogBack()
 ***********************************************************************/
 void ScanClientGui::actuatorJogForward()
 {
-//    m_dataBufferOut.append(0x01);
-//    m_dataBufferOut.append(0x02);
-//    tcpSendData();
+    if(!m_actuatorIsmoving)
+    {
+        m_actuatorIsmoving  = true;
+        m_bufferOut.append(COMMAND_ACTUATOR_FORWARD);
+        tcpSendData();
+    }
 }
 
 /***********************************************************************
@@ -290,9 +298,21 @@ void ScanClientGui::actuatorJogForward()
 ***********************************************************************/
 void ScanClientGui::actuatorHome()
 {
-//    m_dataBufferOut.append(0x01);
-//    m_dataBufferOut.append(0x03);
-//    tcpSendData();
+    m_bufferOut.append(COMMAND_ACTUATOR_HOME);
+    tcpSendData();
+}
+
+/***********************************************************************
+*
+*
+*
+***********************************************************************/
+void ScanClientGui::actuatorStop()
+{
+    m_actuatorIsmoving = false;
+    m_bufferOut.append(COMMAND_ACTUATOR_STOP);
+    qWarning() << "Stop the d'em thing";
+    tcpSendData();
 }
 
 /***********************************************************************
@@ -383,6 +403,8 @@ void ScanClientGui::buildMainGui()
 
     connect(ui->scanControlWidget, SIGNAL(startScanSignal()), this, SLOT(scanStart()));
     connect(ui->scanControlWidget, SIGNAL(stopScanSignal()), this, SLOT(scanStop()));
+    connect(m_imageProcessManager, SIGNAL(startProcessing(quint16)), this, SLOT(updateImageProcessStatus(quint16)));
+    connect(m_imageProcessManager, SIGNAL(processingDone()), this, SLOT(imageProcessingDone()));
 }
 
 /***********************************************************************
@@ -525,6 +547,7 @@ void ScanClientGui::buildActuatorControl()
     connect(ui->actuatorControlWidget, SIGNAL(jogBackSignal()), this, SLOT(actuatorJogBack()));
     connect(ui->actuatorControlWidget, SIGNAL(jogForwardSignal()), this, SLOT(actuatorJogForward()));
     connect(ui->actuatorControlWidget, SIGNAL(homeActuatorSignal()), this, SLOT(actuatorHome()));
+    connect(ui->actuatorControlWidget, SIGNAL(stopMovementSignal()), this, SLOT(actuatorStop()));
 }
 
 /***********************************************************************
@@ -582,6 +605,27 @@ void ScanClientGui::drawGraph(QList<uint16_t> sensorValueList, quint8 source)
 *
 *
 ***********************************************************************/
+void ScanClientGui::updateImageProcessStatus(quint16 imageNumber)
+{
+    quint8 progress = ((double)imageNumber / m_numberOfscans) * 100;
+    ui->scanControlWidget->setStatus("processing images", progress);
+}
+
+/***********************************************************************
+*
+*
+*
+***********************************************************************/
+void ScanClientGui::imageProcessingDone()
+{
+    ui->scanControlWidget->setStatus("finished processing", 100);
+}
+
+/***********************************************************************
+*
+*
+*
+***********************************************************************/
 void ScanClientGui::commandHandler(quint16 command)
 {
     switch(command)
@@ -618,6 +662,9 @@ void ScanClientGui::commandHandler(quint16 command)
         break;
     case COMMAND_ACTUATOR_HOME:
         actuatorHome();
+        break;
+    case COMMAND_ACTUATOR_STOP:
+        actuatorStop();
         break;
     case COMMAND_SENSOR_VALUE:
         arrayGetSensor();

@@ -124,3 +124,18 @@ QColor ImageCalculator::calculateColorSum(QColor &color1, QColor &color2)
     return(QColor(r1, r1, r1));
 }
 
+void ImageCalculator::thresHoldImage(QImage &image)
+{
+    for(int x = 0; x < image.width(); x++)
+    {
+        for(int y = 0; y < image.height(); y++)
+        {
+            QColor color1 = image.pixelColor(x, y);
+            if(color1.red() < 200)
+            {
+                image.setPixelColor(x ,y, qRgb(0,0,0));
+            }
+
+        }
+    }
+}

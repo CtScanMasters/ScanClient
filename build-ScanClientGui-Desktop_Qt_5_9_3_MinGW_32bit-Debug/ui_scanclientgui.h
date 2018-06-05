@@ -27,7 +27,6 @@
 #include <QtWidgets/QWidget>
 #include "3DScatterWidget\scatterwidget.h"
 #include "ActuatorWidget\actuatorwidget.h"
-#include "FileHandlerWidget\filehandlerwidget.h"
 #include "ScanWidget\scanwidget.h"
 #include "TcpClientWidget\tcpclientwidget.h"
 
@@ -50,22 +49,19 @@ public:
     QHBoxLayout *horizontalLayout_2;
     QGroupBox *groupBox_2;
     QGridLayout *gridLayout_2;
-    QGroupBox *fileHandlerBox;
-    QGridLayout *gridLayout_3;
-    FileHandlerWidget *fileHandlerWidget;
-    QGroupBox *scanBox;
-    QGridLayout *gridLayout_4;
-    ScanWidget *scanControlWidget;
     QGroupBox *actuatorBox;
     QGridLayout *gridLayout_5;
     ActuatorWidget *actuatorControlWidget;
+    QGroupBox *tcpBox;
+    QGridLayout *gridLayout_6;
+    TcpClientWidget *tcpControlWidget;
     QGroupBox *groupBox;
     QGridLayout *gridLayout_9;
     QLabel *label;
     QPlainTextEdit *plainTextEdit;
-    QGroupBox *tcpBox;
-    QGridLayout *gridLayout_6;
-    TcpClientWidget *tcpControlWidget;
+    QGroupBox *scanBox;
+    QGridLayout *gridLayout_4;
+    ScanWidget *scanControlWidget;
     QSpacerItem *verticalSpacer;
     QTabWidget *tabWidget;
     QWidget *scanImaging;
@@ -136,7 +132,7 @@ public:
 "}\n"
 "\n"
 "QProgressBar::chunk:horizontal {\n"
-"        background: qlineargradient(spread:pad, x1:1, y1:0.346591, x2:0, y2:1, stop:0.0730337 rgba(103, 16, 115, 255), stop:0.983146 rgba(169, 169, 169, 255));\n"
+"        background: qlineargradient(spread:pad, x1:0.981157, y1:0.022, x2:0, y2:1, stop:0 rgba(145, 51, 143, 255), stop:1 rgba(255, 255, 255, 255));\n"
 "        border-radius: 5px;\n"
 "}\n"
 "\n"
@@ -159,8 +155,8 @@ public:
 "    top: 1px;\n"
 "}\n"
 "\n"
-"QTabWidget::"
-                        "tab-bar:bottom {\n"
+"QTabWidget::tab-bar:bot"
+                        "tom {\n"
 "    bottom: 1px;\n"
 "}\n"
 "\n"
@@ -202,8 +198,8 @@ public:
 "    margin-top: 3px;\n"
 "}\n"
 "\n"
-""
-                        "QTabBar::tab:bottom:!selected {\n"
+"QTabBar::"
+                        "tab:bottom:!selected {\n"
 "    margin-bottom: 3px;\n"
 "}\n"
 "\n"
@@ -249,8 +245,8 @@ public:
 "}\n"
 "\n"
 "QTabBar::tab:left:last, QTabBar::tab:right:last,\n"
-"QT"
-                        "abBar::tab:left:only-one, QTabBar::tab:right:only-one {\n"
+"QTabBar::ta"
+                        "b:left:only-one, QTabBar::tab:right:only-one {\n"
 "    margin-bottom: 0;\n"
 "}\n"
 ""));
@@ -330,61 +326,17 @@ public:
         sizePolicy1.setVerticalStretch(0);
         sizePolicy1.setHeightForWidth(groupBox_2->sizePolicy().hasHeightForWidth());
         groupBox_2->setSizePolicy(sizePolicy1);
-        groupBox_2->setMinimumSize(QSize(600, 0));
+        groupBox_2->setMinimumSize(QSize(500, 0));
         groupBox_2->setMaximumSize(QSize(500, 16777215));
         gridLayout_2 = new QGridLayout(groupBox_2);
         gridLayout_2->setSpacing(6);
         gridLayout_2->setContentsMargins(11, 11, 11, 11);
         gridLayout_2->setObjectName(QStringLiteral("gridLayout_2"));
-        fileHandlerBox = new QGroupBox(groupBox_2);
-        fileHandlerBox->setObjectName(QStringLiteral("fileHandlerBox"));
+        actuatorBox = new QGroupBox(groupBox_2);
+        actuatorBox->setObjectName(QStringLiteral("actuatorBox"));
         QSizePolicy sizePolicy2(QSizePolicy::Minimum, QSizePolicy::Minimum);
         sizePolicy2.setHorizontalStretch(0);
         sizePolicy2.setVerticalStretch(0);
-        sizePolicy2.setHeightForWidth(fileHandlerBox->sizePolicy().hasHeightForWidth());
-        fileHandlerBox->setSizePolicy(sizePolicy2);
-        fileHandlerBox->setStyleSheet(QLatin1String("QGroupBox {\n"
-"        background-color: rgb(0, 0, 0);\n"
-"        margin-top: 2em;\n"
-"        border-radius: 5px;\n"
-"        border: 1px solid rgb(255, 255, 255);\n"
-"}"));
-        gridLayout_3 = new QGridLayout(fileHandlerBox);
-        gridLayout_3->setSpacing(6);
-        gridLayout_3->setContentsMargins(11, 11, 11, 11);
-        gridLayout_3->setObjectName(QStringLiteral("gridLayout_3"));
-        fileHandlerWidget = new FileHandlerWidget(fileHandlerBox);
-        fileHandlerWidget->setObjectName(QStringLiteral("fileHandlerWidget"));
-
-        gridLayout_3->addWidget(fileHandlerWidget, 0, 0, 1, 1);
-
-
-        gridLayout_2->addWidget(fileHandlerBox, 1, 1, 1, 1);
-
-        scanBox = new QGroupBox(groupBox_2);
-        scanBox->setObjectName(QStringLiteral("scanBox"));
-        sizePolicy2.setHeightForWidth(scanBox->sizePolicy().hasHeightForWidth());
-        scanBox->setSizePolicy(sizePolicy2);
-        scanBox->setStyleSheet(QLatin1String("QGroupBox {\n"
-"        background-color: rgb(0, 0, 0);\n"
-"        margin-top: 2em;\n"
-"        border-radius: 5px;\n"
-"        border: 1px solid rgb(255, 255, 255);\n"
-"}"));
-        gridLayout_4 = new QGridLayout(scanBox);
-        gridLayout_4->setSpacing(6);
-        gridLayout_4->setContentsMargins(11, 11, 11, 11);
-        gridLayout_4->setObjectName(QStringLiteral("gridLayout_4"));
-        scanControlWidget = new ScanWidget(scanBox);
-        scanControlWidget->setObjectName(QStringLiteral("scanControlWidget"));
-
-        gridLayout_4->addWidget(scanControlWidget, 0, 0, 1, 1);
-
-
-        gridLayout_2->addWidget(scanBox, 2, 1, 1, 1);
-
-        actuatorBox = new QGroupBox(groupBox_2);
-        actuatorBox->setObjectName(QStringLiteral("actuatorBox"));
         sizePolicy2.setHeightForWidth(actuatorBox->sizePolicy().hasHeightForWidth());
         actuatorBox->setSizePolicy(sizePolicy2);
         actuatorBox->setStyleSheet(QLatin1String("QGroupBox {\n"
@@ -403,7 +355,29 @@ public:
         gridLayout_5->addWidget(actuatorControlWidget, 0, 0, 1, 1);
 
 
-        gridLayout_2->addWidget(actuatorBox, 2, 0, 1, 1);
+        gridLayout_2->addWidget(actuatorBox, 1, 0, 1, 1);
+
+        tcpBox = new QGroupBox(groupBox_2);
+        tcpBox->setObjectName(QStringLiteral("tcpBox"));
+        sizePolicy2.setHeightForWidth(tcpBox->sizePolicy().hasHeightForWidth());
+        tcpBox->setSizePolicy(sizePolicy2);
+        tcpBox->setStyleSheet(QLatin1String("QGroupBox {\n"
+"        background-color: rgb(0, 0, 0);\n"
+"        margin-top: 2em;\n"
+"        border-radius: 5px;\n"
+"        border: 1px solid rgb(255, 255, 255);\n"
+"}"));
+        gridLayout_6 = new QGridLayout(tcpBox);
+        gridLayout_6->setSpacing(6);
+        gridLayout_6->setContentsMargins(11, 11, 11, 11);
+        gridLayout_6->setObjectName(QStringLiteral("gridLayout_6"));
+        tcpControlWidget = new TcpClientWidget(tcpBox);
+        tcpControlWidget->setObjectName(QStringLiteral("tcpControlWidget"));
+
+        gridLayout_6->addWidget(tcpControlWidget, 0, 0, 1, 1);
+
+
+        gridLayout_2->addWidget(tcpBox, 0, 0, 1, 1);
 
         groupBox = new QGroupBox(groupBox_2);
         groupBox->setObjectName(QStringLiteral("groupBox"));
@@ -412,7 +386,7 @@ public:
         sizePolicy3.setVerticalStretch(0);
         sizePolicy3.setHeightForWidth(groupBox->sizePolicy().hasHeightForWidth());
         groupBox->setSizePolicy(sizePolicy3);
-        groupBox->setMinimumSize(QSize(500, 0));
+        groupBox->setMinimumSize(QSize(400, 0));
         groupBox->setMaximumSize(QSize(16777215, 16777215));
         groupBox->setStyleSheet(QLatin1String("QMainWindow{\n"
 "        background-color:qradialgradient(spread:reflect, cx:0.519, cy:0.540437, radius:0.442, fx:0.215, fy:0.848256, stop:0.808096 rgba(0, 0, 0, 255), stop:1 rgba(138, 0, 137, 255));\n"
@@ -593,36 +567,36 @@ public:
 
         plainTextEdit = new QPlainTextEdit(groupBox);
         plainTextEdit->setObjectName(QStringLiteral("plainTextEdit"));
-        plainTextEdit->setMinimumSize(QSize(500, 0));
+        plainTextEdit->setMinimumSize(QSize(400, 0));
 
         gridLayout_9->addWidget(plainTextEdit, 0, 0, 1, 1);
 
 
-        gridLayout_2->addWidget(groupBox, 4, 0, 1, 2);
+        gridLayout_2->addWidget(groupBox, 4, 0, 1, 1);
 
-        tcpBox = new QGroupBox(groupBox_2);
-        tcpBox->setObjectName(QStringLiteral("tcpBox"));
-        sizePolicy2.setHeightForWidth(tcpBox->sizePolicy().hasHeightForWidth());
-        tcpBox->setSizePolicy(sizePolicy2);
-        tcpBox->setStyleSheet(QLatin1String("QGroupBox {\n"
+        scanBox = new QGroupBox(groupBox_2);
+        scanBox->setObjectName(QStringLiteral("scanBox"));
+        sizePolicy2.setHeightForWidth(scanBox->sizePolicy().hasHeightForWidth());
+        scanBox->setSizePolicy(sizePolicy2);
+        scanBox->setStyleSheet(QLatin1String("QGroupBox {\n"
 "        background-color: rgb(0, 0, 0);\n"
 "        margin-top: 2em;\n"
 "        border-radius: 5px;\n"
 "        border: 1px solid rgb(255, 255, 255);\n"
 "}"));
-        gridLayout_6 = new QGridLayout(tcpBox);
-        gridLayout_6->setSpacing(6);
-        gridLayout_6->setContentsMargins(11, 11, 11, 11);
-        gridLayout_6->setObjectName(QStringLiteral("gridLayout_6"));
-        tcpControlWidget = new TcpClientWidget(tcpBox);
-        tcpControlWidget->setObjectName(QStringLiteral("tcpControlWidget"));
+        gridLayout_4 = new QGridLayout(scanBox);
+        gridLayout_4->setSpacing(6);
+        gridLayout_4->setContentsMargins(11, 11, 11, 11);
+        gridLayout_4->setObjectName(QStringLiteral("gridLayout_4"));
+        scanControlWidget = new ScanWidget(scanBox);
+        scanControlWidget->setObjectName(QStringLiteral("scanControlWidget"));
 
-        gridLayout_6->addWidget(tcpControlWidget, 0, 0, 1, 1);
+        gridLayout_4->addWidget(scanControlWidget, 0, 0, 1, 1);
 
 
-        gridLayout_2->addWidget(tcpBox, 1, 0, 1, 1);
+        gridLayout_2->addWidget(scanBox, 2, 0, 1, 1);
 
-        verticalSpacer = new QSpacerItem(17, 338, QSizePolicy::Minimum, QSizePolicy::Expanding);
+        verticalSpacer = new QSpacerItem(17, 100, QSizePolicy::Minimum, QSizePolicy::Minimum);
 
         gridLayout_2->addItem(verticalSpacer, 3, 0, 1, 1);
 
@@ -732,12 +706,11 @@ public:
 #endif // QT_NO_TOOLTIP
         pushButton->setText(QApplication::translate("ScanClientGui", "X", Q_NULLPTR));
         groupBox_2->setTitle(QString());
-        fileHandlerBox->setTitle(QApplication::translate("ScanClientGui", "File handler", Q_NULLPTR));
-        scanBox->setTitle(QApplication::translate("ScanClientGui", "Scan control", Q_NULLPTR));
         actuatorBox->setTitle(QApplication::translate("ScanClientGui", "Actuator control", Q_NULLPTR));
+        tcpBox->setTitle(QApplication::translate("ScanClientGui", "Connection", Q_NULLPTR));
         groupBox->setTitle(QApplication::translate("ScanClientGui", "Log", Q_NULLPTR));
         label->setText(QApplication::translate("ScanClientGui", "by CT ScanMasters 2018", Q_NULLPTR));
-        tcpBox->setTitle(QApplication::translate("ScanClientGui", "Connection", Q_NULLPTR));
+        scanBox->setTitle(QApplication::translate("ScanClientGui", "Scan control", Q_NULLPTR));
         groupBox_3->setTitle(QApplication::translate("ScanClientGui", "Scan image", Q_NULLPTR));
         imagingWidget->setText(QApplication::translate("ScanClientGui", "<html><head/><body><p><img src=\":/ScanMaster pic.png\"/></p></body></html>", Q_NULLPTR));
         tabWidget->setTabText(tabWidget->indexOf(scanImaging), QApplication::translate("ScanClientGui", "Scan Imaging", Q_NULLPTR));

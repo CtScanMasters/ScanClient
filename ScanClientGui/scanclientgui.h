@@ -49,6 +49,7 @@ private:
         COMMAND_ACTUATOR_BACKWARD,
         COMMAND_ACTUATOR_POSITION,
         COMMAND_ACTUATOR_HOME,
+        COMMAND_ACTUATOR_STOP,
         COMMAND_SENSOR_VALUE,
         COMMAND_SOURCE_VALUE,
         COMMAND_READY,
@@ -72,6 +73,7 @@ private:
     bool m_dataAvailable;
     bool m_isScanStopped;
     bool m_dataEnd;
+    bool m_actuatorIsmoving;
     QByteArray m_bufferOut;
     QByteArray m_bufferIn;
 
@@ -107,12 +109,17 @@ private slots:
     void actuatorJogBack();
     void actuatorPosition();
     void actuatorHome();
+    void actuatorStop();
     void sendNotReady();
     void sendReady();
     void newScanData();
     void dataDelivery();
     void dataEnd();
     void prepareData();
+
+    void updateImageProcessStatus(quint16 imageNumber);
+    void imageProcessingDone();
+
 
     void tcpConnect();
     void tcpDisconnect();
