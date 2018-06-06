@@ -19,6 +19,7 @@ private:
     QVector<ImageProcessTask*> m_activeTasks;
     quint16 m_scanIterator;
     quint16 m_numberOfScans;
+    void clearData();
 
     QVector<ImageProcessTask *> m_processTaskVector;
 
@@ -26,6 +27,7 @@ public:
     ImageProcessManager();
     void processScanData(QVector<QVector<quint16>> *scanData, quint16 numberOfScans);
     void startNewTask();
+
 
 private slots:
     void finishedProcessing(quint16 scanNumber);

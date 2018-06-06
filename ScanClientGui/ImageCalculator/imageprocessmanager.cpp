@@ -21,6 +21,8 @@ ImageProcessManager::ImageProcessManager()
 
 void ImageProcessManager::processScanData(QVector<QVector<quint16>> *scanData, quint16 numberOfScans)
 {
+    clearData();
+
     m_numberOfScans = numberOfScans;
     m_scanIterator = 0;
 
@@ -81,6 +83,16 @@ void ImageProcessManager::finishedProcessing(quint16 scanNumber)
     else
     {
         emit processingDone();
+        qWarning() << "Size: " << m_processTaskVector.size();
     }
 
+}
+
+void ImageProcessManager::clearData()
+{
+    for(int i = 0; i < m_processTaskVector.size(); i++)
+    {
+        delete m_processTaskVector.at(i);
+    }
+    m_processTaskVector.clear();
 }
