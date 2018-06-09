@@ -33,7 +33,7 @@ ScanClientGui::ScanClientGui(QWidget *parent) :
     m_dataEnd = true;
     m_sourceMask = 0;
     m_scanDataSize = 11;
-    m_numberOfscans = 50;
+    m_numberOfscans = 100;
     m_scanDataOffset = m_numberOfScansPerArray * m_scanDataSize;
     m_actuatorIsmoving = false;
 

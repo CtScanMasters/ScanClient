@@ -29,6 +29,7 @@
 #include "ActuatorWidget\actuatorwidget.h"
 #include "ScanWidget\scanwidget.h"
 #include "TcpClientWidget\tcpclientwidget.h"
+#include "filehandlerwidget/imageviewerwidget.h"
 
 QT_BEGIN_NAMESPACE
 
@@ -68,7 +69,7 @@ public:
     QGridLayout *gridLayout_10;
     QGroupBox *groupBox_3;
     QGridLayout *gridLayout_11;
-    QLabel *imagingWidget;
+    ImageViewerWidget *imageViewerWidget;
     QSlider *verticalSlider;
     QWidget *scanData;
     QGridLayout *gridLayout_7;
@@ -614,15 +615,22 @@ public:
         gridLayout_10->setObjectName(QStringLiteral("gridLayout_10"));
         groupBox_3 = new QGroupBox(scanImaging);
         groupBox_3->setObjectName(QStringLiteral("groupBox_3"));
+        QSizePolicy sizePolicy4(QSizePolicy::Expanding, QSizePolicy::Expanding);
+        sizePolicy4.setHorizontalStretch(0);
+        sizePolicy4.setVerticalStretch(0);
+        sizePolicy4.setHeightForWidth(groupBox_3->sizePolicy().hasHeightForWidth());
+        groupBox_3->setSizePolicy(sizePolicy4);
         gridLayout_11 = new QGridLayout(groupBox_3);
         gridLayout_11->setSpacing(6);
         gridLayout_11->setContentsMargins(11, 11, 11, 11);
         gridLayout_11->setObjectName(QStringLiteral("gridLayout_11"));
-        imagingWidget = new QLabel(groupBox_3);
-        imagingWidget->setObjectName(QStringLiteral("imagingWidget"));
-        imagingWidget->setAlignment(Qt::AlignCenter);
+        imageViewerWidget = new ImageViewerWidget(groupBox_3);
+        imageViewerWidget->setObjectName(QStringLiteral("imageViewerWidget"));
+        sizePolicy4.setHeightForWidth(imageViewerWidget->sizePolicy().hasHeightForWidth());
+        imageViewerWidget->setSizePolicy(sizePolicy4);
+        imageViewerWidget->setMaximumSize(QSize(16777215, 16777215));
 
-        gridLayout_11->addWidget(imagingWidget, 0, 0, 1, 1);
+        gridLayout_11->addWidget(imageViewerWidget, 0, 0, 1, 1);
 
 
         gridLayout_10->addWidget(groupBox_3, 0, 0, 1, 1);
@@ -712,7 +720,6 @@ public:
         label->setText(QApplication::translate("ScanClientGui", "by CT ScanMasters 2018", Q_NULLPTR));
         scanBox->setTitle(QApplication::translate("ScanClientGui", "Scan control", Q_NULLPTR));
         groupBox_3->setTitle(QApplication::translate("ScanClientGui", "Scan image", Q_NULLPTR));
-        imagingWidget->setText(QApplication::translate("ScanClientGui", "<html><head/><body><p><img src=\":/ScanMaster pic.png\"/></p></body></html>", Q_NULLPTR));
         tabWidget->setTabText(tabWidget->indexOf(scanImaging), QApplication::translate("ScanClientGui", "Scan Imaging", Q_NULLPTR));
         scanPlot->setTitle(QApplication::translate("ScanClientGui", "3D Scan plot", Q_NULLPTR));
         tabWidget->setTabText(tabWidget->indexOf(scanData), QApplication::translate("ScanClientGui", "Scan data", Q_NULLPTR));

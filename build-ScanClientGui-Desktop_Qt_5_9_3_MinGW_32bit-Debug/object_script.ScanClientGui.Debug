@@ -14,6 +14,7 @@ INPUT(
 ./debug\imageprocessor.o
 ./debug\imageprocessmanager.o
 ./debug\imageprocesstask.o
+./debug\imageviewerwidget.o
 ./debug\qrc_resource_file.o
 ./debug\moc_scanclientgui.o
 ./debug\moc_scatterwidget.o
@@ -26,4 +27,5 @@ INPUT(
 ./debug\moc_imageprocessor.o
 ./debug\moc_imageprocessmanager.o
 ./debug\moc_imageprocesstask.o
+./debug\moc_imageviewerwidget.o
 );

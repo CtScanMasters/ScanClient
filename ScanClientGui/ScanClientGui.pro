@@ -40,7 +40,8 @@ SOURCES += \
     ImageCalculator/imagecalculator.cpp \
     ImageCalculator/imageprocessor.cpp \
     ImageCalculator/imageprocessmanager.cpp \
-    ImageCalculator/imageprocesstask.cpp
+    ImageCalculator/imageprocesstask.cpp \
+    FileHandlerWidget/imageviewerwidget.cpp
 
 HEADERS += \
         scanclientgui.h \
@@ -57,10 +58,12 @@ HEADERS += \
     commandlist.h \
     ImageCalculator/imageprocessor.h \
     ImageCalculator/imageprocessmanager.h \
-    ImageCalculator/imageprocesstask.h
+    ImageCalculator/imageprocesstask.h \
+    FileHandlerWidget/imageviewerwidget.h
 
 FORMS += \
-        scanclientgui.ui
+        scanclientgui.ui \
+    FileHandlerWidget/imageviewerwidget.ui
 
 DISTFILES += \
     Stylesheet/StylesheetCt.txt \

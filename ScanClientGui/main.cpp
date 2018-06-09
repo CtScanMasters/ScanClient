@@ -58,7 +58,7 @@ int main(int argc, char *argv[])
     qInfo() << "------------BUILD APPLICATION CT SCANMASTER-------------";
 
     ScanClientGui w;
-    w.show();
+    w.showFullScreen();
 
     return a.exec();
 }

@@ -663,17 +663,29 @@ QTabBar::tab:left:only-one, QTabBar::tab:right:only-one {
          <layout class="QGridLayout" name="gridLayout_10">
           <item row="0" column="0">
            <widget class="QGroupBox" name="groupBox_3">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="title">
              <string>Scan image</string>
             </property>
             <layout class="QGridLayout" name="gridLayout_11">
              <item row="0" column="0">
-              <widget class="QLabel" name="imagingWidget">
-               <property name="text">
-                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/ScanMaster pic.png&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              <widget class="ImageViewerWidget" name="imageViewerWidget" native="true">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
                </property>
-               <property name="alignment">
-                <set>Qt::AlignCenter</set>
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>16777215</height>
+                </size>
                </property>
               </widget>
              </item>
@@ -762,6 +774,12 @@ QTabBar::tab:left:only-one, QTabBar::tab:right:only-one {
    <class>ActuatorWidget</class>
    <extends>QWidget</extends>
    <header>ActuatorWidget\actuatorwidget.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>ImageViewerWidget</class>
+   <extends>QWidget</extends>
+   <header>filehandlerwidget/imageviewerwidget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>
