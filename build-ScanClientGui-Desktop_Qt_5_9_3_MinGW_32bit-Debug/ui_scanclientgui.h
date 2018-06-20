@@ -84,7 +84,7 @@ public:
             ScanClientGui->setObjectName(QStringLiteral("ScanClientGui"));
         ScanClientGui->resize(1800, 900);
         ScanClientGui->setStyleSheet(QLatin1String("QMainWindow{\n"
-"        background-color:qradialgradient(spread:reflect, cx:0.575364, cy:0.495, radius:0.401, fx:0.208958, fy:0.656947, stop:0.795455 rgba(0, 0, 0, 255), stop:1 rgba(111, 0, 110, 255))\n"
+"        background-color:qradialgradient(spread:reflect, cx:0.575364, cy:0.495, radius:0.401, fx:0.273, fy:0.715615, stop:0.795455 rgba(0, 0, 0, 255), stop:1 rgba(111, 0, 110, 255));\n"
 "\n"
 "}\n"
 "\n"
@@ -121,8 +121,8 @@ public:
 "\n"
 "        border: 1px solid rgb(0, 0, 0);\n"
 "        border-radius: 5px;\n"
-"        background-color:qlineargradien"
-                        "t(spread:pad, x1:1, y1:0.346591, x2:0, y2:1, stop:0.455056 rgba(141, 22, 158, 255), stop:0.983146 rgba(169, 169, 169, 255));\n"
+"        background-color:qlineargradient("
+                        "spread:pad, x1:0.307, y1:0.715545, x2:0, y2:1, stop:0 rgba(57, 144, 145, 255), stop:1 rgba(255, 255, 255, 255));\n"
 "        color: white;\n"
 "        min-height: 18px;\n"
 "}\n"
@@ -133,7 +133,7 @@ public:
 "}\n"
 "\n"
 "QProgressBar::chunk:horizontal {\n"
-"        background: qlineargradient(spread:pad, x1:0.981157, y1:0.022, x2:0, y2:1, stop:0 rgba(145, 51, 143, 255), stop:1 rgba(255, 255, 255, 255));\n"
+"        background: qlineargradient(spread:pad, x1:1, y1:0.346591, x2:0, y2:1, stop:0.455056 rgba(141, 22, 158, 255), stop:0.983146 rgba(169, 169, 169, 255));\n"
 "        border-radius: 5px;\n"
 "}\n"
 "\n"
@@ -156,8 +156,8 @@ public:
 "    top: 1px;\n"
 "}\n"
 "\n"
-"QTabWidget::tab-bar:bot"
-                        "tom {\n"
+"QTabWidget::tab-bar:botto"
+                        "m {\n"
 "    bottom: 1px;\n"
 "}\n"
 "\n"
@@ -177,7 +177,7 @@ public:
 "}\n"
 "\n"
 "QTabBar::tab:selected {\n"
-"    background: qlineargradient(spread:pad, x1:1, y1:0.346591, x2:0, y2:1, stop:0.455056 rgba(141, 22, 158, 255), stop:0.983146 rgba(169, 169, 169, 255));\n"
+"    background: qlineargradient(spread:pad, x1:0.307, y1:0.715545, x2:0, y2:1, stop:0 rgba(57, 144, 145, 255), stop:1 rgba(255, 255, 255, 255));\n"
 "        color: rgb(255,255,255);\n"
 "        font-weight: bold;\n"
 "        border-radius: 5px;\n"
@@ -199,8 +199,8 @@ public:
 "    margin-top: 3px;\n"
 "}\n"
 "\n"
-"QTabBar::"
-                        "tab:bottom:!selected {\n"
+"QTabBar::tab:bottom:!"
+                        "selected {\n"
 "    margin-bottom: 3px;\n"
 "}\n"
 "\n"
@@ -246,8 +246,8 @@ public:
 "}\n"
 "\n"
 "QTabBar::tab:left:last, QTabBar::tab:right:last,\n"
-"QTabBar::ta"
-                        "b:left:only-one, QTabBar::tab:right:only-one {\n"
+"QTabBar::tab:left:only-"
+                        "one, QTabBar::tab:right:only-one {\n"
 "    margin-bottom: 0;\n"
 "}\n"
 ""));
@@ -327,7 +327,7 @@ public:
         sizePolicy1.setVerticalStretch(0);
         sizePolicy1.setHeightForWidth(groupBox_2->sizePolicy().hasHeightForWidth());
         groupBox_2->setSizePolicy(sizePolicy1);
-        groupBox_2->setMinimumSize(QSize(500, 0));
+        groupBox_2->setMinimumSize(QSize(600, 0));
         groupBox_2->setMaximumSize(QSize(500, 16777215));
         gridLayout_2 = new QGridLayout(groupBox_2);
         gridLayout_2->setSpacing(6);
@@ -579,6 +579,7 @@ public:
         scanBox->setObjectName(QStringLiteral("scanBox"));
         sizePolicy2.setHeightForWidth(scanBox->sizePolicy().hasHeightForWidth());
         scanBox->setSizePolicy(sizePolicy2);
+        scanBox->setMaximumSize(QSize(16777215, 150));
         scanBox->setStyleSheet(QLatin1String("QGroupBox {\n"
 "        background-color: rgb(0, 0, 0);\n"
 "        margin-top: 2em;\n"
@@ -591,6 +592,7 @@ public:
         gridLayout_4->setObjectName(QStringLiteral("gridLayout_4"));
         scanControlWidget = new ScanWidget(scanBox);
         scanControlWidget->setObjectName(QStringLiteral("scanControlWidget"));
+        scanControlWidget->setMaximumSize(QSize(16777215, 100));
 
         gridLayout_4->addWidget(scanControlWidget, 0, 0, 1, 1);
 

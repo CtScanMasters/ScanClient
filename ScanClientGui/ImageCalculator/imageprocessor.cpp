@@ -49,7 +49,7 @@ QImage ImageProcessor::processData(QVector<quint16> *scanData, quint16 scanNumbe
         createScanSumImage(i);
     }
 
-    m_imageCalculator.thresHoldImage(m_sumImage);
+//    m_imageCalculator.thresHoldImage(m_sumImage);
 
     QString imageTag;
     QDateTime dateTime;

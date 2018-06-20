@@ -28,7 +28,7 @@ public slots:
 
 private:
     Ui::ImageViewerWidget *ui;
-
+    QString m_logName;
     QString m_folderPath;
     QStringList m_fileNameList;
     quint32 m_imageIterator;

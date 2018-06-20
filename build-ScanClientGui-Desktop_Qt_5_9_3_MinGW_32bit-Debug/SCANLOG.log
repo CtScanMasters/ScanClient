@@ -1,42 +1,149 @@
-2018-06-09 10:26:47:797  INFO : ------------BUILD APPLICATION CT SCANMASTER-------------
-2018-06-09 10:26:47:803  INFO : "ActuatorWidget : creating widget"
-2018-06-09 10:26:48:110  INFO : "ScanWidget : creating widget"
-2018-06-09 10:26:48:113  INFO : "ScatterWidget : creating graph"
-2018-06-09 10:26:48:463  DEBUG : OpenGL version: 4.6.0 NVIDIA 388.13
-2018-06-09 10:26:48:463  DEBUG : GLSL version: 4.60 NVIDIA
-2018-06-09 10:26:48:538  INFO : "ScatterWidget : axis 0 range set: -10 - 10"
-2018-06-09 10:26:48:538  INFO : "ScatterWidget : grid 0 main: 10 sub: 5"
-2018-06-09 10:26:48:538  INFO : "ScatterWidget : axis 1 range set: -10 - 10"
-2018-06-09 10:26:48:538  INFO : "ScatterWidget : grid 1 main: 10 sub: 5"
-2018-06-09 10:26:48:538  INFO : "ScatterWidget : axis 2 range set: -10 - 10"
-2018-06-09 10:26:48:538  INFO : "ScatterWidget : grid 2 main: 10 sub: 5"
-2018-06-09 10:26:48:538  INFO : "ScatterWidget : " setPointSize
-2018-06-09 10:26:48:552  INFO : ------------STARTING CT SCANMASTER 2018 V0.8------------
-2018-06-09 10:26:48:553  INFO : "ScanClientGui : buildArrayTab"
-2018-06-09 10:26:48:553  INFO : "ArrayWidget : creating widget"
-2018-06-09 10:26:48:555  INFO : "ArrayWidget : creating widget"
-2018-06-09 10:26:48:557  INFO : "ArrayWidget : creating widget"
-2018-06-09 10:26:48:559  INFO : "ArrayWidget : creating widget"
-2018-06-09 10:26:48:561  INFO : "ArrayWidget : creating widget"
-2018-06-09 10:26:48:563  INFO : "ArrayWidget : creating widget"
-2018-06-09 10:26:48:565  INFO : "ArrayWidget : creating widget"
-2018-06-09 10:26:48:567  INFO : "ArrayWidget : creating widget"
-2018-06-09 10:26:48:569  INFO : "ScanClientGui : buildTcpClient"
-2018-06-09 10:26:48:569  INFO : "SocketHandler : starting"
-2018-06-09 10:26:48:570  INFO : "TcpClient : starting"
-2018-06-09 10:26:48:573  INFO : "SocketHandler : handleRetreiveIpAddress: " "169.254.78.233"
-2018-06-09 10:26:48:573  INFO : "TcpClient : CLIENT IP: 169.254.78.233 READY"
-2018-06-09 10:26:48:575  INFO : "SocketHandler : handleRetreiveIpAddress: " "169.254.78.233"
-2018-06-09 10:26:48:575  INFO : "ScanClientGui : buildActuatorControl"
-2018-06-09 10:26:48:575  INFO : "ImageProcessManager: build"
-2018-06-09 10:26:48:576  INFO : "ScatterWidget : axis 0 range set: 0 - 15"
-2018-06-09 10:26:48:576  INFO : "ScatterWidget : axis 1 range set: 0 - 6"
-2018-06-09 10:26:48:576  INFO : "ScatterWidget : axis 2 range set: 0 - 5"
-2018-06-09 10:26:51:018  DEBUG : onSelectionChange (QUrl("file:///D:/HBO electrotechniek/Project CT scanner/Software/Repositories/ClientProject/ScanClient/build-ScanClientGui-Desktop_Qt_5_9_3_MinGW_32bit-Debug")) 1
-2018-06-09 10:26:51:132  DEBUG : onSelectionChange (QUrl("file:///D:/HBO electrotechniek/Project CT scanner/Software/Repositories/ClientProject/ScanClient/build-ScanClientGui-Desktop_Qt_5_9_3_MinGW_32bit-Debug")) 1
-2018-06-09 10:26:52:032  DEBUG : onSelectionChange (QUrl("file:///D:/HBO electrotechniek/Project CT scanner/Software/Repositories/ClientProject/ScanClient/build-ScanClientGui-Desktop_Qt_5_9_3_MinGW_32bit-Debug/debug")) 1
-2018-06-09 10:26:52:265  DEBUG : onSelectionChange (QUrl("file:///D:/HBO electrotechniek/Project CT scanner/Software/Repositories/ClientProject/ScanClient/build-ScanClientGui-Desktop_Qt_5_9_3_MinGW_32bit-Debug/debug")) 1
-2018-06-09 10:26:52:580  DEBUG : onSelectionChange (QUrl("file:///D:/HBO electrotechniek/Project CT scanner/Software/Repositories/ClientProject/ScanClient/build-ScanClientGui-Desktop_Qt_5_9_3_MinGW_32bit-Debug/debug/IMG000")) 1
-2018-06-09 10:27:28:495  INFO : "ScanClientGui : tcpDisconnect"
-2018-06-09 10:27:28:496  INFO : "TcpClient : disconnectFromHost"
-2018-06-09 10:27:28:496  INFO : "ScanClientGui : EXIT"
+2018-06-20 09:45:00:645  INFO : ------------BUILD APPLICATION CT SCANMASTER-------------
+2018-06-20 09:45:00:655  INFO : "ActuatorWidget : creating widget"
+2018-06-20 09:45:01:027  INFO : "ScanWidget : creating widget"
+2018-06-20 09:45:01:028  INFO : "ImageViewerWidget : build"
+2018-06-20 09:45:01:030  INFO : "ScatterWidget : creating graph"
+2018-06-20 09:45:01:099  DEBUG : OpenGL version: 4.5.0 - Build 22.20.16.4836
+2018-06-20 09:45:01:099  DEBUG : GLSL version: 4.50 - Build 22.20.16.4836
+2018-06-20 09:45:01:533  INFO : "ScatterWidget : axis 0 range set: -10 - 10"
+2018-06-20 09:45:01:533  INFO : "ScatterWidget : grid 0 main: 10 sub: 5"
+2018-06-20 09:45:01:533  INFO : "ScatterWidget : axis 1 range set: -10 - 10"
+2018-06-20 09:45:01:533  INFO : "ScatterWidget : grid 1 main: 10 sub: 5"
+2018-06-20 09:45:01:533  INFO : "ScatterWidget : axis 2 range set: -10 - 10"
+2018-06-20 09:45:01:533  INFO : "ScatterWidget : grid 2 main: 10 sub: 5"
+2018-06-20 09:45:01:533  INFO : "ScatterWidget : " setPointSize
+2018-06-20 09:45:01:547  INFO : ------------STARTING CT SCANMASTER 2018 V0.8------------
+2018-06-20 09:45:01:548  INFO : "ScanClientGui : buildArrayTab"
+2018-06-20 09:45:01:549  INFO : "ArrayWidget : creating widget"
+2018-06-20 09:45:01:551  INFO : "ArrayWidget : creating widget"
+2018-06-20 09:45:01:552  INFO : "ArrayWidget : creating widget"
+2018-06-20 09:45:01:554  INFO : "ArrayWidget : creating widget"
+2018-06-20 09:45:01:556  INFO : "ArrayWidget : creating widget"
+2018-06-20 09:45:01:558  INFO : "ArrayWidget : creating widget"
+2018-06-20 09:45:01:561  INFO : "ArrayWidget : creating widget"
+2018-06-20 09:45:01:564  INFO : "ArrayWidget : creating widget"
+2018-06-20 09:45:01:568  INFO : "ScanClientGui : buildTcpClient"
+2018-06-20 09:45:01:568  INFO : "SocketHandler : starting"
+2018-06-20 09:45:01:569  INFO : "TcpClient : starting"
+2018-06-20 09:45:01:574  INFO : "SocketHandler : handleRetreiveIpAddress: " "172.26.244.33"
+2018-06-20 09:45:01:575  INFO : "TcpClient : CLIENT IP: 172.26.244.33 READY"
+2018-06-20 09:45:01:580  INFO : "SocketHandler : handleRetreiveIpAddress: " "172.26.244.33"
+2018-06-20 09:45:01:581  INFO : "ScanClientGui : buildActuatorControl"
+2018-06-20 09:45:01:582  INFO : "ImageProcessManager: build"
+2018-06-20 09:45:01:582  INFO : "ScatterWidget : axis 0 range set: 0 - 15"
+2018-06-20 09:45:01:583  INFO : "ScatterWidget : axis 1 range set: 0 - 6"
+2018-06-20 09:45:01:583  INFO : "ScatterWidget : axis 2 range set: 0 - 5"
+2018-06-20 09:45:03:768  INFO : "ScanClientGui : tcpConnect"
+2018-06-20 09:45:03:774  INFO : "SocketHandler : hanldeSocketState: lookup state"
+2018-06-20 09:45:03:776  INFO : "SocketHandler : hanldeSocketState: connecting"
+2018-06-20 09:45:03:781  INFO : "TcpClient : connectToHost IP: 192.168.1.100 PORT: 5010"
+2018-06-20 09:45:03:783  INFO : "SocketHandler : hanldeSocketState: connected"
+2018-06-20 09:45:04:811  INFO : "ScanWidget : emitStartScanSignal"
+2018-06-20 09:45:04:812  INFO : "ScanClientGui : send start scan"
+2018-06-20 09:45:04:812  INFO : "SocketHandler : handleSendData: " "Send: 5 bytes to 192.168.1.100"
+2018-06-20 09:45:08:412  INFO : "SocketHandler : handleReceiveData: received 1 bytes from 192.168.1.100"
+2018-06-20 09:45:08:412  DEBUG : "ScanClientGui : new scan data"
+2018-06-20 09:45:08:413  DEBUG : "ScanClientGui : new scan data handle"
+2018-06-20 09:45:08:414  DEBUG : "ScanClientGui : get scan data"
+2018-06-20 09:45:08:415  INFO : "SocketHandler : handleSendData: " "Send: 5 bytes to 192.168.1.100"
+2018-06-20 09:45:08:421  INFO : "SocketHandler : handleReceiveData: received 1409 bytes from 192.168.1.100"
+2018-06-20 09:45:08:422  DEBUG : Scandata:  1409
+2018-06-20 09:45:08:423  DEBUG : "ScanClientGui : get scan data"
+2018-06-20 09:45:08:424  INFO : "SocketHandler : handleSendData: " "Send: 5 bytes to 192.168.1.100"
+2018-06-20 09:45:08:428  INFO : "SocketHandler : handleReceiveData: received 1409 bytes from 192.168.1.100"
+2018-06-20 09:45:08:429  DEBUG : Scandata:  1409
+2018-06-20 09:45:08:430  DEBUG : "ScanClientGui : get scan data"
+2018-06-20 09:45:08:430  INFO : "SocketHandler : handleSendData: " "Send: 5 bytes to 192.168.1.100"
+2018-06-20 09:45:08:435  INFO : "SocketHandler : handleReceiveData: received 1409 bytes from 192.168.1.100"
+2018-06-20 09:45:08:436  DEBUG : Scandata:  1409
+2018-06-20 09:45:08:437  DEBUG : "ScanClientGui : get scan data"
+2018-06-20 09:45:08:437  INFO : "SocketHandler : handleSendData: " "Send: 5 bytes to 192.168.1.100"
+2018-06-20 09:45:08:442  INFO : "SocketHandler : handleReceiveData: received 1409 bytes from 192.168.1.100"
+2018-06-20 09:45:08:443  DEBUG : Scandata:  1409
+2018-06-20 09:45:08:444  DEBUG : "ScanClientGui : get scan data"
+2018-06-20 09:45:08:444  INFO : "SocketHandler : handleSendData: " "Send: 5 bytes to 192.168.1.100"
+2018-06-20 09:45:08:449  INFO : "SocketHandler : handleReceiveData: received 1409 bytes from 192.168.1.100"
+2018-06-20 09:45:08:450  DEBUG : Scandata:  1409
+2018-06-20 09:45:08:451  DEBUG : "ScanClientGui : get scan data"
+2018-06-20 09:45:08:452  INFO : "SocketHandler : handleSendData: " "Send: 5 bytes to 192.168.1.100"
+2018-06-20 09:45:08:456  INFO : "SocketHandler : handleReceiveData: received 1409 bytes from 192.168.1.100"
+2018-06-20 09:45:08:457  DEBUG : Scandata:  1409
+2018-06-20 09:45:08:457  DEBUG : "ScanClientGui : get scan data"
+2018-06-20 09:45:08:458  INFO : "SocketHandler : handleSendData: " "Send: 5 bytes to 192.168.1.100"
+2018-06-20 09:45:08:462  INFO : "SocketHandler : handleReceiveData: received 1409 bytes from 192.168.1.100"
+2018-06-20 09:45:08:463  DEBUG : Scandata:  1409
+2018-06-20 09:45:08:464  DEBUG : "ScanClientGui : get scan data"
+2018-06-20 09:45:08:464  INFO : "SocketHandler : handleSendData: " "Send: 5 bytes to 192.168.1.100"
+2018-06-20 09:45:08:470  INFO : "SocketHandler : handleReceiveData: received 1409 bytes from 192.168.1.100"
+2018-06-20 09:45:08:471  DEBUG : Scandata:  1409
+2018-06-20 09:45:08:471  DEBUG : "ScanClientGui : get scan data"
+2018-06-20 09:45:08:472  INFO : "SocketHandler : handleSendData: " "Send: 5 bytes to 192.168.1.100"
+2018-06-20 09:45:08:477  INFO : "SocketHandler : handleReceiveData: received 1409 bytes from 192.168.1.100"
+2018-06-20 09:45:08:478  DEBUG : Scandata:  1409
+2018-06-20 09:45:08:479  DEBUG : "ScanClientGui : get scan data"
+2018-06-20 09:45:08:480  INFO : "SocketHandler : handleSendData: " "Send: 5 bytes to 192.168.1.100"
+2018-06-20 09:45:08:484  INFO : "SocketHandler : handleReceiveData: received 1409 bytes from 192.168.1.100"
+2018-06-20 09:45:08:485  DEBUG : Scandata:  1409
+2018-06-20 09:45:08:486  DEBUG : "ScanClientGui : get scan data"
+2018-06-20 09:45:08:486  INFO : "SocketHandler : handleSendData: " "Send: 5 bytes to 192.168.1.100"
+2018-06-20 09:45:08:493  INFO : "SocketHandler : handleReceiveData: received 1 bytes from 192.168.1.100"
+2018-06-20 09:45:08:494  DEBUG : Received data:  10
+2018-06-20 09:45:08:494  INFO : "ScanClientGui : preparing scandata"
+2018-06-20 09:45:08:495  INFO : "ScanClientGui : processdata scans: " 10
+2018-06-20 09:45:08:496  INFO : "ImageProcessManager: processScanData scan 0"
+2018-06-20 09:45:08:497  INFO : "ScanWidget : setStatus: processing images 0 %"
+2018-06-20 09:45:08:498  INFO : "ImageProcessManager: processScanData scan 1"
+2018-06-20 09:45:08:504  INFO : "ScanWidget : setStatus: processing images 10 %"
+2018-06-20 09:45:08:504  INFO : "ImageProcessManager: processScanData scan 2"
+2018-06-20 09:45:08:506  INFO : "ScanWidget : setStatus: processing images 20 %"
+2018-06-20 09:45:08:507  INFO : "ImageProcessManager: processScanData scan 3"
+2018-06-20 09:45:08:509  INFO : "ScanWidget : setStatus: processing images 30 %"
+2018-06-20 09:45:08:509  INFO : "ImageProcessManager: processScanData scan 4"
+2018-06-20 09:45:08:512  INFO : "ScanWidget : setStatus: processing images 40 %"
+2018-06-20 09:45:08:512  INFO : "ImageProcessManager: processScanData scan 5"
+2018-06-20 09:45:08:514  INFO : "ScanWidget : setStatus: processing images 50 %"
+2018-06-20 09:45:08:515  INFO : "ImageProcessManager: processScanData scan 6"
+2018-06-20 09:45:08:517  INFO : "ScanWidget : setStatus: processing images 60 %"
+2018-06-20 09:45:08:517  INFO : "ImageProcessManager: processScanData scan 7"
+2018-06-20 09:45:08:519  INFO : "ScanWidget : setStatus: processing images 70 %"
+2018-06-20 09:45:09:326  INFO : "ImageProcessManager: finished processing scan 0"
+2018-06-20 09:45:09:327  INFO : "ImageProcessManager: processScanData scan 8"
+2018-06-20 09:45:09:329  INFO : "ScanWidget : setStatus: processing images 80 %"
+2018-06-20 09:45:09:330  INFO : "ImageProcessManager: finished processing scan 1"
+2018-06-20 09:45:09:331  INFO : "ImageProcessManager: processScanData scan 9"
+2018-06-20 09:45:09:333  INFO : "ScanWidget : setStatus: processing images 90 %"
+2018-06-20 09:45:09:335  INFO : "ImageProcessManager: finished processing scan 2"
+2018-06-20 09:45:09:339  INFO : "ScanWidget : setStatus: finished processing 100 %"
+2018-06-20 09:45:09:339  WARNING : Size:  10
+2018-06-20 09:45:09:340  INFO : "ImageProcessManager: finished processing scan 4"
+2018-06-20 09:45:09:340  INFO : "ScanWidget : setStatus: finished processing 100 %"
+2018-06-20 09:45:09:340  WARNING : Size:  10
+2018-06-20 09:45:09:341  INFO : "ImageProcessManager: finished processing scan 3"
+2018-06-20 09:45:09:341  INFO : "ScanWidget : setStatus: finished processing 100 %"
+2018-06-20 09:45:09:341  WARNING : Size:  10
+2018-06-20 09:45:09:342  INFO : "ImageProcessManager: finished processing scan 6"
+2018-06-20 09:45:09:342  INFO : "ScanWidget : setStatus: finished processing 100 %"
+2018-06-20 09:45:09:342  WARNING : Size:  10
+2018-06-20 09:45:09:342  INFO : "ImageProcessManager: finished processing scan 5"
+2018-06-20 09:45:09:343  INFO : "ScanWidget : setStatus: finished processing 100 %"
+2018-06-20 09:45:09:343  WARNING : Size:  10
+2018-06-20 09:45:09:344  INFO : "ImageProcessManager: finished processing scan 7"
+2018-06-20 09:45:09:344  INFO : "ScanWidget : setStatus: finished processing 100 %"
+2018-06-20 09:45:09:344  WARNING : Size:  10
+2018-06-20 09:45:09:816  INFO : "ImageProcessManager: finished processing scan 8"
+2018-06-20 09:45:09:817  INFO : "ScanWidget : setStatus: finished processing 100 %"
+2018-06-20 09:45:09:818  WARNING : Size:  10
+2018-06-20 09:45:09:822  INFO : "ImageProcessManager: finished processing scan 9"
+2018-06-20 09:45:09:823  INFO : "ScanWidget : setStatus: finished processing 100 %"
+2018-06-20 09:45:09:824  WARNING : Size:  10
+2018-06-20 09:45:11:551  DEBUG : onSelectionChange (QUrl("file:///C:/Users/dennis/Downloads/ScanClient-master/ScanClient-master/build-ScanClientGui-Desktop_Qt_5_9_3_MinGW_32bit-Debug")) 1
+2018-06-20 09:45:11:635  DEBUG : onSelectionChange (QUrl("file:///C:/Users/dennis/Downloads/ScanClient-master/ScanClient-master/build-ScanClientGui-Desktop_Qt_5_9_3_MinGW_32bit-Debug")) 1
+2018-06-20 09:45:13:043  DEBUG : onSelectionChange (QUrl("file:///C:/Users/dennis/Downloads/ScanClient-master/ScanClient-master/build-ScanClientGui-Desktop_Qt_5_9_3_MinGW_32bit-Debug/debug")) 1
+2018-06-20 09:45:13:224  DEBUG : onSelectionChange (QUrl("file:///C:/Users/dennis/Downloads/ScanClient-master/ScanClient-master/build-ScanClientGui-Desktop_Qt_5_9_3_MinGW_32bit-Debug/debug")) 1
+2018-06-20 09:45:13:354  DEBUG : onSelectionChange (QUrl("file:///C:/Users/dennis/Downloads/ScanClient-master/ScanClient-master/build-ScanClientGui-Desktop_Qt_5_9_3_MinGW_32bit-Debug/debug/IMG000")) 1
+2018-06-20 09:45:14:943  INFO : "ImageViewerWidget : open folder:C:/Users/dennis/Downloads/ScanClient-master/ScanClient-master/build-ScanClientGui-Desktop_Qt_5_9_3_MinGW_32bit-Debug/debug/IMG000"
+2018-06-20 09:45:20:147  INFO : "ScanClientGui : tcpDisconnect"
+2018-06-20 09:45:20:148  INFO : "SocketHandler : hanldeSocketState: closing"
+2018-06-20 09:45:20:148  INFO : "SocketHandler : hanldeSocketState: disconnected"
+2018-06-20 09:45:20:149  INFO : "TcpClient : disconnectFromHost"
+2018-06-20 09:45:20:149  INFO : "ScanClientGui : EXIT"

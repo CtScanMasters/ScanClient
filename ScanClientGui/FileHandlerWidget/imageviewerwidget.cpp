@@ -10,13 +10,15 @@ ImageViewerWidget::ImageViewerWidget(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    m_logName = "ImageViewerWidget : ";
+
+    qInfo() << m_logName + "build";
+
     m_imageIterator = 2;
 
     connect(ui->pushButtonOpen, SIGNAL(clicked(bool)), this, SLOT(openFolder()));
-
     connect(ui->pushButtonNext, SIGNAL(clicked(bool)), this, SLOT(next()));
     connect(ui->pushButtonPrevious, SIGNAL(clicked(bool)), this, SLOT(previous()));
-
     connect(ui->pushButtonNext, SIGNAL(pressed()), this, SLOT(startTimerScroll()));
     connect(ui->pushButtonNext, SIGNAL(released()), this, SLOT(stopTimerScroll()));
     connect(ui->pushButtonPrevious, SIGNAL(pressed()), this, SLOT(startTimerScroll()));
@@ -39,14 +41,16 @@ void ImageViewerWidget::openFolder()
 
     dir = m_folderPath;
     ui->labelFilePath->setText("Folder: " + dir.dirName());
+    qInfo() << m_logName + "open folder:" + dir.absolutePath();
+
     getImageNames();
 }
 
 void ImageViewerWidget::next()
 {
-    if((m_imageIterator + 2) < m_fileNameList.size())
+    if((m_imageIterator + 5) < m_fileNameList.size())
     {
-        m_imageIterator += 2;
+        m_imageIterator += 1;
         setImages();
     }
 }
@@ -55,11 +59,11 @@ void ImageViewerWidget::previous()
 {
     if(m_imageIterator > 0)
     {
-        m_imageIterator -= 2;
+        m_imageIterator -= 1;
 
-        if(m_imageIterator < 2)
+        if(m_imageIterator < 1)
         {
-            m_imageIterator = 2;
+            m_imageIterator = 1;
         }
         setImages();
     }
@@ -67,9 +71,12 @@ void ImageViewerWidget::previous()
 
 void ImageViewerWidget::getImageNames()
 {
+    m_fileNameList.clear();
+
     QDirIterator dirIterator(m_folderPath, QDir::NoFilter, QDirIterator::NoIteratorFlags);
 
-    while (dirIterator.hasNext()) {
+    while (dirIterator.hasNext())
+    {
         QFile file(dirIterator.next());
         file.open(QIODevice::ReadOnly);
         m_fileNameList.append(file.fileName());
@@ -86,6 +93,8 @@ void ImageViewerWidget::setImages()
     ui->labelImage2->setPixmap(QPixmap::fromImage(QImage(getImage(m_imageIterator + 1))));
     ui->labelImage3->setPixmap(QPixmap::fromImage(QImage(getImage(m_imageIterator + 2))));
     ui->labelImage4->setPixmap(QPixmap::fromImage(QImage(getImage(m_imageIterator + 3))));
+    ui->labelImage5->setPixmap(QPixmap::fromImage(QImage(getImage(m_imageIterator + 4))));
+    ui->labelImage6->setPixmap(QPixmap::fromImage(QImage(getImage(m_imageIterator + 5))));
 
     ui->labelScans->setText(QString("Scans: %1 / %2").arg(m_imageIterator).arg(m_fileNameList.size()-2));
 }

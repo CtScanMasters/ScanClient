@@ -15,7 +15,7 @@
   </property>
   <property name="styleSheet">
    <string notr="true">QMainWindow{
-        background-color:qradialgradient(spread:reflect, cx:0.575364, cy:0.495, radius:0.401, fx:0.208958, fy:0.656947, stop:0.795455 rgba(0, 0, 0, 255), stop:1 rgba(111, 0, 110, 255))
+        background-color:qradialgradient(spread:reflect, cx:0.575364, cy:0.495, radius:0.401, fx:0.273, fy:0.715615, stop:0.795455 rgba(0, 0, 0, 255), stop:1 rgba(111, 0, 110, 255));
 
 }
 
@@ -52,7 +52,7 @@ QPushButton{
 
         border: 1px solid rgb(0, 0, 0);
         border-radius: 5px;
-        background-color:qlineargradient(spread:pad, x1:1, y1:0.346591, x2:0, y2:1, stop:0.455056 rgba(141, 22, 158, 255), stop:0.983146 rgba(169, 169, 169, 255));
+        background-color:qlineargradient(spread:pad, x1:0.307, y1:0.715545, x2:0, y2:1, stop:0 rgba(57, 144, 145, 255), stop:1 rgba(255, 255, 255, 255));
         color: white;
         min-height: 18px;
 }
@@ -63,7 +63,7 @@ QPushButton:pressed {
 }
 
 QProgressBar::chunk:horizontal {
-        background: qlineargradient(spread:pad, x1:0.981157, y1:0.022, x2:0, y2:1, stop:0 rgba(145, 51, 143, 255), stop:1 rgba(255, 255, 255, 255));
+        background: qlineargradient(spread:pad, x1:1, y1:0.346591, x2:0, y2:1, stop:0.455056 rgba(141, 22, 158, 255), stop:0.983146 rgba(169, 169, 169, 255));
         border-radius: 5px;
 }
 
@@ -106,7 +106,7 @@ QTabBar::tab {
 }
 
 QTabBar::tab:selected {
-    background: qlineargradient(spread:pad, x1:1, y1:0.346591, x2:0, y2:1, stop:0.455056 rgba(141, 22, 158, 255), stop:0.983146 rgba(169, 169, 169, 255));
+    background: qlineargradient(spread:pad, x1:0.307, y1:0.715545, x2:0, y2:1, stop:0 rgba(57, 144, 145, 255), stop:1 rgba(255, 255, 255, 255));
         color: rgb(255,255,255);
         font-weight: bold;
         border-radius: 5px;
@@ -325,7 +325,7 @@ QTabBar::tab:left:only-one, QTabBar::tab:right:only-one {
         </property>
         <property name="minimumSize">
          <size>
-          <width>500</width>
+          <width>600</width>
           <height>0</height>
          </size>
         </property>
@@ -611,6 +611,12 @@ QTabBar::tab:left:only-one, QTabBar::tab:right:only-one {
              <verstretch>0</verstretch>
             </sizepolicy>
            </property>
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>150</height>
+            </size>
+           </property>
            <property name="styleSheet">
             <string notr="true">QGroupBox {
         background-color: rgb(0, 0, 0);
@@ -624,7 +630,14 @@ QTabBar::tab:left:only-one, QTabBar::tab:right:only-one {
            </property>
            <layout class="QGridLayout" name="gridLayout_4">
             <item row="0" column="0">
-             <widget class="ScanWidget" name="scanControlWidget" native="true"/>
+             <widget class="ScanWidget" name="scanControlWidget" native="true">
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>100</height>
+               </size>
+              </property>
+             </widget>
             </item>
            </layout>
           </widget>
