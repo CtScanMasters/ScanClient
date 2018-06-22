@@ -25,11 +25,11 @@ void MessageLogger::messageHandler(QString string)
 {
     if(m_textEditorEnabled)
     {
-        m_textEditor->appendPlainText(string);
+        m_textEditor->append(string);
     }
 }
 
-void MessageLogger::setTextEdit(QPlainTextEdit *textEditor)
+void MessageLogger::setTextEdit(QTextEdit *textEditor)
 {
     m_textEditor = textEditor;
     m_textEditorEnabled = true;

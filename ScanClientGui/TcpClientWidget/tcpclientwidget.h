@@ -44,6 +44,7 @@ private:
 public slots:
     void connectToHost();
     void disconnectFromHost();
+    void setConnected(bool status);
 
 signals:
     void connectToHostSignal();

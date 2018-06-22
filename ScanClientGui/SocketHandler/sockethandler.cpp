@@ -130,7 +130,7 @@ bool SocketHandler::hanldeSocketState(QAbstractSocket::SocketState socketState)
         socketStateString.append("listening");
         break;
     default:
-        socketStateString.append("unknown");
+        socketStateString.append("disconnected");
     }
 
     m_socketState = socketStateString;

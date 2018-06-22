@@ -70,8 +70,15 @@ void ImageCalculator::calculateBeam(QVector<quint16> sensorIntensityList, quint1
 quint32 ImageCalculator::getRotationOffset(double angle, double imageWidth)
 {
 
-    if(angle > 90)
+    if((angle > 90) && (angle < 180))
         angle -= 90;
+
+    if((angle >= 180) && (angle < 270))
+        angle -= 180;
+
+    if((angle >= 270) && (angle < 360))
+        angle -= 270;
+
 
     angle = (M_PI / 180) * angle;
     double offset = (qSin((M_PI / 4) + angle) * qSqrt(2) * (imageWidth / 2)) - (imageWidth / 2);
@@ -131,7 +138,7 @@ void ImageCalculator::thresHoldImage(QImage &image)
         for(int y = 0; y < image.height(); y++)
         {
             QColor color1 = image.pixelColor(x, y);
-            if(color1.red() < 200)
+            if(color1.red() < 150)
             {
                 image.setPixelColor(x ,y, qRgb(0,0,0));
             }

@@ -12,10 +12,11 @@ ImageProcessTask::ImageProcessTask()
 
 }
 
-ImageProcessTask::ImageProcessTask(QVector<quint16> scanData, quint16 scanNumber)
+ImageProcessTask::ImageProcessTask(QVector<quint16> scanData, quint16 scanNumber, QString filepath)
 {
     setAutoDelete(false);
     m_scanNumber = scanNumber;
+    m_filepath = filepath;
 
     for(int i = 0; i < scanData.size(); i++)
     {
@@ -34,13 +35,7 @@ void ImageProcessTask::run()
 
     QImage image = imageProcessor.processData(&m_scanData, m_scanNumber);
 
-    QString filepath;
-
-    filepath = QCoreApplication::applicationDirPath()
-                        + QString("/IMG%1/")
-                            .arg(0,3,10, QChar('0'));
-
-    image.save(filepath + QString("SUM%1.png").arg(m_scanNumber,3,10, QChar('0')));
+    image.save(m_filepath + QString("SUM%1.png").arg(m_scanNumber,3,10, QChar('0')));
 
     // Done!
     processingDone();

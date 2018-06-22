@@ -118,7 +118,7 @@ private slots:
     void prepareData();
 
     void updateImageProcessStatus(quint16 imageNumber);
-    void imageProcessingDone();
+    void imageProcessingDone(QString filepath);
 
 
     void tcpConnect();
@@ -126,10 +126,9 @@ private slots:
     void tcpStateChange();
     void tcpSendData();
     void tcpReadData();
+    void tcpConnectTimeOut();
 
-    void arraySetSourceMask(quint8 sourceMask);
     void arraySetSource();
-    void arrayGetSensor();
     void processData();
 
 

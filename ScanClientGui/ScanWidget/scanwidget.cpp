@@ -23,6 +23,10 @@ ScanWidget::ScanWidget(QWidget *parent) :
     m_statusLabel->setText("Status: ");    
     m_progressBar->setValue(0);
     m_progressBar->setAlignment(Qt::AlignCenter);
+    QPalette palette = m_progressBar->palette();
+    palette.setColor(QPalette::Text, qRgb(0,0,0));
+    palette.setColor(QPalette::HighlightedText, qRgb(0,0,0));
+    m_progressBar->setPalette(palette);
     m_statusLineEdit->setReadOnly(true);
     m_statusLineEdit->setPlaceholderText("unknown");
 
@@ -37,6 +41,8 @@ ScanWidget::ScanWidget(QWidget *parent) :
 
     setLayout(m_mainGridLayout);
 
+
+
 }
 
 ScanWidget::~ScanWidget()
@@ -48,6 +54,21 @@ void ScanWidget::setStatus(QString status, quint8 progress)
 {
     m_statusLineEdit->setText(status);
     m_progressBar->setValue(progress);
+
+    if(progress > (m_progressBar->maximum() / 2))
+    {
+        QPalette palette = m_progressBar->palette();
+        palette.setColor(QPalette::Text, qRgb(255,255,255));
+        palette.setColor(QPalette::HighlightedText, qRgb(255,255,255));
+        m_progressBar->setPalette(palette);
+    }
+    else
+    {
+        QPalette palette = m_progressBar->palette();
+        palette.setColor(QPalette::Text, qRgb(0,0,0));
+        palette.setColor(QPalette::HighlightedText, qRgb(0,0,0));
+        m_progressBar->setPalette(palette);
+    }
 
     qInfo() << m_logName + "setStatus: " + status + QString(" %1 %").arg(progress);
 
@@ -63,4 +84,24 @@ void ScanWidget::stopScan()
 {
     qInfo() << m_logName + "emitStopScanSignal";
     emit stopScanSignal();
+}
+
+void ScanWidget::setEnabled(bool status)
+{
+    m_startScanButton->setEnabled(status);
+    m_stopScanButton->setEnabled(status);
+}
+
+void ScanWidget::isScanning(bool status)
+{
+    if(status)
+    {
+        m_startScanButton->setEnabled(false);
+        m_stopScanButton->setEnabled(true);
+    }
+    else
+    {
+        m_startScanButton->setEnabled(true);
+        m_stopScanButton->setEnabled(false);
+    }
 }

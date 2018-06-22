@@ -17,20 +17,20 @@ public:
 private:
     QString m_logName;
     bool m_dimensionsSet;
-    quint16 m_numberOfSensors;
-    quint16 m_numberOfSources;
-    quint16 m_sensorDistance;
-    quint16 m_sourceDistance;
-    quint16 m_sensorOffset;
-    quint32 m_pixelWidth;
-    quint32 m_pixelWidthSum;
+    double m_numberOfSensors;
+    double m_numberOfSources;
+    double m_sensorDistance;
+    double m_sourceDistance;
+    double m_sensorOffset;
+    double m_pixelWidth;
+    double m_pixelWidthSum;
     double m_innerDiameter;
     double m_outerDiamter;
 
     double m_diameterRatio;
-    quint32 m_virtualCanvasSize;
-    quint32 m_xOffset;
-    quint32 m_yOffset;
+    double m_virtualCanvasSize;
+    double m_xOffset;
+    double m_yOffset;
 
     QColor calculateColorSum(QColor &color1, QColor &color2);
     quint32 getRotationOffset(double angle, double imageWidth);

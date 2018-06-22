@@ -119,7 +119,15 @@ void ImageProcessor::createArraySumImage(quint16 arrayNumber)
 
 void ImageProcessor::createScanSumImage(quint16 arrayNumber)
 {
-    m_imageCalculator.mergeImages(*m_sumImageVector.at(arrayNumber), arrayNumber * 22.5, m_sumImage);
+    if(arrayNumber < 4)
+    {
+        m_imageCalculator.mergeImages(*m_sumImageVector.at(arrayNumber), arrayNumber * 45.0, m_sumImage);
+    }
+    else
+    {
+        m_imageCalculator.mergeImages(*m_sumImageVector.at(arrayNumber), 157.5 + ((arrayNumber - 4) * 45.0), m_sumImage);
+    }
+
 }
 
 void ImageProcessor::createSumImage()

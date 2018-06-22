@@ -27,7 +27,7 @@ TcpClientWidget::TcpClientWidget(QWidget *parent) :
     m_disconnectButton->setToolTip("disconnect from host");
     m_disconnectButton->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     m_statusLineEdit->setReadOnly(true);
-    m_statusLineEdit->setPlaceholderText("unkown");
+    m_statusLineEdit->setPlaceholderText("disconnected");
     m_clienIpLineEdit->setReadOnly(true);
     m_clienIpLineEdit->setPlaceholderText("xxx.xxx.xxx.xxx");
 
@@ -99,5 +99,19 @@ QString TcpClientWidget::getHostIpAddress()
 QString TcpClientWidget::getHostPort()
 {
     return(m_hostPortLineEdit->text());
+}
+
+void TcpClientWidget::setConnected(bool status)
+{
+    if(status)
+    {
+        m_disconnectButton->setEnabled(true);
+        m_connectButton->setEnabled(false);
+    }
+    else
+    {
+        m_disconnectButton->setEnabled(false);
+        m_connectButton->setEnabled(true);
+    }
 }
 

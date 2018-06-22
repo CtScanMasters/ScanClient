@@ -90,3 +90,10 @@ void ActuatorWidget::stopMovement()
     qInfo() << m_logName + "stop actuator";
     emit stopMovementSignal();
 }
+
+void ActuatorWidget::setEnabled(bool status)
+{
+    m_jogForwardButton->setEnabled(status);
+    m_jogBackButton->setEnabled(status);
+    m_homeButton->setEnabled(status);
+}

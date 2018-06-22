@@ -26,41 +26,35 @@ void ImageProcessManager::processScanData(QVector<QVector<quint16>> *scanData, q
     m_numberOfScans = numberOfScans;
     m_scanIterator = 0;
 
+    for(int i = 0; i < 1000; i++)
+    {
+        m_filepath = QCoreApplication::applicationDirPath()
+                            + QString("/IMG%1/")
+                                .arg(i,3,10, QChar('0'));
+
+
+        if(!QDir(m_filepath).exists() && (i < 999))
+        {
+            QDir().mkdir(m_filepath);
+            qInfo () << m_logName + "files saved in " + m_filepath;
+            break;
+        }
+        if(i > 999)
+        {
+            qWarning() << "all foldernames occupied";
+            break;
+        }
+    }
+
     for(quint16 scanNumber = 0; scanNumber < m_numberOfScans; scanNumber++)
     {
-        m_processTaskVector.append(new ImageProcessTask(scanData->at(scanNumber), scanNumber));
+        m_processTaskVector.append(new ImageProcessTask(scanData->at(scanNumber), scanNumber, m_filepath));
     }
 
     for(int scanNumber = 0; scanNumber < 8; scanNumber++)
     {
         startNewTask();
     }
-
-//    for(int scanNumber = 0; scanNumber < scanData->size(); scanNumber++)
-//    {
-//        qInfo() << m_logName + QString("processScanData scan: %1").arg(scanNumber);
-
-//        ImageProcessor imageProcessor;
-//        imageProcessor.setPresets(8, 11, imageSize);
-
-//        QVector<quint16> data = scanData->at(scanNumber);
-
-//        QImage image = imageProcessor.processData(&data, scanNumber);
-//    //    QPixmap pixMapSum = QPixmap::fromImage(image);
-//    //    ui->imagingWidget->setPixmap(pixMapSum);
-
-//        QString filepath;
-
-//        filepath = QCoreApplication::applicationDirPath()
-//                            + QString("/IMG%1/")
-//                                .arg(0,3,10, QChar('0'));
-////        if(!QDir(filepath).exists())
-////        {
-////            QDir().mkdir(filepath);
-////        }
-
-//        image.save(filepath + QString("SUM%1.png").arg(scanNumber,3,10, QChar('0')));
-//    }
 }
 
 void ImageProcessManager::startNewTask()
@@ -82,8 +76,7 @@ void ImageProcessManager::finishedProcessing(quint16 scanNumber)
     }
     else
     {
-        emit processingDone();
-        qWarning() << "Size: " << m_processTaskVector.size();
+        emit processingDone(m_filepath);
     }
 
 }

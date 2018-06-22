@@ -10,13 +10,13 @@ private:
 
     static MessageLogger* instance;
     MessageLogger();
-    QPlainTextEdit *m_textEditor;
+    QTextEdit *m_textEditor;
     bool m_textEditorEnabled;
 
 public:
     static MessageLogger* getInstance();
     void messageHandler(QString string);
-    void setTextEdit(QPlainTextEdit *textEditor);
+    void setTextEdit(QTextEdit *textEditor);
 };
 
 #endif // MESSAGELOGGER_H

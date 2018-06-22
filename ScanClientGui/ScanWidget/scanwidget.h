@@ -16,6 +16,8 @@ public:
     explicit ScanWidget(QWidget *parent = 0);
     ~ScanWidget();
     void setStatus(QString status, quint8 progress);
+    void setEnabled(bool status);
+    void isScanning(bool status);
 
 private:
     QString m_logName;

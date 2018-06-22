@@ -16,6 +16,11 @@ ImageViewerWidget::ImageViewerWidget(QWidget *parent) :
 
     m_imageIterator = 2;
 
+    ui->pushButtonNext->setEnabled(false);
+    ui->pushButtonPrevious->setEnabled(false);
+
+
+
     connect(ui->pushButtonOpen, SIGNAL(clicked(bool)), this, SLOT(openFolder()));
     connect(ui->pushButtonNext, SIGNAL(clicked(bool)), this, SLOT(next()));
     connect(ui->pushButtonPrevious, SIGNAL(clicked(bool)), this, SLOT(previous()));
@@ -40,10 +45,28 @@ void ImageViewerWidget::openFolder()
                                                 | QFileDialog::DontResolveSymlinks);
 
     dir = m_folderPath;
-    ui->labelFilePath->setText("Folder: " + dir.dirName());
-    qInfo() << m_logName + "open folder:" + dir.absolutePath();
+    ui->labelFilePath->setText("Folder: " + m_folderPath);
+    qInfo() << m_logName + "open folder:" + m_folderPath;
 
     getImageNames();
+
+    ui->pushButtonNext->setEnabled(true);
+    ui->pushButtonPrevious->setEnabled(true);
+}
+
+void ImageViewerWidget::openFolder(QString filepath)
+{
+    QDir dir;
+    m_folderPath = filepath;
+
+    dir = m_folderPath;
+    ui->labelFilePath->setText("Folder: " + m_folderPath);
+    qInfo() << m_logName + "open folder:" + m_folderPath;
+
+    getImageNames();
+
+    ui->pushButtonNext->setEnabled(true);
+    ui->pushButtonPrevious->setEnabled(true);
 }
 
 void ImageViewerWidget::next()

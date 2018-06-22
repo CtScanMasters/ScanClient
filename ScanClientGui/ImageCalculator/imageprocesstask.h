@@ -11,7 +11,7 @@ class ImageProcessTask : public QObject, public QRunnable
 
     public:
         ImageProcessTask();
-        ImageProcessTask(QVector<quint16> scanData, quint16 scanNumber);
+        ImageProcessTask(QVector<quint16> scanData, quint16 scanNumber, QString filepath);
 
         bool busy() const;
 
@@ -29,6 +29,7 @@ class ImageProcessTask : public QObject, public QRunnable
         QVector<quint16> m_scanData;
         quint16 m_scanNumber;
         bool m_busy;
+        QString m_filepath;
 
 
 };

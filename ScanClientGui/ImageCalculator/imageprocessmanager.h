@@ -19,6 +19,7 @@ private:
     QVector<ImageProcessTask*> m_activeTasks;
     quint16 m_scanIterator;
     quint16 m_numberOfScans;
+    QString m_filepath;
     void clearData();
 
     QVector<ImageProcessTask *> m_processTaskVector;
@@ -34,7 +35,7 @@ private slots:
 
 signals:
     void startProcessing(quint16);
-    void processingDone();
+    void processingDone(QString);
 
 };
 

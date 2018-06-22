@@ -17,6 +17,7 @@ public:
     ~ActuatorWidget();
     void setPosition(quint64 position);
     void setStatus(QString status);
+    void setEnabled(bool status);
 
 private:
     QString m_logName;
@@ -34,6 +35,7 @@ private slots:
     void jogBack();
     void homeActuator();
     void stopMovement();
+
 
 signals:
     void jogForwardSignal();

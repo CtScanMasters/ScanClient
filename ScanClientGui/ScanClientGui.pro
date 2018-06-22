@@ -28,9 +28,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
         scanclientgui.cpp \
-    3DScatterWidget/scatterwidget.cpp \
     ActuatorWidget/actuatorwidget.cpp \
-    ArrayWidget/arraywidget.cpp \
     FileHandlerWidget/filehandlerwidget.cpp \
     ScanWidget/scanwidget.cpp \
     SocketHandler/sockethandler.cpp \
@@ -45,9 +43,7 @@ SOURCES += \
 
 HEADERS += \
         scanclientgui.h \
-    3DScatterWidget/scatterwidget.h \
     ActuatorWidget/actuatorwidget.h \
-    ArrayWidget/arraywidget.h \
     FileHandlerWidget/filehandlerwidget.h \
     ScanWidget/scanwidget.h \
     SocketHandler/sockethandler.h \

@@ -18,6 +18,7 @@ public:
 
 public slots:
     void openFolder();
+    void openFolder(QString filepath);
     void next();
     void previous();
     void getImageNames();
@@ -25,6 +26,7 @@ public slots:
     void setImages();
     void startTimerScroll();
     void stopTimerScroll();
+
 
 private:
     Ui::ImageViewerWidget *ui;

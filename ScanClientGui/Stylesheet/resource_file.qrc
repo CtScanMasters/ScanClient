@@ -1,6 +1,6 @@
 <RCC>
     <qresource prefix="/">
-        <file>ScanMaster pic.png</file>
         <file>ScanMaster pic SMALL.png</file>
+        <file>ScanMaster pic.png</file>
     </qresource>
 </RCC>
