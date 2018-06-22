@@ -7,6 +7,7 @@
 #include <QProgressBar>
 #include <QGridLayout>
 #include <QLineEdit>
+#include <QSpinBox>
 
 class ScanWidget : public QWidget
 {
@@ -18,12 +19,15 @@ public:
     void setStatus(QString status, quint8 progress);
     void setEnabled(bool status);
     void isScanning(bool status);
+    quint8 getNumberOfScans();
 
 private:
     QString m_logName;
     QPushButton *m_startScanButton;
     QPushButton *m_stopScanButton;
     QLabel *m_statusLabel;
+    QLabel *m_NumberOfScansLabel;
+    QLineEdit *m_scanLineEdit;
     QProgressBar *m_progressBar;
     QGridLayout *m_mainGridLayout;
     QLineEdit *m_statusLineEdit;
@@ -32,6 +36,7 @@ private:
 private slots:
     void startScan();
     void stopScan();
+
 
 signals:
     void startScanSignal();

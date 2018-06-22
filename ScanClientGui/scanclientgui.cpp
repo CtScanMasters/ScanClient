@@ -40,7 +40,7 @@ ScanClientGui::ScanClientGui(QWidget *parent) :
     buildMainGui();
 
     tcpStateChange();
-    ui->scanControlWidget->isScanning(false); //temp
+//    ui->scanControlWidget->isScanning(false); //temp
 
 }
 
@@ -94,90 +94,77 @@ void ScanClientGui::prepareData()
 *
 *
 ***********************************************************************/
-void ScanClientGui::processData()
-{
-    qInfo() << m_logName + "processdata scans: " << m_numberOfscans;
-
-    m_imageProcessManager->processScanData(&m_scanDataList, m_numberOfscans);
-
-    m_iamBusy = false;
-
-    scanStop();
-}
-
-/***********************************************************************
-*
-*
-*
-***********************************************************************/
 void ScanClientGui::scanStart()
 {
     qInfo() << m_logName + "send start scan";
     ui->scanControlWidget->isScanning(true);
+    ui->scanControlWidget->setStatus("starting scan", 0);
+    m_numberOfscans = ui->scanControlWidget->getNumberOfScans();
 
-//    m_bufferOut.clear();
-//    m_bufferIn.clear();
-//    m_dataBufferInList.clear();
-//    m_isScanStopped = false;
-//    m_dataEnd = false;
-//    m_bufferOut.append(COMMAND_SCAN_START);
-//    tcpSendData();
+    m_bufferOut.clear();
+    m_bufferIn.clear();
+    m_dataBufferInList.clear();
+    m_isScanStopped = false;
+    m_dataEnd = false;
+    m_bufferOut.append(COMMAND_SCAN_START);
+    m_bufferOut.append(m_numberOfscans);
+    tcpSendData();
 
 /*******************************************************************************/
 
 
-    bool isFirstTime = true;
+//    bool isFirstTime = true;
 
-    for(quint16 scans = 0; scans < m_numberOfscans; scans++)
-    {
-        QByteArray byteArray;
-        quint8 byte1 = 0;
-        quint8 byte2 = 0;
+//    for(quint16 scans = 0; scans < m_numberOfscans; scans++)
+//    {
+//        QByteArray byteArray;
+//        quint8 byte1 = 0;
+//        quint8 byte2 = 0;
 
-        byteArray.append(0x05);
+//        byteArray.append(0x05);
 
-        for(quint16 array = 0; array < 8; array++)
-        {
-            for(quint16 source = 0; source < 8; source++)
-            {
-                byte1 = (scans >> 8) & 0xFF;
-                byte2 = scans & 0xFF;
-                byteArray.append(byte1);
-                byteArray.append(byte2);
+//        for(quint16 array = 0; array < 8; array++)
+//        {
+//            for(quint16 source = 0; source < 8; source++)
+//            {
+//                byte1 = (scans >> 8) & 0xFF;
+//                byte2 = scans & 0xFF;
+//                byteArray.append(byte1);
+//                byteArray.append(byte2);
 
-                byte1 = (array >> 8) & 0xFF;
-                byte2 = array & 0xFF;
-                byteArray.append(byte1);
-                byteArray.append(byte2);
+//                byte1 = (array >> 8) & 0xFF;
+//                byte2 = array & 0xFF;
+//                byteArray.append(byte1);
+//                byteArray.append(byte2);
 
-                byte1 = (source >> 8) & 0xFF;
-                byte2 = source & 0xFF;
-                byteArray.append(byte1);
-                byteArray.append(byte2);
+//                byte1 = (source >> 8) & 0xFF;
+//                byte2 = source & 0xFF;
+//                byteArray.append(byte1);
+//                byteArray.append(byte2);
 
-                for(quint16 sensor = 0; sensor < 8; sensor++)
-                {
-                    quint16 data = sensor * scans * 5;
+//                for(quint16 sensor = 0; sensor < 8; sensor++)
+//                {
+//                    quint16 data = sensor * scans * 5;
 
-//                    if((isFirstTime && (source == 3)) || (isFirstTime && (source == 4)))
-//                        data = 64;
-//                    else
-//                        data = 0;
+////                    if((isFirstTime && (source == 3)) || (isFirstTime && (source == 4)))
+////                        data = 64;
+////                    else
+////                        data = 0;
 
-                    byte1 = (data >> 8) & 0xFF;
-                    byte2 = data & 0xFF;
-                    byteArray.append(byte1);
-                    byteArray.append(byte2);
-                }
+//                    byte1 = (data >> 8) & 0xFF;
+//                    byte2 = data & 0xFF;
+//                    byteArray.append(byte1);
+//                    byteArray.append(byte2);
+//                }
 
 
-            }
-//            isFirstTime = false;
-        }
-        m_dataBufferInList.append(byteArray);
-    }
+//            }
+////            isFirstTime = false;
+//        }
+//        m_dataBufferInList.append(byteArray);
+//    }
 
-    prepareData();
+//    prepareData();
 
 /*******************************************************************************/
 }
@@ -204,6 +191,10 @@ void ScanClientGui::scanStop()
 ***********************************************************************/
 void ScanClientGui::setScanProgress()
 {
+    quint8 progress = m_bufferIn.at(1);
+//    qInfo() << m_logName << "scanprogress:" << progress << "%";
+    ui->scanControlWidget->setStatus(QString("scanning %1 images").arg(m_numberOfscans), progress);
+
 
 }
 
@@ -255,7 +246,7 @@ void ScanClientGui::dataDelivery()
 {
     if(!m_dataEnd)
     {
-        qDebug() << "Scandata: " << m_bufferIn.size();
+        //qDebug() << "Scandata: " << m_bufferIn.size();
         m_dataBufferInList.append(m_bufferIn);
 
         commandHandler(COMMAND_SCAN_GET_DATA);
@@ -276,6 +267,44 @@ void ScanClientGui::dataEnd()
     m_dataEnd = true;
     qDebug() << "Received data: " << m_dataBufferInList.size();
     prepareData();
+}
+
+/***********************************************************************
+*
+*
+*
+***********************************************************************/
+void ScanClientGui::processData()
+{
+    qInfo() << m_logName + "processdata scans: " << m_numberOfscans;
+
+    m_imageProcessManager->processScanData(&m_scanDataList, m_numberOfscans);
+
+    m_iamBusy = false;
+
+    scanStop();
+}
+
+/***********************************************************************
+*
+*
+*
+***********************************************************************/
+void ScanClientGui::updateImageProcessStatus(quint16 imageNumber)
+{
+    quint8 progress = ((double)imageNumber / m_numberOfscans) * 100;
+    ui->scanControlWidget->setStatus(QString("processing %1 images").arg(m_numberOfscans), progress);
+}
+
+/***********************************************************************
+*
+*
+*
+***********************************************************************/
+void ScanClientGui::imageProcessingDone(QString filepath)
+{
+    ui->scanControlWidget->setStatus("finished processing", 100);
+    ui->imageViewerWidget->openFolder(filepath);
 }
 
 /***********************************************************************
@@ -422,7 +451,7 @@ void ScanClientGui::tcpConnect()
     m_tcpClient->setHostIpAddress(ui->tcpControlWidget->getHostIpAddress());
     m_tcpClient->setHostPort(ui->tcpControlWidget->getHostPort().toLongLong(&ok));
     m_tcpClient->connectToHost();
-    QTimer::singleShot(5000, this, SLOT(tcpDisconnect()));
+//    QTimer::singleShot(5000, this, SLOT(tcpDisconnect()));
 }
 
 /***********************************************************************
@@ -521,27 +550,7 @@ void ScanClientGui::buildActuatorControl()
     connect(ui->actuatorControlWidget, SIGNAL(stopMovementSignal()), this, SLOT(actuatorStop()));
 }
 
-/***********************************************************************
-*
-*
-*
-***********************************************************************/
-void ScanClientGui::updateImageProcessStatus(quint16 imageNumber)
-{
-    quint8 progress = ((double)imageNumber / m_numberOfscans) * 100;
-    ui->scanControlWidget->setStatus("processing images", progress);
-}
 
-/***********************************************************************
-*
-*
-*
-***********************************************************************/
-void ScanClientGui::imageProcessingDone(QString filepath)
-{
-    ui->scanControlWidget->setStatus("finished processing", 100);
-    ui->imageViewerWidget->openFolder(filepath);
-}
 
 /***********************************************************************
 *

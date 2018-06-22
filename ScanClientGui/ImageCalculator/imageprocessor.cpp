@@ -43,7 +43,7 @@ QImage ImageProcessor::processData(QVector<quint16> *scanData, quint16 scanNumbe
     for(int i = 0; i < 8; i++)
     {
         createArrayImage();
-        createArraySenseList(i, 128);
+        createArraySenseList(i, 196);
         createArraySumImage(i);
         clearArrayImage();
         createScanSumImage(i);

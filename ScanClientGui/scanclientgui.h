@@ -77,7 +77,7 @@ private:
     QByteArray m_bufferOut;
     QByteArray m_bufferIn;
 
-    quint16 m_numberOfscans;
+    quint8 m_numberOfscans;
     quint8 m_scanDistance;
     quint8 m_numberOfScansPerArray;
     quint8 m_scanDataOffset;

@@ -10,6 +10,8 @@ ScanWidget::ScanWidget(QWidget *parent) :
     m_startScanButton = new QPushButton(this);
     m_stopScanButton = new QPushButton(this);
     m_statusLabel = new QLabel(this);
+    m_NumberOfScansLabel = new QLabel(this);
+    m_scanLineEdit = new QLineEdit(this);
     m_progressBar = new QProgressBar(this);
     m_statusLineEdit = new QLineEdit();
     m_mainGridLayout = new QGridLayout(this);
@@ -20,7 +22,11 @@ ScanWidget::ScanWidget(QWidget *parent) :
     m_stopScanButton->setText("Stop");
     m_stopScanButton->setToolTip("stop running scan sequence");
     m_stopScanButton->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-    m_statusLabel->setText("Status: ");    
+    m_statusLabel->setText("Status: ");
+    m_NumberOfScansLabel->setText("Number of scans: ");
+    m_scanLineEdit->setText(QString::number(100));
+    m_scanLineEdit->setValidator( new QIntValidator(10, 200, this));
+
     m_progressBar->setValue(0);
     m_progressBar->setAlignment(Qt::AlignCenter);
     QPalette palette = m_progressBar->palette();
@@ -30,11 +36,13 @@ ScanWidget::ScanWidget(QWidget *parent) :
     m_statusLineEdit->setReadOnly(true);
     m_statusLineEdit->setPlaceholderText("unknown");
 
-    m_mainGridLayout->addWidget(m_statusLabel,      0, 0, 1, 1);
-    m_mainGridLayout->addWidget(m_statusLineEdit,   0, 1, 1, 3);
-    m_mainGridLayout->addWidget(m_progressBar,      1, 0, 2, 4);
-    m_mainGridLayout->addWidget(m_startScanButton,  3, 0, 1, 2);
-    m_mainGridLayout->addWidget(m_stopScanButton,   3, 2, 1, 2);
+    m_mainGridLayout->addWidget(m_statusLabel,       0, 0, 1, 1);
+    m_mainGridLayout->addWidget(m_statusLineEdit,    0, 1, 1, 3);
+    m_mainGridLayout->addWidget(m_NumberOfScansLabel,1, 0, 1, 1);
+    m_mainGridLayout->addWidget(m_scanLineEdit,      1, 1, 1, 3);
+    m_mainGridLayout->addWidget(m_progressBar,       2, 0, 2, 4);
+    m_mainGridLayout->addWidget(m_startScanButton,   4, 0, 1, 2);
+    m_mainGridLayout->addWidget(m_stopScanButton,    4, 2, 1, 2);
 
     connect(m_startScanButton, SIGNAL(clicked(bool)), this, SLOT(startScan()));
     connect(m_stopScanButton, SIGNAL(clicked(bool)), this, SLOT(stopScan()));
@@ -104,4 +112,12 @@ void ScanWidget::isScanning(bool status)
         m_startScanButton->setEnabled(true);
         m_stopScanButton->setEnabled(false);
     }
+}
+
+quint8 ScanWidget::getNumberOfScans()
+{
+    bool ok;
+    QString scans = m_scanLineEdit->text();
+    quint8 number = scans.toUShort(&ok,10);
+    return(number);
 }
