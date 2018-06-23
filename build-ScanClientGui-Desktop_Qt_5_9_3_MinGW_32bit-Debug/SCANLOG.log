@@ -1,0 +1,16 @@
+2018-06-23 23:58:08:888  INFO : ------------BUILD APPLICATION CT SCANMASTER-------------
+2018-06-23 23:58:09:656  INFO : "ImageViewerWidget : build"
+2018-06-23 23:58:09:656  INFO : "ActuatorWidget : creating widget"
+2018-06-23 23:58:09:657  INFO : "ScanWidget : creating widget"
+2018-06-23 23:58:09:658  INFO : ------------STARTING CT SCANMASTER 2018 V1.0------------
+2018-06-23 23:58:09:658  INFO : "ScanClientGui : buildTcpClient"
+2018-06-23 23:58:09:659  INFO : "SocketHandler : starting"
+2018-06-23 23:58:09:659  INFO : "TcpClient : starting"
+2018-06-23 23:58:09:662  INFO : "SocketHandler : handleRetreiveIpAddress: " "169.254.78.233"
+2018-06-23 23:58:09:662  INFO : "TcpClient : CLIENT IP: 169.254.78.233 READY"
+2018-06-23 23:58:09:664  INFO : "SocketHandler : handleRetreiveIpAddress: " "169.254.78.233"
+2018-06-23 23:58:09:664  INFO : "ScanClientGui : buildActuatorControl"
+2018-06-23 23:58:09:664  INFO : "ImageProcessManager: build"
+2018-06-23 23:58:35:179  INFO : "ScanClientGui : tcpDisconnect"
+2018-06-23 23:58:35:180  INFO : "TcpClient : disconnectFromHost"
+2018-06-23 23:58:35:180  INFO : "ScanClientGui : EXIT"
